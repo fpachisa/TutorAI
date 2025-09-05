@@ -1,0 +1,55 @@
+{
+  "id": "unknown-letter",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "algebra",
+    "subtopic": "unknown-letter"
+  },
+  "metadata": {
+    "name": "Using a Letter to Represent an Unknown Number",
+    "description": "Represent an unknown with a letter and form simple expressions from words without computing answers.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 1,
+    "icon": "🔤",
+    "conceptTags": ["algebra", "unknown", "variable", "expression"],
+    "moeSyllabusRef": "P6.5.1"
+  },
+  "learning_objective": "Use letters to represent unknown numbers and write simple algebraic expressions from word statements",
+  "intro_context": "In math, we use letters like n, x, or a to represent numbers we don't know yet. Today you'll learn to write expressions using these letters.",
+  "mastery_progression": [
+  {
+    "step": 1,
+    "concept": "variable_meaning",
+    "sample_question": "In the magical expression 'n + 5', the letter 'n' is like a secret box holding a mystery number. What is the special name we give to letters like 'n' that stand for an unknown value?",
+    "question_count": 1,
+    "mastery_criteria": "Student can explain that n is an unknown number or a variable."
+  },
+  {
+    "step": 2,
+    "concept": "basic_addition_subtraction",
+    "sample_question": "You have a collection of 'k' awesome video games. Your friend gives you 7 more for your birthday! 🎉 How would you write a math expression to show how many games you have now?",
+    "question_count": 2,
+    "mastery_criteria": "Student can form n+7, k-3 type expressions."
+  },
+  {
+    "step": 3,
+    "concept": "multiplication_notation",
+    "sample_question": "A super-fast superhero can run 'n' miles in a minute. How would you write an expression to show the distance they could cover in four minutes, using the shortest math notation possible (without the '×' sign)?",
+    "question_count": 2,
+    "mastery_criteria": "Student understands 4n means 4×n."
+  },
+  {
+    "step": 4,
+    "concept": "combined_operations",
+    "sample_question": "You're playing a game where you earn points. The rule is to double your score ('x') and then add 3 bonus points. What mathematical expression perfectly describes this two-step scoring rule?",
+    "question_count": 3,
+    "mastery_criteria": "Student can form 2n+3 type expressions."
+  }
+  ],
+  "completion_policy": {
+    "requires_all_steps": true,
+    "total_questions": 8
+  }
+}

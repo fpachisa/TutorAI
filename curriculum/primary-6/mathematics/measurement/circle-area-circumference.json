@@ -1,0 +1,148 @@
+{
+  "id": "circle-area-circumference",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "circle-area-circumference"
+  },
+  "metadata": {
+    "name": "Area and Circumference of Circle",
+    "description": "Learn to calculate the area and circumference of circles using π ≈ 3.14 or 22/7.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 1,
+    "icon": "⭕",
+    "conceptTags": ["circle", "area", "circumference", "pi", "radius", "diameter"],
+    "moeSyllabusRef": "P6.6.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Calculate circumference using C = πd or C = 2πr",
+      "moeSyllabusRef": "P6.6.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Calculate area using A = πr²",
+      "moeSyllabusRef": "P6.6.1b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding of circles, radius, and diameter",
+    "Multiplication and division with decimals",
+    "Concept of π (pi) ≈ 3.14 or 22/7",
+    "Calculating squares (r²)"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify whether you have radius or diameter",
+      "examples": ["If diameter = 10 cm, then radius = 5 cm (r = d ÷ 2)"]
+    },
+    {
+      "step": 2,
+      "description": "Choose appropriate formula for circumference",
+      "examples": ["Use C = πd if diameter given, C = 2πr if radius given"]
+    },
+    {
+      "step": 3,
+      "description": "For area, always use A = πr² (need radius)",
+      "examples": ["If d = 8, then r = 4, so A = π × 4² = π × 16"]
+    },
+    {
+      "step": 4,
+      "description": "Use π ≈ 3.14 or π ≈ 22/7 to calculate final answer",
+      "examples": ["A = 3.14 × 16 = 50.24 cm²"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing radius and diameter in formulas",
+      "probe": "If a circle has diameter 12 cm, what radius do you use in A = πr²?",
+      "hint": "Radius is half the diameter. If d = 12 cm, then r = 6 cm. Use r = 6 in A = πr².",
+      "quickCheck": "What's the radius of a circle with diameter 18 cm?"
+    },
+    {
+      "id": "misc2",
+      "description": "Forgetting to square the radius in area formula",
+      "probe": "For area A = πr², if r = 5, do we calculate π × 5 or π × 25?",
+      "hint": "We must square the radius first: r² = 5² = 25. Then A = π × 25.",
+      "quickCheck": "What is 7² (seven squared)?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A circle has radius 7 cm. Find its area and circumference using π = 22/7."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Area: A = πr² = (22/7) × 7² = (22/7) × 49. Circumference: C = 2πr = 2 × (22/7) × 7."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "A = (22/7) × 49 = 22 × 7 = 154 cm². C = 2 × (22/7) × 7 = 2 × 22 = 44 cm."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's explore circles! A circular garden has a radius of 6 meters. What's its area? Which formula will you use?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "For area, use A = πr². With r = 6: A = π × 6² = π × 36. Using π ≈ 3.14: A = 3.14 × 36."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You've learned to calculate both area and circumference of circles. These formulas are used in many real-world applications!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Key formulas: Circumference C = πd = 2πr, Area A = πr². Always remember to square the radius for area!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A circle has radius 5 cm. Find its circumference using π = 3.14.",
+      "answer": "31.4",
+      "worked": [
+        "Circumference C = 2πr",
+        "C = 2 × 3.14 × 5",
+        "C = 31.4 cm"
+      ],
+      "conceptTags": ["circle:circumference", "circle:basic"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A circular pond has diameter 14 m. Find its area using π = 22/7.",
+      "answer": "154",
+      "worked": [
+        "Diameter = 14 m, so radius = 7 m",
+        "Area A = πr² = (22/7) × 7²",
+        "A = (22/7) × 49 = 22 × 7 = 154 m²"
+      ],
+      "conceptTags": ["circle:area", "circle:diameter_to_radius"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A circle has radius 4 cm. Its area using π = 3.14 is:",
+      "choices": ["12.56 cm²", "25.12 cm²", "50.24 cm²", "100.48 cm²"],
+      "answer": "C",
+      "rationale": "A = πr² = 3.14 × 4² = 3.14 × 16 = 50.24 cm²"
+    }
+  ]
+}

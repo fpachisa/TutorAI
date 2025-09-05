@@ -1,0 +1,147 @@
+{
+  "id": "finding-whole-given-part-percentage",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "percentage",
+    "subtopic": "finding-whole-given-part-percentage"
+  },
+  "metadata": {
+    "name": "Finding the Whole Given a Part and the Percentage",
+    "description": "Learn to find the original whole amount when given a part and its percentage value.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 1,
+    "icon": "💯",
+    "conceptTags": ["percentage", "reverse-percentage", "whole-part-relationship"],
+    "moeSyllabusRef": "P6.2.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Understand the relationship between part, whole, and percentage in reverse scenarios.",
+      "moeSyllabusRef": "P6.2.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Apply the formula: Whole = Part ÷ (Percentage ÷ 100) to solve problems.",
+      "moeSyllabusRef": "P6.2.1b"
+    }
+  ],
+  "prerequisites": [
+    "Convert between fractions, decimals, and percentages",
+    "Understand percentage as parts per hundred",
+    "Basic division operations"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify the given part and its percentage value",
+      "examples": ["If 30% = 60, what is the whole?"]
+    },
+    {
+      "step": 2,
+      "description": "Convert percentage to decimal or fraction",
+      "examples": ["30% = 0.3 or 30/100 = 3/10"]
+    },
+    {
+      "step": 3,
+      "description": "Use division: Whole = Part ÷ Percentage (as decimal)",
+      "examples": ["Whole = 60 ÷ 0.3 = 200"]
+    },
+    {
+      "step": 4,
+      "description": "Verify by checking: Percentage × Whole = Part",
+      "examples": ["Check: 30% × 200 = 60 ✓"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Multiplying instead of dividing to find the whole",
+      "probe": "If 25% of a number is 40, do we multiply 40 by 25% or divide?",
+      "hint": "Think: if 25% gives us 40, then 100% (the whole) would be larger. We need to divide 40 by 0.25.",
+      "quickCheck": "What operation makes a number larger - multiplication by 0.25 or division by 0.25?"
+    },
+    {
+      "id": "misc2",
+      "description": "Using the percentage value directly instead of converting to decimal",
+      "probe": "To find the whole when 20% = 50, do we calculate 50 ÷ 20 or 50 ÷ 0.2?",
+      "hint": "Remember to convert percentage to decimal first: 20% = 0.2, so we calculate 50 ÷ 0.2 = 250.",
+      "quickCheck": "Convert 15% to a decimal"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A shop sold 40 items, which is 25% of their total stock. How many items did they have originally?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "If 25% = 40 items, then to find 100% (the whole), we need to divide: 40 ÷ 0.25 = ?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Use the formula: Whole = Part ÷ (Percentage as decimal). Here: 40 ÷ 0.25 = 160 items."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's solve this step by step: A student scored 42 marks, which is 70% of the total marks. What was the total possible score? How would you approach this?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Since 70% gives us 42 marks, we need to find what 100% would be. We can use division: 42 ÷ 0.7. What do you get?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You've learned that when we know a part and its percentage, we divide to find the whole. This is very useful for real-world problems!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember: Whole = Part ÷ (Percentage as decimal). Always convert the percentage to decimal first, then divide!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "Sarah spent $45, which is 30% of her allowance. How much allowance does she have in total?",
+      "answer": "150",
+      "worked": [
+        "Given: 30% = $45",
+        "Convert percentage to decimal: 30% = 0.3",
+        "Use formula: Whole = Part ÷ Percentage = 45 ÷ 0.3 = $150"
+      ],
+      "conceptTags": ["percentage:reverse", "percentage:word_problems"]
+    },
+    {
+      "id": "item2",
+      "type": "numeric",
+      "difficulty": "M",
+      "stem": "If 35% of a number is 84, what is the number?",
+      "answer": "240",
+      "worked": [
+        "Given: 35% of number = 84",
+        "Convert: 35% = 0.35",
+        "Calculate: Number = 84 ÷ 0.35 = 240"
+      ],
+      "conceptTags": ["percentage:reverse", "percentage:calculation"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "If 60% of a number is 90, what is the number?",
+      "choices": ["54", "150", "540", "15"],
+      "answer": "B",
+      "rationale": "Number = 90 ÷ 0.6 = 150"
+    }
+  ]
+}

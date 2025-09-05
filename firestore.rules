@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to curriculum data for development
+    match /curriculum/{document=**} {
+      allow read: if true;
+    }
+    
+    // For production, these rules would be much more restrictive
+    // This is just for development and testing
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

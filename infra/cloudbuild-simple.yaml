@@ -1,0 +1,86 @@
+# Simplified Cloud Build configuration for TutorAI Web Application
+steps:
+  # Step 1: Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:$SHORT_SHA'
+      - '-f'
+      - 'infra/Dockerfile'
+      - '--build-arg'
+      - 'GIT_SHA=$SHORT_SHA'
+      - '--build-arg'
+      - 'BUILD_TIME=$BUILD_ID'
+      - '.'
+
+  # Step 2: Push image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: 
+      - 'push'
+      - 'asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:$SHORT_SHA'
+
+  # Step 3: Deploy to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'tutorai-web'
+      - '--image=asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:$SHORT_SHA'
+      - '--region=asia-southeast1'
+      - '--platform=managed'
+      - '--allow-unauthenticated'
+      - '--min-instances=0'
+      - '--max-instances=10'
+      - '--cpu=2'
+      - '--memory=4Gi'
+      - '--concurrency=100'
+      - '--port=8080'
+      - '--set-env-vars=NODE_ENV=production'
+      - '--set-env-vars=NEXT_PUBLIC_ENV=staging'
+      - '--set-env-vars=NEXT_PUBLIC_REGION=asia-southeast1'
+      - '--set-env-vars=GIT_SHA=$SHORT_SHA'
+      - '--set-env-vars=BUILD_TIME=$BUILD_ID'
+      - '--set-secrets=FIREBASE_PRIVATE_KEY=FIREBASE_PRIVATE_KEY:latest,SANITY_API_TOKEN=SANITY_API_TOKEN:latest'
+      - '--set-env-vars=FIREBASE_CLIENT_EMAIL=firebase-admin@ai-math-tutor-prod.iam.gserviceaccount.com'
+      - '--set-env-vars=FIREBASE_PROJECT_ID=ai-math-tutor-prod'
+      - '--set-env-vars=NEXT_PUBLIC_FIREBASE_PROJECT_ID=ai-math-tutor-prod'
+      - '--set-env-vars=NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=ai-math-tutor-prod.firebaseapp.com'
+      - '--set-env-vars=NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=ai-math-tutor-prod.appspot.com'
+      - '--set-env-vars=SANITY_PROJECT_ID=nq8wt9av'
+      - '--set-env-vars=SANITY_DATASET=production'
+
+  # Step 4: Run health check
+  - name: 'gcr.io/cloud-builders/curl'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        # Wait for service to be ready
+        sleep 30
+        
+        # Get service URL and test health endpoint
+        SERVICE_URL=$$(gcloud run services describe tutorai-web --region=asia-southeast1 --format='value(status.url)')
+        echo "Testing service at: $$SERVICE_URL"
+        
+        # Health check with retries
+        for i in {1..3}; do
+          echo "Health check attempt $$i/3"
+          if curl -f "$$SERVICE_URL/api/health"; then
+            echo "✅ Health check passed!"
+            exit 0
+          fi
+          echo "❌ Health check failed, retrying in 10s..."
+          sleep 10
+        done
+        
+        echo "❌ Health checks failed"
+        exit 1
+
+# Build configuration
+options:
+  machineType: 'E2_HIGHCPU_8'
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: 1200s

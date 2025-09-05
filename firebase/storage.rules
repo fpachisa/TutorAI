@@ -1,0 +1,71 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Public assets - read-only for all users
+    match /public/{allPaths=**} {
+      allow read: if true;
+      allow write: if false; // Only admin SDK can write public assets
+    }
+    
+    // Student uploads - only the student can read/write their own files
+    match /students/{studentId}/{allPaths=**} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid == studentId;
+      allow create: if request.auth != null 
+        && request.auth.uid == studentId
+        && request.resource.size < 50 * 1024 * 1024  // 50MB limit
+        && request.resource.contentType.matches('image/.*|application/pdf|text/.*');
+    }
+    
+    // Parent uploads - only the parent can read/write their own files
+    match /parents/{parentId}/{allPaths=**} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid == parentId;
+      allow create: if request.auth != null 
+        && request.auth.uid == parentId
+        && request.resource.size < 10 * 1024 * 1024  // 10MB limit
+        && request.resource.contentType.matches('image/.*|application/pdf');
+    }
+    
+    // Session recordings/artifacts - accessible by session participants
+    match /sessions/{sessionId}/{allPaths=**} {
+      allow read: if request.auth != null 
+        && request.auth.uid != null
+        && (
+          // Check if user is the student or parent of this session
+          exists(/databases/(default)/documents/sessions/$(sessionId)) &&
+          (
+            request.auth.uid == get(/databases/(default)/documents/sessions/$(sessionId)).data.studentUid ||
+            request.auth.uid == get(/databases/(default)/documents/sessions/$(sessionId)).data.parentUid
+          )
+        );
+      allow write: if false; // Only admin SDK can write session data
+    }
+    
+    // System generated content (reports, exports, etc.)
+    match /system/{allPaths=**} {
+      allow read, write: if false; // Only admin SDK access
+    }
+    
+    // Curriculum assets - read-only for authenticated users
+    match /curriculum/{allPaths=**} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only admin SDK
+    }
+    
+    // Temporary uploads - users can upload to their temp folder
+    match /temp/{userId}/{allPaths=**} {
+      allow read, write, delete: if request.auth != null 
+        && request.auth.uid == userId
+        && request.resource.size < 10 * 1024 * 1024  // 10MB limit
+        && request.resource.contentType.matches('image/.*|application/pdf|text/.*');
+    }
+    
+    // Default deny rule
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

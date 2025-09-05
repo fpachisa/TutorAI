@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "ai-math-tutor-prod",
+    "staging": "ai-math-tutor-prod",
+    "production": "ai-math-tutor-prod"
+  },
+  "targets": {
+    "ai-math-tutor-prod": {
+      "hosting": {
+        "app": [
+          "ai-math-tutor-prod"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

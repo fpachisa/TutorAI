@@ -1,0 +1,76 @@
+{
+  "testName": "algebra_unknown_letter_multiply_divide",
+  "description": "Student learns to solve one-step equations with multiplication/division",
+  "topicKey": "algebra_unknown_letter",
+  "expectedFlow": "multiplication_equation -> inverse_operation -> division -> verification",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "I need to solve 4n = 20",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:one_step_equation", "algebra:multiplication"],
+        "hint_level": 0,
+        "shouldContain": ["4n", "means", "4 × n", "what number"],
+        "shouldNotContain": ["5", "divide", "n = 5"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "4 times some number equals 20",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:inverse_operations", "algebra:division_to_solve"],
+        "hint_level": 0,
+        "shouldContain": ["right", "undo", "multiplying", "opposite"],
+        "shouldNotContain": ["divide by 4", "5", "answer"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "The opposite of multiplying by 4 is dividing by 4?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:division_to_solve", "algebra:balance"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "both sides", "4n ÷ 4", "20 ÷ 4"],
+        "shouldNotContain": ["n = 5", "answer", "solution"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "4n ÷ 4 = 20 ÷ 4, so n = 5",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:solution_check", "algebra:substitution"],
+        "hint_level": 0,
+        "shouldContain": ["excellent", "check", "4 × 5", "substitute"],
+        "shouldNotContain": ["correct", "done", "final"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "Check: 4 × 5 = 20 ✓",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["algebra:one_step_equation", "algebra:multiplication"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "understand", "multiplication equations", "division"],
+        "shouldNotContain": ["answer", "finished", "complete"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["algebra:one_step_equation", "algebra:division_to_solve", "algebra:solution_check"],
+    "frustrationType": "none", 
+    "hintLevelProgression": [0, 0, 0, 0, 0],
+    "finalMasteryScore": 0.85
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "endsWithQuestions": true,
+    "teachesInverseOperations": true
+  }
+}

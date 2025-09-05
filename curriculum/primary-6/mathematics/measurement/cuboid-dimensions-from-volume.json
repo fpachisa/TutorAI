@@ -1,0 +1,135 @@
+{
+  "id": "cuboid-dimensions-from-volume",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "cuboid-dimensions-from-volume"
+  },
+  "metadata": {
+    "name": "Finding One Dimension of a Cuboid Given Volume and Other Dimensions",
+    "description": "Learn to find missing length, width, or height when volume and other dimensions are known.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 4,
+    "icon": "📦",
+    "conceptTags": ["volume", "cuboid", "dimensions", "length", "width", "height"],
+    "moeSyllabusRef": "P6.7.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Use Volume = length × width × height to find missing dimensions",
+      "moeSyllabusRef": "P6.7.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Rearrange volume formula to solve for unknown dimension",
+      "moeSyllabusRef": "P6.7.1b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding volume = length × width × height",
+    "Rearranging simple equations (division)",
+    "Basic understanding of 3D shapes (cuboids)"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Write the volume formula: V = l × w × h",
+      "examples": ["Volume = length × width × height"]
+    },
+    {
+      "step": 2,
+      "description": "Substitute known values",
+      "examples": ["If V = 120, l = 8, w = 3: 120 = 8 × 3 × h"]
+    },
+    {
+      "step": 3,
+      "description": "Simplify and rearrange to find unknown",
+      "examples": ["120 = 24 × h, so h = 120 ÷ 24 = 5"]
+    },
+    {
+      "step": 4,
+      "description": "Check answer by multiplying all dimensions",
+      "examples": ["Check: 8 × 3 × 5 = 120 ✓"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing which dimension to solve for",
+      "probe": "If a box has length 6 cm, width 4 cm, and volume 72 cm³, what are we finding?",
+      "hint": "We're finding the height. Use V = l × w × h: 72 = 6 × 4 × h, so h = 72 ÷ 24 = 3 cm.",
+      "quickCheck": "In V = l × w × h, if we know V, l, and h, what can we find?"
+    },
+    {
+      "id": "misc2",
+      "description": "Forgetting to divide by the product of known dimensions",
+      "probe": "To find height from V = 60, l = 5, w = 3, do we calculate 60 ÷ 5 ÷ 3 or 60 ÷ (5 × 3)?",
+      "hint": "We divide by the product: h = V ÷ (l × w) = 60 ÷ (5 × 3) = 60 ÷ 15 = 4.",
+      "quickCheck": "What's 5 × 3?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A rectangular box has volume 84 cm³, length 7 cm, and width 3 cm. What's its height?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Use V = l × w × h. Substitute: 84 = 7 × 3 × h. What's 7 × 3?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "84 = 21 × h, so h = 84 ÷ 21 = 4 cm. Check: 7 × 3 × 4 = 84 ✓"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's find missing dimensions! A storage box has volume 144 cubic meters, length 8 m, and width 6 m. What's its height?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Use V = l × w × h. Substitute what you know: 144 = 8 × 6 × h. Calculate 8 × 6 first."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You can now find any missing dimension of a cuboid when you know the volume and other dimensions. This is very useful in real-world applications!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Key strategy: V = l × w × h. To find missing dimension, divide volume by the product of known dimensions!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A rectangular tank has volume 180 liters, length 9 dm, and width 5 dm. Find its height.",
+      "answer": "4",
+      "worked": [
+        "Volume = length × width × height",
+        "180 = 9 × 5 × h",
+        "180 = 45 × h",
+        "h = 180 ÷ 45 = 4 dm"
+      ],
+      "conceptTags": ["volume:missing_dimension", "volume:cuboid"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A box has volume 96 cm³, length 8 cm, width 4 cm. Its height is:",
+      "choices": ["2 cm", "3 cm", "4 cm", "6 cm"],
+      "answer": "B",
+      "rationale": "h = V ÷ (l × w) = 96 ÷ (8 × 4) = 96 ÷ 32 = 3 cm"
+    }
+  ]
+}

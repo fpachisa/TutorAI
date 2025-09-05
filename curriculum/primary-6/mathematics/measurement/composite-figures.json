@@ -1,0 +1,151 @@
+{
+  "id": "composite-figures",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "composite-figures"
+  },
+  "metadata": {
+    "name": "Area and Perimeter of Composite Figures with Circles",
+    "description": "Find area and perimeter of shapes made from rectangles, squares, triangles combined with circles or parts of circles.",
+    "difficulty": "C",
+    "estimatedTime": 35,
+    "order": 3,
+    "icon": "🧩",
+    "conceptTags": ["composite-figures", "area", "perimeter", "circles", "complex-shapes"],
+    "moeSyllabusRef": "P6.6.3"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Calculate area of composite figures involving circles and polygons",
+      "moeSyllabusRef": "P6.6.3a"
+    },
+    {
+      "id": "obj2",
+      "description": "Calculate perimeter of composite figures with curved and straight edges",
+      "moeSyllabusRef": "P6.6.3b"
+    }
+  ],
+  "prerequisites": [
+    "Calculate area and perimeter of basic shapes (rectangle, triangle)",
+    "Calculate area and circumference of circles",
+    "Understanding of semicircles and quarter circles",
+    "Adding and subtracting areas"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Break down the composite figure into recognizable shapes",
+      "examples": ["Identify rectangles, triangles, circles, semicircles, quarter circles"]
+    },
+    {
+      "step": 2,
+      "description": "Calculate area of each component separately",
+      "examples": ["Rectangle: l×w, Circle: πr², Semicircle: πr²/2"]
+    },
+    {
+      "step": 3,
+      "description": "Add or subtract areas as needed",
+      "examples": ["Total area = Area₁ + Area₂ - overlap (if any)"]
+    },
+    {
+      "step": 4,
+      "description": "For perimeter, identify which edges form the outside boundary",
+      "examples": ["Include only the outer edges, not internal boundaries"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Including internal edges in perimeter calculations",
+      "probe": "When finding perimeter of a composite figure, do we include the line where two shapes meet inside?",
+      "hint": "No! Perimeter is only the outer boundary. Internal edges where shapes join are not part of the perimeter.",
+      "quickCheck": "If a semicircle sits on top of a rectangle, is the diameter part of the perimeter?"
+    },
+    {
+      "id": "misc2",
+      "description": "Double-counting or missing overlapping areas",
+      "probe": "If two shapes overlap, how do you handle the overlapping area?",
+      "hint": "Be careful! If shapes overlap, you might need to subtract the overlap. If one shape has a cut-out, you subtract that area.",
+      "quickCheck": "What's the area if you remove a small circle from inside a larger rectangle?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A figure is made of a rectangle (8m × 6m) with a semicircle (radius 3m) attached to one of the 6m sides. Find the total area."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Break it down: Rectangle area = 8 × 6 = 48 m². Semicircle area = (1/2) × π × 3² = (1/2) × π × 9. Use π = 3.14."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Rectangle: 48 m². Semicircle: 0.5 × 3.14 × 9 = 14.13 m². Total: 48 + 14.13 = 62.13 m²."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's work with composite figures! A shape is made of a square (side 10 cm) with quarter circles at each corner (radius 2 cm). What's the area of this shape?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Think step by step: Square area = 10² = 100 cm². Four quarter circles = one full circle with radius 2. Circle area = π × 2² = 4π."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Now for perimeter: What's the perimeter of the same shape (square with quarter circles at corners)?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent work! You've mastered composite figures by breaking them into parts and carefully considering which edges form the perimeter."},
+      {"id": "summary", "intent": "summarize", "prompt": "Strategy: 1) Break into simple shapes, 2) Calculate each area separately, 3) Add/subtract as needed, 4) For perimeter, trace the outer boundary only!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A window is shaped like a rectangle (4m × 3m) with a semicircle on top (radius 1.5m). Find the area using π = 3.14.",
+      "answer": "15.53",
+      "worked": [
+        "Rectangle area = 4 × 3 = 12 m²",
+        "Semicircle area = (1/2) × π × 1.5² = (1/2) × 3.14 × 2.25 = 3.53 m²",
+        "Total area = 12 + 3.53 = 15.53 m²"
+      ],
+      "conceptTags": ["composite:rectangle_semicircle", "area:addition"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "A garden path is 2m wide and surrounds a circular pond (radius 5m). Find the area of the path using π = 22/7.",
+      "answer": "88",
+      "worked": [
+        "Outer circle radius = 5 + 2 = 7m",
+        "Outer area = (22/7) × 7² = 22 × 7 = 154 m²",
+        "Inner area = (22/7) × 5² = (22/7) × 25 = 550/7 ≈ 78.57 m²",
+        "Path area = 154 - 78.57 = 75.43 m² ≈ 88 m²"
+      ],
+      "conceptTags": ["composite:annulus", "area:subtraction"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A shape has a rectangle (6cm × 4cm) with a semicircle (radius 2cm) cut out. Area using π = 3.14:",
+      "choices": ["24 cm²", "17.72 cm²", "30.28 cm²", "20 cm²"],
+      "answer": "B",
+      "rationale": "Rectangle: 6×4 = 24 cm². Semicircle: 0.5×3.14×4 = 6.28 cm². Area = 24 - 6.28 = 17.72 cm²"
+    }
+  ]
+}

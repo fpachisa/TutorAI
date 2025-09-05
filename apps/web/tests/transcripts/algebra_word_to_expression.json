@@ -1,0 +1,77 @@
+{
+  "testName": "algebra_unknown_letter_word_to_expression",
+  "description": "Student learns to translate word sentences into algebraic expressions",
+  "topicKey": "algebra_unknown_letter",
+  "expectedFlow": "word_problem -> identification -> translation -> verification",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "How do I write 'three more than a number' as an expression?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:word_to_equation", "algebra:variable_meaning"],
+        "hint_level": 0,
+        "shouldContain": ["number", "don't know", "letter", "call it"],
+        "shouldNotContain": ["n + 3", "x + 3", "answer"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "I can call the unknown number n?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:variable_meaning", "algebra:word_to_equation"],
+        "hint_level": 0,
+        "shouldContain": ["good", "three more than", "n", "what operation"],
+        "shouldNotContain": ["n + 3", "add", "plus"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "'Three more than n' means I add 3 to n",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:word_to_equation", "algebra:expression"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "write", "mathematical", "symbols"],
+        "shouldNotContain": ["n + 3", "answer", "expression is"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "n + 3",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:word_to_equation", "algebra:substitution"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "if", "n = 5", "what would"],
+        "shouldNotContain": ["8", "answer", "correct"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "If n = 5, then n + 3 = 5 + 3 = 8",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["algebra:word_to_equation", "algebra:substitution"],
+        "hint_level": 0,
+        "shouldContain": ["excellent", "translate", "words", "mathematics"],
+        "shouldNotContain": ["answer", "finished", "done"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["algebra:word_to_equation", "algebra:variable_meaning", "algebra:substitution"],
+    "skillsDemonstrated": ["translation", "symbolic_representation", "verification"],
+    "frustrationType": "none",
+    "hintLevelProgression": [0, 0, 0, 0, 0],
+    "finalMasteryScore": 0.85
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "endsWithQuestions": true,
+    "connectsWordsToMath": true
+  }
+}

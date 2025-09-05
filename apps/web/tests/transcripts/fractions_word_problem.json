@@ -1,0 +1,88 @@
+{
+  "testName": "fractions_divide_by_whole_word_problem",
+  "description": "Student works through a real-world sharing context problem",
+  "topicKey": "fractions_divide_by_whole",
+  "expectedFlow": "word_problem -> context_understanding -> mathematical_modeling -> solution",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "Sarah has 3/4 of a chocolate bar. She wants to share it equally with 2 friends. How much does each person get?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:word_problems", "fractions:sharing_model"],
+        "hint_level": 0,
+        "shouldContain": ["3 people total", "sharing", "equally", "mathematical"],
+        "shouldNotContain": ["1/4", "3/12", "answer"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "So there are 3 people sharing 3/4 of chocolate?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:word_problems", "fractions:divide_by_whole"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "write", "division", "equation"],
+        "shouldNotContain": ["3/4 ÷ 3", "1/4", "answer"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "3/4 ÷ 3?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:reciprocal_multiply"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "equation", "how", "solve"],
+        "shouldNotContain": ["3/12", "1/4", "multiply by 1/3"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "I multiply 3/4 by 1/3",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:computation", "fractions:real_world"],
+        "hint_level": 0,
+        "shouldContain": ["good", "what", "get", "calculation"],
+        "shouldNotContain": ["3/12", "1/4", "each person"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "3/4 × 1/3 = 3/12 = 1/4",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:real_world", "fractions:interpretation"],
+        "hint_level": 0,
+        "shouldContain": ["correct", "means", "real life", "chocolate bar"],
+        "shouldNotContain": ["final answer", "done", "finished"]
+      }
+    },
+    {
+      "turn": 6,
+      "student": "Each person gets 1/4 of the original chocolate bar",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["fractions:word_problems", "fractions:real_world"],
+        "hint_level": 0,
+        "shouldContain": ["excellent", "understand", "word problems", "sharing"],
+        "shouldNotContain": ["answer", "solution", "complete"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["fractions:word_problems", "fractions:divide_by_whole", "fractions:real_world"],
+    "skillsDemonstrated": ["problem_translation", "mathematical_modeling", "context_interpretation"],
+    "frustrationType": "none",
+    "hintLevelProgression": [0, 0, 0, 0, 0, 0],
+    "finalMasteryScore": 0.9
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "connectsToRealWorld": true,
+    "buildsConceptualUnderstanding": true
+  }
+}

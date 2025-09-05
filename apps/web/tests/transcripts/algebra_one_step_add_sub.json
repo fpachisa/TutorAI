@@ -1,0 +1,76 @@
+{
+  "testName": "algebra_unknown_letter_one_step_add_sub",
+  "description": "Student learns to solve one-step equations with addition/subtraction",
+  "topicKey": "algebra_unknown_letter",
+  "expectedFlow": "equation_setup -> inverse_operation -> solution -> verification",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "How do I solve x + 7 = 15?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:one_step_equation", "algebra:inverse_operations"],
+        "hint_level": 0,
+        "shouldContain": ["x", "unknown", "what", "added to"],
+        "shouldNotContain": ["8", "subtract", "answer"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "x is some number that when I add 7 gives 15",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:inverse_operations", "algebra:one_step_equation"],
+        "hint_level": 0,
+        "shouldContain": ["right", "undo", "adding", "opposite"],
+        "shouldNotContain": ["subtract 7", "8", "x = 8"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "I subtract 7 from both sides?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:inverse_operations", "algebra:balance"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "both sides", "what", "get"],
+        "shouldNotContain": ["x = 8", "answer", "15 - 7"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "x + 7 - 7 = 15 - 7, so x = 8",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:solution_check", "algebra:substitution"],
+        "hint_level": 0,
+        "shouldContain": ["good", "check", "substitute", "8 + 7"],
+        "shouldNotContain": ["correct", "done", "final"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "Check: 8 + 7 = 15 ✓",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["algebra:one_step_equation", "algebra:solution_check"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "always", "check", "subtract equation"],
+        "shouldNotContain": ["answer", "finished", "complete"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["algebra:one_step_equation", "algebra:inverse_operations", "algebra:solution_check"],
+    "frustrationType": "none",
+    "hintLevelProgression": [0, 0, 0, 0, 0],
+    "finalMasteryScore": 0.85
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "endsWithQuestions": true,
+    "teachesGoodHabits": true
+  }
+}

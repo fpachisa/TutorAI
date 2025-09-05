@@ -1,0 +1,154 @@
+{
+  "id": "ratio-word-problems",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "ratio",
+    "subtopic": "ratio-word-problems"
+  },
+  "metadata": {
+    "name": "Solving Word Problems Involving Ratio Including Changing Ratios",
+    "description": "Solve complex ratio problems including scenarios where ratios change over time.",
+    "difficulty": "C",
+    "estimatedTime": 35,
+    "order": 2,
+    "icon": "🔄",
+    "conceptTags": ["ratio", "word-problems", "changing-ratios", "problem-solving"],
+    "moeSyllabusRef": "P6.3.2"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Solve word problems involving ratios with given total quantities",
+      "moeSyllabusRef": "P6.3.2a"
+    },
+    {
+      "id": "obj2",
+      "description": "Handle changing ratio problems where quantities are added or removed",
+      "moeSyllabusRef": "P6.3.2b"
+    }
+  ],
+  "prerequisites": [
+    "Understand ratio notation and simplification",
+    "Convert between ratios and fractions",
+    "Solve equations with one unknown",
+    "Multi-step problem solving"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify the ratio and total quantity or constraint",
+      "examples": ["Ratio 3:5, total = 80 items OR after adding 10, ratio becomes 1:2"]
+    },
+    {
+      "step": 2,
+      "description": "Set up the problem using ratio parts",
+      "examples": ["Let 3x and 5x represent the quantities, so 3x + 5x = 80"]
+    },
+    {
+      "step": 3,
+      "description": "Solve for the multiplier (x) or unknown",
+      "examples": ["8x = 80, so x = 10"]
+    },
+    {
+      "step": 4,
+      "description": "Find individual quantities and verify",
+      "examples": ["First quantity = 3×10 = 30, Second = 5×10 = 50, Total = 80 ✓"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Adding the same amount to both quantities to change a ratio",
+      "probe": "If boys:girls is 2:3 and we add 5 more boys, does the ratio become 7:3?",
+      "hint": "No! Adding 5 boys makes it (original boys + 5):3. If there were 10 boys originally, it becomes 15:girls, not 7:3.",
+      "quickCheck": "If ratio is 4:6 and we add 2 to the first quantity, what's the new first quantity?"
+    },
+    {
+      "id": "misc2",
+      "description": "Confusing ratio parts with actual quantities",
+      "probe": "If books:magazines = 3:2 and total is 50, are there 3 books and 2 magazines?",
+      "hint": "No! 3:2 means 3 parts to 2 parts. Total parts = 5, so books = (3/5)×50 = 30, magazines = (2/5)×50 = 20.",
+      "quickCheck": "If ratio is 7:3 and total is 40, how many of each type are there?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A box has red and blue balls in ratio 4:7. After adding 6 red balls, the ratio becomes 2:3. How many balls were there originally?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Let original red = 4x, blue = 7x. After adding 6 red balls: (4x + 6):7x = 2:3. Set up the proportion: (4x + 6)/7x = 2/3."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Cross multiply: 3(4x + 6) = 2(7x) → 12x + 18 = 14x → 18 = 2x → x = 9. Original total = 11x = 99 balls."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's solve this step by step: The ratio of cats to dogs in a shelter is 3:5. If there are 48 animals total, how many cats and dogs are there?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Think of it as parts: 3 parts cats + 5 parts dogs = 8 parts total = 48 animals. So each part = 48 ÷ 8 = 6 animals."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Now try this challenging one: A class has boys and girls in ratio 5:7. After 3 boys leave, the ratio becomes 1:2. How many students were originally in the class?"},
+      {"id": "hint2", "intent": "give_hint", "prompt": "Let original boys = 5x, girls = 7x. After 3 boys leave: (5x-3):7x = 1:2. Can you set up the equation?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent problem-solving! You've mastered both basic ratio problems and changing ratio scenarios. These skills are very useful in real life!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Key strategies: Use ratio parts (like 3x, 5x), set up equations for changing ratios, and always verify your answer makes sense!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "stuck", "to": "hint2"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "hint2", "on": "answered", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "The ratio of fiction to non-fiction books in a library is 7:3. If there are 250 books in total, how many fiction books are there?",
+      "answer": "175",
+      "worked": [
+        "Ratio 7:3 means 7+3 = 10 total parts",
+        "Each part = 250 ÷ 10 = 25 books",
+        "Fiction books = 7 × 25 = 175 books"
+      ],
+      "conceptTags": ["ratio:word_problems", "ratio:total_given"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "In a jar, red marbles to blue marbles is 2:5. After adding 8 red marbles, the ratio becomes 4:5. How many blue marbles are in the jar?",
+      "answer": "20",
+      "worked": [
+        "Let original red = 2x, blue = 5x",
+        "After adding 8 red: (2x+8):5x = 4:5",
+        "Cross multiply: 5(2x+8) = 4(5x) → 10x+40 = 20x → 40 = 10x → x = 4",
+        "Blue marbles = 5x = 5(4) = 20"
+      ],
+      "conceptTags": ["ratio:changing", "ratio:word_problems", "ratio:equations"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "Pencils:pens = 4:9. If there are 65 items total, how many pencils?",
+      "choices": ["20", "25", "36", "45"],
+      "answer": "A",
+      "rationale": "Total parts = 13, each part = 5, pencils = 4×5 = 20"
+    }
+  ]
+}

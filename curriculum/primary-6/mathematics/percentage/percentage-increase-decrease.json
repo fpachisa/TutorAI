@@ -1,0 +1,147 @@
+{
+  "id": "percentage-increase-decrease",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "percentage",
+    "subtopic": "percentage-increase-decrease"
+  },
+  "metadata": {
+    "name": "Finding Percentage Increase/Decrease",
+    "description": "Learn to calculate percentage change when comparing original and new values.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 2,
+    "icon": "📈",
+    "conceptTags": ["percentage", "increase", "decrease", "change"],
+    "moeSyllabusRef": "P6.2.2"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Calculate percentage increase using the formula: (New - Original) ÷ Original × 100%",
+      "moeSyllabusRef": "P6.2.2a"
+    },
+    {
+      "id": "obj2",
+      "description": "Calculate percentage decrease and distinguish between increase and decrease scenarios",
+      "moeSyllabusRef": "P6.2.2b"
+    }
+  ],
+  "prerequisites": [
+    "Convert between fractions, decimals, and percentages",
+    "Subtract and divide whole numbers and decimals",
+    "Understand the concept of 'more than' and 'less than'"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify the original value and the new value",
+      "examples": ["Price increased from $80 to $96"]
+    },
+    {
+      "step": 2,
+      "description": "Find the absolute change (difference)",
+      "examples": ["Change = 96 - 80 = 16"]
+    },
+    {
+      "step": 3,
+      "description": "Apply the percentage change formula",
+      "examples": ["Percentage change = (16 ÷ 80) × 100% = 20%"]
+    },
+    {
+      "step": 4,
+      "description": "Determine if it's an increase or decrease",
+      "examples": ["Since new > original, it's a 20% increase"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Using the new value as the denominator instead of the original",
+      "probe": "When price goes from $50 to $60, do we calculate (10 ÷ 50) × 100% or (10 ÷ 60) × 100%?",
+      "hint": "Always use the original value as the denominator. We compare the change to what we started with.",
+      "quickCheck": "If a plant grows from 20cm to 25cm, what's the denominator in our percentage calculation?"
+    },
+    {
+      "id": "misc2",
+      "description": "Forgetting to multiply by 100 to get percentage",
+      "probe": "If we calculate (15 ÷ 60) = 0.25, is this our final answer or do we need to do more?",
+      "hint": "0.25 is the decimal form. To get percentage, multiply by 100: 0.25 × 100 = 25%",
+      "quickCheck": "Convert 0.35 to a percentage"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A school's enrollment went from 400 students to 480 students. What's the percentage increase?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "First find the change: 480 - 400 = 80. Then calculate: (80 ÷ 400) × 100%"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Change = 80, Original = 400. Formula: (80 ÷ 400) × 100% = 0.2 × 100% = 20% increase"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's work through this: The price of a toy decreased from $25 to $20. What's the percentage decrease? What's your first step?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Start by finding the change: $25 - $20 = $5. Now we need to compare this change to the original price. What calculation comes next?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great work! You've learned to calculate percentage change by comparing the difference to the original amount. This helps us understand how much things really change!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember the formula: Percentage change = (|New - Original| ÷ Original) × 100%. Use the original value in the denominator!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "The population of a town increased from 2000 to 2400. What is the percentage increase?",
+      "answer": "20",
+      "worked": [
+        "Change = 2400 - 2000 = 400",
+        "Percentage increase = (400 ÷ 2000) × 100%",
+        "= 0.2 × 100% = 20%"
+      ],
+      "conceptTags": ["percentage:increase", "percentage:word_problems"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A shirt's price was reduced from $60 to $48. Find the percentage decrease.",
+      "answer": "20",
+      "worked": [
+        "Change = 60 - 48 = 12",
+        "Percentage decrease = (12 ÷ 60) × 100%",
+        "= 0.2 × 100% = 20%"
+      ],
+      "conceptTags": ["percentage:decrease", "percentage:word_problems"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A car's value decreased from $15,000 to $12,000. What's the percentage decrease?",
+      "choices": ["25%", "20%", "15%", "30%"],
+      "answer": "B",
+      "rationale": "Change = 3000, Percentage = (3000 ÷ 15000) × 100% = 20%"
+    }
+  ]
+}

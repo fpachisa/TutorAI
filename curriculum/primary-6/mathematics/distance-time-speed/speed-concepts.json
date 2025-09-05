@@ -1,0 +1,148 @@
+{
+  "id": "speed-concepts",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "distance-time-speed",
+    "subtopic": "speed-concepts"
+  },
+  "metadata": {
+    "name": "Concepts of Speed and Average Speed",
+    "description": "Understand what speed means and how to calculate average speed in different scenarios.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 1,
+    "icon": "🏃‍♂️",
+    "conceptTags": ["speed", "average-speed", "concepts", "motion"],
+    "moeSyllabusRef": "P6.4.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Understand speed as distance covered per unit time",
+      "moeSyllabusRef": "P6.4.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Distinguish between instantaneous speed and average speed",
+      "moeSyllabusRef": "P6.4.1b"
+    }
+  ],
+  "prerequisites": [
+    "Division of whole numbers and decimals",
+    "Basic understanding of time units (hours, minutes, seconds)",
+    "Basic understanding of distance units (km, m, cm)"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Understand speed as 'how fast something moves'",
+      "examples": ["A car traveling 60 km in 1 hour has speed 60 km/h"]
+    },
+    {
+      "step": 2,
+      "description": "Learn that speed = distance ÷ time",
+      "examples": ["If you walk 10 m in 5 seconds, your speed = 10 ÷ 5 = 2 m/s"]
+    },
+    {
+      "step": 3,
+      "description": "Understand average speed for varying speeds",
+      "examples": ["Drive 30 km/h for 1 hour, then 60 km/h for 1 hour. Average = total distance ÷ total time"]
+    },
+    {
+      "step": 4,
+      "description": "Recognize that average speed may differ from individual speeds",
+      "examples": ["Average of 30 km/h and 60 km/h is NOT 45 km/h if times are different"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Thinking average speed is the arithmetic mean of individual speeds",
+      "probe": "If you drive at 40 km/h for 1 hour then 80 km/h for 1 hour, is your average speed 60 km/h?",
+      "hint": "Yes, in this case it is! But only because the times are equal. Average speed = total distance ÷ total time.",
+      "quickCheck": "What if you drive 40 km/h for 2 hours, then 80 km/h for 1 hour?"
+    },
+    {
+      "id": "misc2",
+      "description": "Confusing speed with distance or time",
+      "probe": "If a train travels 200 km in 4 hours, is 200 km the speed?",
+      "hint": "No! 200 km is the distance. Speed = distance ÷ time = 200 ÷ 4 = 50 km/h.",
+      "quickCheck": "What's the difference between '100 km' and '100 km/h'?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A cyclist rides 15 km in the first hour and 25 km in the second hour. What's their average speed?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Find total distance (15 + 25 = 40 km) and total time (2 hours). Average speed = total distance ÷ total time."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Average speed = 40 km ÷ 2 hours = 20 km/h. Note: this is NOT the average of 15 and 25!"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's explore speed! If you run 100 meters in 20 seconds, what's your speed? How did you calculate it?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Speed tells us how much distance is covered in each unit of time. Speed = distance ÷ time = 100 ÷ 20 = 5 meters per second."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Now try this: A car travels 60 km in the first hour and 40 km in the second hour. What's the average speed for the entire journey?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great! You understand that speed measures how fast something moves, and average speed considers the entire journey, not just individual parts."},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember: Speed = Distance ÷ Time, and Average Speed = Total Distance ÷ Total Time. Units matter too!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A bird flies 120 meters in 30 seconds. What is its speed?",
+      "answer": "4",
+      "worked": [
+        "Speed = distance ÷ time",
+        "Speed = 120 meters ÷ 30 seconds = 4 m/s"
+      ],
+      "conceptTags": ["speed:basic_calculation", "speed:concepts"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A runner covers 8 km in the first hour and 12 km in the second hour. What is the average speed?",
+      "answer": "10",
+      "worked": [
+        "Total distance = 8 + 12 = 20 km",
+        "Total time = 1 + 1 = 2 hours",
+        "Average speed = 20 ÷ 2 = 10 km/h"
+      ],
+      "conceptTags": ["speed:average", "speed:concepts"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A train travels 150 km in 3 hours. What is its speed?",
+      "choices": ["50 km/h", "450 km/h", "147 km/h", "153 km/h"],
+      "answer": "A",
+      "rationale": "Speed = distance ÷ time = 150 ÷ 3 = 50 km/h"
+    }
+  ]
+}

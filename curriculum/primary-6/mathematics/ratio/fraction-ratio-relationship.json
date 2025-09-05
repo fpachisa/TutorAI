@@ -1,0 +1,147 @@
+{
+  "id": "fraction-ratio-relationship",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "ratio",
+    "subtopic": "fraction-ratio-relationship"
+  },
+  "metadata": {
+    "name": "Relationship Between Fraction and Ratio",
+    "description": "Understand how fractions and ratios are connected and learn to convert between them.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 1,
+    "icon": "⚖️",
+    "conceptTags": ["ratio", "fraction", "relationship", "conversion"],
+    "moeSyllabusRef": "P6.3.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Understand that a ratio compares quantities while a fraction shows part of a whole",
+      "moeSyllabusRef": "P6.3.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Convert between ratios and fractions in appropriate contexts",
+      "moeSyllabusRef": "P6.3.1b"
+    }
+  ],
+  "prerequisites": [
+    "Understand fractions as parts of a whole",
+    "Simplify fractions to lowest terms",
+    "Compare and order fractions"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Understand the difference: ratios compare, fractions show parts of wholes",
+      "examples": ["Ratio 3:2 compares boys to girls, fraction 3/5 shows boys out of total students"]
+    },
+    {
+      "step": 2,
+      "description": "Convert ratio to fraction by using one part over the total",
+      "examples": ["Ratio 3:2 → Boys fraction = 3/(3+2) = 3/5, Girls fraction = 2/(3+2) = 2/5"]
+    },
+    {
+      "step": 3,
+      "description": "Convert fraction to ratio by comparing parts",
+      "examples": ["If 2/7 are apples and 5/7 are oranges, then apples:oranges = 2:5"]
+    },
+    {
+      "step": 4,
+      "description": "Simplify ratios like fractions by dividing by common factors",
+      "examples": ["Ratio 6:9 = 2:3 (divide both by 3)"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Thinking ratio 3:2 means 3/2 directly",
+      "probe": "If boys to girls ratio is 3:2, does this mean 3/2 of students are boys?",
+      "hint": "No! 3:2 means for every 3 boys there are 2 girls. Boys are 3/(3+2) = 3/5 of total students.",
+      "quickCheck": "If red:blue marbles is 4:1, what fraction of marbles are red?"
+    },
+    {
+      "id": "misc2",
+      "description": "Confusing which quantity goes in numerator when converting ratio to fraction",
+      "probe": "In ratio cats:dogs = 2:3, is the fraction of cats 2/3 or 2/5?",
+      "hint": "Cats are 2 parts out of total 5 parts (2+3), so fraction of cats = 2/5.",
+      "quickCheck": "If pencils:pens = 7:3, what fraction represents pencils?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "In a class, the ratio of boys to girls is 4:5. What fraction of the class are boys? What fraction are girls?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Total parts = 4 + 5 = 9. Boys are 4 parts out of 9, girls are 5 parts out of 9. So boys = 4/9, girls = 5/9."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "From ratio a:b, fraction of first = a/(a+b), fraction of second = b/(a+b). Always check that fractions add to 1!"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's explore the connection between ratios and fractions. If red marbles to blue marbles is 3:7, what fraction of all marbles are red? How did you figure this out?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Think about the total: 3 red + 7 blue = 10 marbles total. Red marbles are 3 out of 10, so the fraction is 3/10."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You've discovered that ratios and fractions are related but different. Ratios compare quantities, while fractions show parts of the whole."},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember: From ratio a:b, fractions are a/(a+b) and b/(a+b). The sum of these fractions always equals 1!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "In a fruit basket, the ratio of apples to oranges is 5:3. What fraction of the fruits are apples?",
+      "answer": "5/8",
+      "worked": [
+        "Total parts = 5 + 3 = 8",
+        "Apples are 5 parts out of 8 total parts",
+        "Fraction of apples = 5/8"
+      ],
+      "conceptTags": ["ratio:fraction_conversion", "ratio:word_problems"]
+    },
+    {
+      "id": "item2",
+      "type": "numeric",
+      "difficulty": "M",
+      "stem": "Express the ratio 12:8 in simplest form, then find what fraction the first quantity represents.",
+      "answer": "3:2, 3/5",
+      "worked": [
+        "Simplify ratio: 12:8 = 3:2 (divide both by 4)",
+        "Total parts = 3 + 2 = 5",
+        "First quantity fraction = 3/5"
+      ],
+      "conceptTags": ["ratio:simplification", "ratio:fraction_conversion"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "If dogs:cats = 2:7, what fraction of the pets are dogs?",
+      "choices": ["2/7", "2/9", "7/9", "2/5"],
+      "answer": "B",
+      "rationale": "Total pets = 2 + 7 = 9, so dogs = 2/9 of all pets"
+    }
+  ]
+}

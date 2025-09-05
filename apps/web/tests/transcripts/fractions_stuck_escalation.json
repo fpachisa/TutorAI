@@ -1,0 +1,103 @@
+{
+  "testName": "fractions_divide_by_whole_stuck_escalation",
+  "description": "Student gets stuck, system escalates through hints to checkpoint",
+  "topicKey": "fractions_divide_by_whole",
+  "expectedFlow": "confusion -> hints -> more_hints -> checkpoint -> recovery",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "I don't understand 5/6 ÷ 4",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:sharing_model"],
+        "hint_level": 0,
+        "frustration_flag": true,
+        "shouldContain": ["understand", "sharing", "4 friends", "pizza"],
+        "shouldNotContain": ["5/24", "multiply", "1/4"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "I don't know",
+      "expectedTutorResponse": {
+        "intent": "give_hint",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:reciprocal_multiply"],
+        "hint_level": 1,
+        "frustration_flag": true,
+        "shouldContain": ["hint", "multiply", "instead", "dividing by 4"],
+        "shouldNotContain": ["5/24", "answer", "1/4"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "Still confused",
+      "expectedTutorResponse": {
+        "intent": "give_hint",
+        "concept_tags": ["fractions:reciprocal_multiply", "fractions:computation"],
+        "hint_level": 2,
+        "frustration_flag": true,
+        "shouldContain": ["step by step", "5/6 × 1/4", "multiply", "numerators"],
+        "shouldNotContain": ["5/24", "final", "done"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "idk",
+      "expectedTutorResponse": {
+        "intent": "checkpoint_quiz",
+        "concept_tags": ["fractions:divide_by_whole"],
+        "hint_level": 0,
+        "checkpoint": {
+          "items": [
+            {
+              "stem": "What is 1/2 ÷ 2?",
+              "choices": ["A) 1/4", "B) 1", "C) 2/2", "D) 1/2"],
+              "answer": "A"
+            }
+          ]
+        },
+        "shouldContain": ["quiz", "check", "understanding"],
+        "shouldNotContain": ["5/24", "give up"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "A",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:checkpoint_success"],
+        "hint_level": 0,
+        "frustration_flag": false,
+        "shouldContain": ["great", "good", "now try", "original problem"],
+        "shouldNotContain": ["5/24", "answer"]
+      }
+    },
+    {
+      "turn": 6,
+      "student": "So 5/6 ÷ 4 = 5/6 × 1/4 = 5/24?",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:mastery"],
+        "hint_level": 0,
+        "frustration_flag": false,
+        "shouldContain": ["excellent", "understood", "method"],
+        "shouldNotContain": ["final answer", "done"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["fractions:divide_by_whole", "fractions:reciprocal_multiply"],
+    "frustrationType": "stuck_then_recovered",
+    "hintLevelProgression": [0, 1, 2, 0, 0, 0],
+    "checkpointTriggered": true,
+    "checkpointPassed": true,
+    "finalMasteryScore": 0.6
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "handlesStuckStudents": true,
+    "escalationWorksCorrectly": true
+  }
+}

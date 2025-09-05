@@ -1,0 +1,134 @@
+{
+  "id": "semicircle-quarter-circle",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "semicircle-quarter-circle"
+  },
+  "metadata": {
+    "name": "Finding Area and Perimeter of Semicircle and Quarter Circle",
+    "description": "Calculate area and perimeter of semicircles and quarter circles as fractions of complete circles.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 2,
+    "icon": "🌙",
+    "conceptTags": ["semicircle", "quarter-circle", "area", "perimeter", "fraction"],
+    "moeSyllabusRef": "P6.6.2"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Calculate area and perimeter of semicircles",
+      "moeSyllabusRef": "P6.6.2a"
+    },
+    {
+      "id": "obj2", 
+      "description": "Calculate area and perimeter of quarter circles",
+      "moeSyllabusRef": "P6.6.2b"
+    }
+  ],
+  "prerequisites": [
+    "Calculate area and circumference of full circles",
+    "Understanding of fractions (1/2, 1/4)",
+    "Adding straight line lengths to curved perimeters"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify if it's a semicircle (1/2) or quarter circle (1/4)",
+      "examples": ["Semicircle = half circle, Quarter circle = one-fourth circle"]
+    },
+    {
+      "step": 2,
+      "description": "Calculate curved part: fraction of full circumference",
+      "examples": ["Semicircle curved part = (1/2) × 2πr = πr"]
+    },
+    {
+      "step": 3,
+      "description": "Add straight edges for perimeter",
+      "examples": ["Semicircle perimeter = πr + 2r (curved + diameter)"]
+    },
+    {
+      "step": 4,
+      "description": "Calculate area as fraction of full circle",
+      "examples": ["Semicircle area = (1/2) × πr²"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Forgetting to add straight edges when finding perimeter",
+      "probe": "For semicircle perimeter, do we just use half the circumference?",
+      "hint": "No! Perimeter includes all edges. Semicircle perimeter = curved part + straight diameter = πr + 2r.",
+      "quickCheck": "What straight edges does a quarter circle have?"
+    },
+    {
+      "id": "misc2",
+      "description": "Using wrong fraction for quarter circle",
+      "probe": "What fraction of a full circle is a quarter circle?",
+      "hint": "Quarter = 1/4. So quarter circle area = (1/4) × πr², and curved part = (1/4) × 2πr = πr/2.",
+      "quickCheck": "What fraction is a semicircle?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A semicircle has radius 8 cm. Find its area and perimeter using π = 3.14."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Area = (1/2) × πr² = (1/2) × 3.14 × 64. Perimeter = πr + 2r = 3.14 × 8 + 16."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Area = 0.5 × 200.96 = 100.48 cm². Perimeter = 25.12 + 16 = 41.12 cm."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's work with parts of circles! A quarter circle has radius 6 cm. What's its area? How does this relate to a full circle?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "A quarter circle is 1/4 of a full circle. So area = (1/4) × πr² = (1/4) × π × 36 = 9π."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great! You understand that semicircles and quarter circles are just fractions of full circles, but remember to include all edges for perimeter!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember: Semicircle area = πr²/2, perimeter = πr + 2r. Quarter circle area = πr²/4, perimeter = πr/2 + 2r!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "Find the area of a semicircle with radius 7 cm. Use π = 22/7.",
+      "answer": "77",
+      "worked": [
+        "Semicircle area = (1/2) × πr²",
+        "Area = (1/2) × (22/7) × 7²",
+        "Area = (1/2) × (22/7) × 49 = (1/2) × 154 = 77 cm²"
+      ],
+      "conceptTags": ["semicircle:area", "circle:fractions"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A quarter circle has radius 4 cm. Its perimeter using π = 3.14 is:",
+      "choices": ["12.56 cm", "14.28 cm", "20.56 cm", "8.28 cm"],
+      "answer": "B",
+      "rationale": "Perimeter = πr/2 + 2r = 3.14×4/2 + 8 = 6.28 + 8 = 14.28 cm"
+    }
+  ]
+}

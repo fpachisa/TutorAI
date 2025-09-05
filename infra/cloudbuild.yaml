@@ -1,0 +1,37 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: bash
+    args: ['-c','echo GIT_SHA=$(git rev-parse --short HEAD) > _build.env']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build','-t','$_IMAGE','-f','infra/production.Dockerfile','.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push','$_IMAGE']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - run
+      - deploy
+      - $_SERVICE
+      - --image=$_IMAGE
+      - --region=$_REGION
+      - --platform=managed
+      - --allow-unauthenticated
+      - --set-env-vars=NEXT_PUBLIC_ENV=${_ENV}
+      - --set-env-vars=FIREBASE_PROJECT_ID=${PROJECT_ID}
+      - --set-env-vars=NEXT_PUBLIC_FIREBASE_PROJECT_ID=${PROJECT_ID}
+      - --set-env-vars=FIREBASE_CLIENT_EMAIL=${_FIREBASE_CLIENT_EMAIL}
+      - --set-env-vars=SANITY_PROJECT_ID=${_SANITY_PROJECT_ID}
+      - --set-env-vars=SANITY_DATASET=${_SANITY_DATASET}
+      - --set-secrets=FIREBASE_PRIVATE_KEY=projects/${PROJECT_ID}/secrets/FIREBASE_PRIVATE_KEY:latest,SANITY_API_TOKEN=projects/${PROJECT_ID}/secrets/SANITY_API_TOKEN:latest
+substitutions:
+  _IMAGE: 'gcr.io/$PROJECT_ID/tutorai-web:$SHORT_SHA'
+  _SERVICE: 'tutorai-web'
+  _REGION: 'asia-southeast1'
+  _ENV: 'staging'
+  _FIREBASE_CLIENT_EMAIL: 'firebase-adminsdk@$PROJECT_ID.iam.gserviceaccount.com'
+  _SANITY_PROJECT_ID: 'nq8wt9av'
+  _SANITY_DATASET: 'production'
+images: ['gcr.io/$PROJECT_ID/tutorai-web:$SHORT_SHA']

@@ -1,0 +1,168 @@
+{
+  "id": "reading-interpreting-pie-charts",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "data-analysis",
+    "subtopic": "reading-interpreting-pie-charts"
+  },
+  "metadata": {
+    "name": "Reading and Interpreting Data from Pie Charts",
+    "description": "Learn to read, interpret, and extract information from pie charts including angles, fractions, and percentages.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 1,
+    "icon": "🥧",
+    "conceptTags": ["pie-charts", "data-interpretation", "fractions", "percentages", "angles"],
+    "moeSyllabusRef": "P6.9.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Read and interpret data presented in pie charts",
+      "moeSyllabusRef": "P6.9.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Convert between angles, fractions, and percentages in pie charts",
+      "moeSyllabusRef": "P6.9.1b"
+    },
+    {
+      "id": "obj3",
+      "description": "Extract specific information and make comparisons from pie charts",
+      "moeSyllabusRef": "P6.9.1c"
+    }
+  ],
+  "prerequisites": [
+    "Understanding of fractions and percentages",
+    "Knowledge that a full circle = 360°",
+    "Converting between fractions, decimals, and percentages",
+    "Basic proportional reasoning"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Understand that the whole pie chart represents 100% or 360°",
+      "examples": ["Full circle = 360°, Each sector is a fraction of the whole"]
+    },
+    {
+      "step": 2,
+      "description": "Read labels and identify what each sector represents",
+      "examples": ["Red = 25%, Blue = 30%, Green = 45%"]
+    },
+    {
+      "step": 3,
+      "description": "Convert between different representations as needed",
+      "examples": ["25% = 1/4 = 90° (because 360° ÷ 4 = 90°)"]
+    },
+    {
+      "step": 4,
+      "description": "Answer questions by comparing sectors or calculating values",
+      "examples": ["Which is largest? How much more? What fraction?"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing the angle measure with the actual data value",
+      "probe": "If a sector shows 90° and represents 20 students, what does the 90° mean?",
+      "hint": "The 90° is the angle of the sector, not the number of students. 90° means this group is 1/4 of the total (90°/360° = 1/4).",
+      "quickCheck": "If total is 80 students and a sector is 90°, how many students does it represent?"
+    },
+    {
+      "id": "misc2",
+      "description": "Not understanding that all sectors must sum to 100%",
+      "probe": "Can the sectors in a pie chart add up to 120%?",
+      "hint": "No! All sectors must sum to exactly 100% or 360°. If they don't, there's an error or missing information.",
+      "quickCheck": "If three sectors are 30%, 45%, and 20%, what's the fourth sector?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A pie chart shows favorite fruits: Apples 120°, Oranges 90°, Bananas 150°. What percentage likes apples best?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Total circle = 360°. Apples = 120°. Percentage = (120°/360°) × 100% = ?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "120°/360° = 1/3. 1/3 × 100% = 33.33% (or 33⅓%) like apples best."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's explore pie charts! A pie chart shows how 240 students travel to school: Bus 50%, Walk 25%, Car 20%, Bicycle 5%. How many students take the bus?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Bus represents 50% of 240 students. Calculate: 50% × 240 = 0.5 × 240 = ?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "In the same chart, what angle would represent students who walk? (Remember: full circle = 360°)"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great! You can now read pie charts and convert between percentages, fractions, angles, and actual values. These skills help you understand data presentations!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Key relationships: 100% = 360° = whole circle. Convert using proportions: percentage/100% = angle/360° = actual value/total value!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A pie chart shows favorite colors: Red 25%, Blue 40%, Green 35%. What fraction of people chose blue?",
+      "answer": "2/5",
+      "worked": [
+        "Blue represents 40% of people",
+        "40% = 40/100 = 2/5",
+        "Therefore, 2/5 of people chose blue"
+      ],
+      "conceptTags": ["pie_charts:percentage_to_fraction", "fractions:simplification"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem", 
+      "difficulty": "M",
+      "stem": "In a pie chart of 300 students' favorite subjects: Math 108°, Science 72°, English 120°, Art 60°. How many students chose Science?",
+      "answer": "60",
+      "worked": [
+        "Science sector = 72° out of total 360°",
+        "Fraction choosing Science = 72°/360° = 1/5",
+        "Number of students = 1/5 × 300 = 60 students"
+      ],
+      "conceptTags": ["pie_charts:angle_to_count", "proportions:calculation"]
+    },
+    {
+      "id": "item3",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "A pie chart shows transport modes: Bus 45%, Car 30%, Walk 20%, Others 5%. If 180 people walk, what's the total number surveyed?",
+      "answer": "900",
+      "worked": [
+        "Walking represents 20% of the total",
+        "If 20% = 180 people, then 1% = 180 ÷ 20 = 9 people",
+        "Total = 100% = 100 × 9 = 900 people"
+      ],
+      "conceptTags": ["pie_charts:reverse_calculation", "percentages:finding_whole"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A pie chart shows 200 students' lunch choices: Sandwich 30%, Pizza 25%, Salad 45%. How many chose pizza?",
+      "choices": ["50 students", "25 students", "45 students", "75 students"],
+      "answer": "A",
+      "rationale": "Pizza = 25% of 200 = 0.25 × 200 = 50 students"
+    }
+  ]
+}

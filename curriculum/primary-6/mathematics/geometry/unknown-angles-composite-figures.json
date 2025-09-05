@@ -1,0 +1,183 @@
+{
+  "id": "unknown-angles-composite-figures",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "geometry",
+    "subtopic": "unknown-angles-composite-figures"
+  },
+  "metadata": {
+    "name": "Finding Unknown Angles in Composite Geometric Figures",
+    "description": "Find unknown angles in composite figures involving squares, rectangles, triangles, parallelograms, rhombus, and trapezium without additional construction of lines.",
+    "difficulty": "C",
+    "estimatedTime": 40,
+    "order": 1,
+    "icon": "📐",
+    "conceptTags": ["angles", "composite-figures", "geometry", "quadrilaterals", "triangles"],
+    "moeSyllabusRef": "P6.8.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Apply angle properties of squares, rectangles, parallelograms, rhombus, and trapezium",
+      "moeSyllabusRef": "P6.8.1a"
+    },
+    {
+      "id": "obj2",
+      "description": "Use angle relationships in triangles and quadrilaterals to solve for unknowns",
+      "moeSyllabusRef": "P6.8.1b"
+    },
+    {
+      "id": "obj3",
+      "description": "Find angles in composite figures by breaking them into component shapes",
+      "moeSyllabusRef": "P6.8.1c"
+    }
+  ],
+  "prerequisites": [
+    "Angle properties of triangles (angles sum to 180°)",
+    "Angle properties of quadrilaterals (angles sum to 360°)",
+    "Properties of specific shapes (square, rectangle, parallelogram, rhombus, trapezium)",
+    "Vertically opposite angles are equal",
+    "Angles on a straight line sum to 180°"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify the component shapes in the composite figure",
+      "examples": ["Rectangle + triangle, Two triangles forming parallelogram"]
+    },
+    {
+      "step": 2,
+      "description": "Mark all known angles using shape properties",
+      "examples": ["Rectangle corners = 90°, Parallelogram opposite angles equal"]
+    },
+    {
+      "step": 3,
+      "description": "Use angle relationships to find unknowns step by step",
+      "examples": ["Triangle angles sum = 180°, Straight line angles sum = 180°"]
+    },
+    {
+      "step": 4,
+      "description": "Check answer using another relationship if possible",
+      "examples": ["Verify using quadrilateral sum = 360°"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Assuming all angles in a parallelogram are equal",
+      "probe": "In a parallelogram, if one angle is 70°, what are the other angles?",
+      "hint": "Only opposite angles are equal in parallelograms! If one angle is 70°, opposite is 70°, adjacent angles are 180° - 70° = 110°.",
+      "quickCheck": "What's special about angles in a rectangle vs parallelogram?"
+    },
+    {
+      "id": "misc2",
+      "description": "Forgetting that angles in rhombus are not all 90°",
+      "probe": "Are all angles in a rhombus equal to 90°?",
+      "hint": "No! Rhombus has equal sides but angles are not necessarily 90°. Only opposite angles are equal. (A square is a special rhombus with 90° angles.)",
+      "quickCheck": "What makes a square different from a rhombus?"
+    },
+    {
+      "id": "misc3",
+      "description": "Confusing trapezium angle properties",
+      "probe": "In a trapezium, which angles have special relationships?",
+      "hint": "Co-interior angles (between parallel sides) add up to 180°. Other angle relationships depend on whether it's isosceles trapezium.",
+      "quickCheck": "If one angle of trapezium is 110°, what's its co-interior angle?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "In a parallelogram ABCD, angle A = 65°. Find angles B, C, and D."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "In parallelograms, opposite angles are equal and adjacent angles are supplementary (add to 180°)."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Angle C = 65° (opposite to A). Angles B and D = 180° - 65° = 115° each (adjacent to A)."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's work with composite figures! A shape is made of a rectangle with a triangle on top. If the triangle has angles 50° and 60°, and shares its base with the rectangle, what's the third angle of the triangle?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "In any triangle, all angles sum to 180°. So third angle = 180° - 50° - 60° = 70°."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Now a trickier one: In a rhombus, one angle is 120°. What are the other three angles?"},
+      {"id": "hint2", "intent": "give_hint", "prompt": "In a rhombus, opposite angles are equal, and adjacent angles are supplementary (sum to 180°)."},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You've mastered using angle properties of different shapes to solve for unknowns in composite figures."},
+      {"id": "summary", "intent": "summarize", "prompt": "Key strategy: Identify shapes, use their angle properties, apply angle relationships systematically. Remember: triangles sum to 180°, quadrilaterals to 360°!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "stuck", "to": "hint2"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "hint2", "on": "answered", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "In triangle ABC, angle A = 45° and angle B = 85°. Find angle C.",
+      "answer": "50",
+      "worked": [
+        "In any triangle, angles sum to 180°",
+        "Angle A + Angle B + Angle C = 180°",
+        "45° + 85° + Angle C = 180°",
+        "Angle C = 180° - 45° - 85° = 50°"
+      ],
+      "conceptTags": ["triangle:angle_sum", "angles:basic"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "In parallelogram PQRS, angle P = 110°. Find angles Q, R, and S.",
+      "answer": "70, 110, 70",
+      "worked": [
+        "In parallelograms, opposite angles are equal",
+        "Angle R = Angle P = 110° (opposite angles)",
+        "Adjacent angles are supplementary (sum to 180°)",
+        "Angle Q = Angle S = 180° - 110° = 70°"
+      ],
+      "conceptTags": ["parallelogram:angle_properties", "angles:supplementary"]
+    },
+    {
+      "id": "item3",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "A trapezium has parallel sides AB and CD. If angle A = 75°, find angle D (co-interior angle).",
+      "answer": "105",
+      "worked": [
+        "In trapeziums, co-interior angles between parallel sides are supplementary",
+        "Angle A and Angle D are co-interior angles",
+        "Angle A + Angle D = 180°",
+        "75° + Angle D = 180°",
+        "Angle D = 180° - 75° = 105°"
+      ],
+      "conceptTags": ["trapezium:co_interior_angles", "angles:supplementary"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "In rhombus WXYZ, angle W = 60°. What is angle X?",
+      "choices": ["60°", "90°", "120°", "150°"],
+      "answer": "C",
+      "rationale": "In rhombus, adjacent angles are supplementary. Angle X = 180° - 60° = 120°"
+    }
+  ]
+}

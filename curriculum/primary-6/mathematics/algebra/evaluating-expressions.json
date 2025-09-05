@@ -1,0 +1,49 @@
+{
+  "id": "evaluating-expressions",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "algebra",
+    "subtopic": "evaluating-expressions"
+  },
+  "metadata": {
+    "name": "Evaluating Simple Algebraic Expressions",
+    "description": "Learn to find the value of an expression by substituting a given number for the variable.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 3,
+    "icon": "🔢",
+    "conceptTags": ["algebra", "evaluating", "substitution", "calculation"],
+    "moeSyllabusRef": "P6.5.2"
+  },
+  "learning_objective": "Find the value of a simple algebraic expression by substituting a given value for the unknown.",
+  "intro_context": "Welcome to the Magical Bakery! 🧁 Here, our special recipes are written as algebraic expressions. 'Evaluating' is the final, fun step where you use the exact amount of each magic ingredient (the numbers) to find out how many enchanted treats you'll make!",
+  "mastery_progression": [
+    {
+      "step": 1,
+      "concept": "substitution_with_addition_subtraction",
+      "sample_question": "To make enchanted dough, you need 'm' milliliters of milk plus 50 extra ml of magical water. The expression is 'm + 50'. If the recipe says to use 200 ml of milk (m = 200), what is the total amount of liquid you'll need? 🥛",
+      "question_count": 2,
+      "mastery_criteria": "Student can substitute a value into an additive or subtractive expression (e.g., m+50) and find the result."
+    },
+    {
+      "step": 2,
+      "concept": "substitution_with_multiplication_division",
+      "sample_question": "A recipe for sparkle frosting calls for '3s', where 's' is the number of sugar stars. If you decide each batch needs 10 sugar stars (s = 10), how many stars will your frosting have in total? ✨",
+      "question_count": 2,
+      "mastery_criteria": "Student can substitute a value into a multiplicative expression (e.g., 3s where s=10) and find the result."
+    },
+
+    {
+      "step": 3,
+      "concept": "substitution_with_combined_operations",
+      "sample_question": "A giant cookie's size is determined by the rule '2b + 5', where 'b' is the number of magic beans you use. If you use 12 magic beans (b = 12), how many centimeters tall will your cookie be? 🍪",
+      "question_count": 3,
+      "mastery_criteria": "Student can substitute a value into a two-step expression (e.g., 2b + 5) and find the result."
+    }
+  ],
+  "completion_policy": {
+    "requires_all_steps": true,
+    "total_questions": 8
+  }
+}

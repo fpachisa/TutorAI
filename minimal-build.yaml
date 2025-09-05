@@ -1,0 +1,11 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-t', 'asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:v5',
+    '-f', 'minimal-fix.Dockerfile',
+    '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:v5']
+timeout: 1200s

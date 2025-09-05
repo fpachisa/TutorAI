@@ -1,0 +1,168 @@
+{
+  "id": "solving-problems-tables-graphs",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "data-analysis",
+    "subtopic": "solving-problems-tables-graphs"
+  },
+  "metadata": {
+    "name": "Solving 1-Step Problems Using Data from Tables and Graphs",
+    "description": "Solve simple 1-step problems by extracting and using data from tables, bar graphs, line graphs, and pictographs.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 2,
+    "icon": "📊",
+    "conceptTags": ["tables", "graphs", "data-extraction", "problem-solving", "1-step-problems"],
+    "moeSyllabusRef": "P6.9.2"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Extract specific data values from tables and various types of graphs",
+      "moeSyllabusRef": "P6.9.2a"
+    },
+    {
+      "id": "obj2",
+      "description": "Solve 1-step problems involving addition, subtraction, comparison using extracted data",
+      "moeSyllabusRef": "P6.9.2b"
+    },
+    {
+      "id": "obj3",
+      "description": "Interpret scales and keys in pictographs and graphs accurately",
+      "moeSyllabusRef": "P6.9.2c"
+    }
+  ],
+  "prerequisites": [
+    "Reading data from simple tables and graphs",
+    "Understanding scales and keys in pictographs",
+    "Basic arithmetic operations (addition, subtraction, multiplication, division)",
+    "Comparing quantities and finding differences"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Carefully read the table/graph title and labels",
+      "examples": ["'Favorite Sports of Class 6A', x-axis: Sports, y-axis: Number of Students"]
+    },
+    {
+      "step": 2,
+      "description": "Identify the scale or key if present",
+      "examples": ["Each symbol = 5 students, Scale: 1 unit = 10 books"]
+    },
+    {
+      "step": 3,
+      "description": "Extract the specific data values needed for the problem",
+      "examples": ["Football: 20 students, Basketball: 15 students"]
+    },
+    {
+      "step": 4,
+      "description": "Perform the required calculation",
+      "examples": ["Difference = 20 - 15 = 5 more students like football"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Misreading scales in pictographs or bar graphs",
+      "probe": "If each symbol in a pictograph represents 10 items and there are 3 symbols, how many items are there?",
+      "hint": "3 symbols × 10 items per symbol = 30 items. Always multiply by the scale value!",
+      "quickCheck": "If 1 unit on a graph = 5 books, what does 4 units represent?"
+    },
+    {
+      "id": "misc2",
+      "description": "Confusing row and column data in tables",
+      "probe": "In a table showing 'Students by Grade and Subject', how do you find Grade 5 Math students?",
+      "hint": "Find the intersection of the Grade 5 row and Math column. Be careful to read the correct row and column!",
+      "quickCheck": "What's the difference between reading across a row vs down a column?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A bar graph shows books read: Amy 12, Ben 8, Carol 15, David 6. How many more books did Carol read than Ben?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Find Carol's value (15) and Ben's value (8). Calculate the difference: Carol - Ben = ?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Carol read 15 books, Ben read 8 books. Difference = 15 - 8 = 7 more books."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's solve problems with data! A table shows ice cream sales: Monday 45, Tuesday 38, Wednesday 52, Thursday 41, Friday 67. Which day had the highest sales?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Compare all the values: 45, 38, 52, 41, 67. Which number is the largest?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Now calculate: How many more ice creams were sold on Friday than on Tuesday?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You can extract data from tables and graphs, then solve problems by comparing values and performing simple calculations."},
+      {"id": "summary", "intent": "summarize", "prompt": "Problem-solving steps: 1) Read titles and labels carefully, 2) Check scales/keys, 3) Extract needed data, 4) Perform the calculation!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A bar graph shows pets owned: Dogs 25, Cats 18, Birds 12, Fish 9. How many dogs and cats are there in total?",
+      "answer": "43",
+      "worked": [
+        "Dogs = 25",
+        "Cats = 18", 
+        "Total = 25 + 18 = 43"
+      ],
+      "conceptTags": ["graphs:bar_graph", "addition:simple"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A pictograph shows books sold where each symbol = 20 books. If Fiction has 4 symbols and Non-fiction has 6 symbols, what's the difference?",
+      "answer": "40",
+      "worked": [
+        "Fiction: 4 symbols × 20 books = 80 books",
+        "Non-fiction: 6 symbols × 20 books = 120 books",
+        "Difference = 120 - 80 = 40 books"
+      ],
+      "conceptTags": ["pictograph:scale", "subtraction:with_multiplication"]
+    },
+    {
+      "id": "item3",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A table shows temperature: Mon 28°C, Tue 31°C, Wed 26°C, Thu 33°C, Fri 29°C. What's the average temperature from Monday to Wednesday?",
+      "answer": "28.3",
+      "worked": [
+        "Monday to Wednesday: 28°C, 31°C, 26°C",
+        "Sum = 28 + 31 + 26 = 85°C",
+        "Average = 85 ÷ 3 = 28.3°C"
+      ],
+      "conceptTags": ["tables:data_extraction", "average:calculation"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A line graph shows rainfall: Week 1: 15mm, Week 2: 22mm, Week 3: 8mm, Week 4: 31mm. Which week had the least rainfall?",
+      "choices": ["Week 1", "Week 2", "Week 3", "Week 4"],
+      "answer": "C",
+      "rationale": "Comparing values: 15mm, 22mm, 8mm, 31mm. Week 3 has the smallest value (8mm)"
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "id": "face-area-from-volume",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "face-area-from-volume"
+  },
+  "metadata": {
+    "name": "Finding Face Area from Volume and One Dimension",
+    "description": "Calculate the area of faces of cuboids when given volume and one linear dimension.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 7,
+    "icon": "🔲",
+    "conceptTags": ["volume", "face-area", "cuboid", "dimensions", "surface-area"],
+    "moeSyllabusRef": "P6.7.4"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Find area of faces using volume and given dimensions",
+      "moeSyllabusRef": "P6.7.4a"
+    },
+    {
+      "id": "obj2",
+      "description": "Understand relationship between volume and face areas",
+      "moeSyllabusRef": "P6.7.4b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding volume = length × width × height",
+    "Calculating area of rectangles",
+    "Finding unknown dimensions from volume"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify what face area you need to find",
+      "examples": ["Front face, top face, or side face"]
+    },
+    {
+      "step": 2,
+      "description": "Use volume and given dimension to find missing dimension",
+      "examples": ["If V = 120, l = 8, w = 3, then h = 120 ÷ (8 × 3) = 5"]
+    },
+    {
+      "step": 3,
+      "description": "Calculate the face area using the two relevant dimensions",
+      "examples": ["Top face area = l × w = 8 × 3 = 24 cm²"]
+    },
+    {
+      "step": 4,
+      "description": "Check your answer makes sense",
+      "examples": ["Face area should be reasonable compared to volume"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing which dimensions form each face",
+      "probe": "For a cuboid with length, width, height, which dimensions give the top face area?",
+      "hint": "Top face is length × width. Front face is length × height. Side face is width × height.",
+      "quickCheck": "If length = 6, width = 4, height = 3, what's the side face area?"
+    },
+    {
+      "id": "misc2",
+      "description": "Using volume directly instead of finding dimensions first",
+      "probe": "Can you find face area directly from volume without knowing individual dimensions?",
+      "hint": "No! You need at least one linear dimension. Use volume and given dimension(s) to find the missing dimension first.",
+      "quickCheck": "With volume 60 and length 5, what other dimension do you need for the top face area?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A cuboid has volume 180 cm³ and length 12 cm. If its width is 3 cm, find the area of the front face."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "First find height: h = V ÷ (l × w) = 180 ÷ (12 × 3) = 180 ÷ 36 = 5 cm. Front face uses length and height."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Front face area = length × height = 12 × 5 = 60 cm²."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's find face areas! A rectangular box has volume 200 cm³ and base area 25 cm². What's the area of one of the side faces if the base is 5 cm × 5 cm?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "First find height: h = volume ÷ base area = 200 ÷ 25 = 8 cm. Side face = width × height = 5 × 8."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great work! You found face areas by first calculating missing dimensions from volume, then using those dimensions for the specific face."},
+      {"id": "summary", "intent": "summarize", "prompt": "Strategy: 1) Find missing dimension using volume, 2) Identify which dimensions form the required face, 3) Calculate face area!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A cuboid has volume 240 cm³, length 8 cm, and width 6 cm. Find the area of the top face.",
+      "answer": "48",
+      "worked": [
+        "First find height: V = l × w × h, so 240 = 8 × 6 × h",
+        "h = 240 ÷ (8 × 6) = 240 ÷ 48 = 5 cm",
+        "Top face area = length × width = 8 × 6 = 48 cm²"
+      ],
+      "conceptTags": ["volume:face_area", "cuboid:dimensions"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M", 
+      "stem": "A box has volume 300 cm³ and height 12 cm. If its length is 5 cm, what's the area of the front face?",
+      "answer": "60",
+      "worked": [
+        "First find width: V = l × w × h, so 300 = 5 × w × 12",
+        "w = 300 ÷ (5 × 12) = 300 ÷ 60 = 5 cm",
+        "Front face area = length × height = 5 × 12 = 60 cm²"
+      ],
+      "conceptTags": ["volume:face_area", "cuboid:front_face"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A cuboid has volume 144 cm³, length 9 cm, height 4 cm. Area of top face:",
+      "choices": ["36 cm²", "32 cm²", "16 cm²", "24 cm²"],
+      "answer": "A",
+      "rationale": "Width = 144 ÷ (9 × 4) = 4 cm. Top face = length × width = 9 × 4 = 36 cm²"
+    }
+  ]
+}

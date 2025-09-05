@@ -1,0 +1,48 @@
+{
+  "id": "simplifying-expressions",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "algebra",
+    "subtopic": "simplifying-expressions"
+  },
+  "metadata": {
+    "name": "Simplifying Simple Linear Expressions",
+    "description": "Learn to combine like terms and simplify algebraic expressions.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 2,
+    "icon": "🔧",
+    "conceptTags": ["algebra", "simplifying", "like-terms", "combining"],
+    "moeSyllabusRef": "P6.5.3"
+  },
+  "learning_objective": "Identify and combine like terms to simplify simple linear algebraic expressions",
+  "intro_context": "Let's enter the world of a video game! Just like organizing your game inventory, simplifying in algebra is all about grouping similar items to make things neat and easy to understand.",
+  "mastery_progression": [
+    {
+      "step": 1,
+      "concept": "identify_like_terms",
+      "sample_question": "In your game inventory, your items are listed as '3c' (coins) + '5w' (wood) + '2c' (coins). To organize your backpack, you must group similar items. Which two of these terms are 'like terms' that can be combined? 🪙",
+      "question_count": 2,
+      "mastery_criteria": "Student can identify terms with the same variable (e.g., 3c and 2c)."
+    },
+    {
+      "step": 2,
+      "concept": "combine_like_terms",
+      "sample_question": "After organizing, you go questing! You start with '4g' (gold) and find a treasure chest with '3g' more. How would you write your total amount of gold as one single, simplified term? ✨",
+      "question_count": 3,
+      "mastery_criteria": "Student can simplify expressions like 4g + 3g to 7g."
+    },
+    {
+      "step": 3,
+      "concept": "simplify_full_expression",
+      "sample_question": "Time for a big inventory update! You have '6p' (potions) and 9 gems. You use '2p' potions in a battle, but then find 4 more gems. Your inventory change is '6p + 9 - 2p + 4'. What's the final, simplified expression for your items? 💎",
+      "question_count": 3,
+      "mastery_criteria": "Student can simplify expressions with variables and constants, like 6p + 9 - 2p + 4 to 4p + 13."
+    }
+  ],
+  "completion_policy": {
+    "requires_all_steps": true,
+    "total_questions": 8
+  }
+}

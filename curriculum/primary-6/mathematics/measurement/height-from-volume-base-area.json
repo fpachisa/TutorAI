@@ -1,0 +1,147 @@
+{
+  "id": "height-from-volume-base-area",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "height-from-volume-base-area"
+  },
+  "metadata": {
+    "name": "Finding Height from Volume and Base Area",
+    "description": "Calculate the height of 3D shapes when given volume and base area using the relationship V = base area × height.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 6,
+    "icon": "📐",
+    "conceptTags": ["volume", "height", "base-area", "prism", "inverse-operations"],
+    "moeSyllabusRef": "P6.7.3"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Use Volume = base area × height to find missing height",
+      "moeSyllabusRef": "P6.7.3a"
+    },
+    {
+      "id": "obj2",
+      "description": "Apply the relationship to different 3D shapes (cuboids, triangular prisms)",
+      "moeSyllabusRef": "P6.7.3b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding Volume = base area × height",
+    "Calculating area of basic shapes (rectangle, triangle)",
+    "Division with whole numbers and decimals"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Write the volume formula: V = base area × height",
+      "examples": ["Volume = base area × height"]
+    },
+    {
+      "step": 2,
+      "description": "Substitute known values",
+      "examples": ["If V = 180 cm³, base area = 45 cm²: 180 = 45 × h"]
+    },
+    {
+      "step": 3,
+      "description": "Rearrange to find height: h = V ÷ base area",
+      "examples": ["h = 180 ÷ 45 = 4 cm"]
+    },
+    {
+      "step": 4,
+      "description": "Check answer by multiplying back",
+      "examples": ["Check: 45 × 4 = 180 ✓"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing which measurement is the height",
+      "probe": "In a triangular prism lying on its triangular face, which dimension is the height?",
+      "hint": "Height is always perpendicular to the base. If the triangular face is the base, height is the distance between the two triangular faces.",
+      "quickCheck": "In a rectangular prism, can any edge be the height?"
+    },
+    {
+      "id": "misc2",
+      "description": "Using wrong base area for the shape",
+      "probe": "For a triangular prism with triangular base area 20 cm² and volume 100 cm³, what's the height?",
+      "hint": "Use the given base area directly: h = V ÷ base area = 100 ÷ 20 = 5 cm.",
+      "quickCheck": "What's the base area of a rectangle with length 8 cm and width 3 cm?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A rectangular prism has volume 240 cm³ and base area 48 cm². What is its height?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Use V = base area × height. So 240 = 48 × h. Rearrange: h = 240 ÷ 48."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "h = 240 ÷ 48 = 5 cm. Check: 48 × 5 = 240 ✓"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's find missing heights! A box has volume 360 cubic cm and its base area is 72 square cm. How tall is this box?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Use the formula V = base area × height. We have 360 = 72 × h. Divide both sides by 72 to find h."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You can now find height from volume and base area. This works for any prism - the key is V = base area × height!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember: height = volume ÷ base area. This formula works for cuboids, triangular prisms, and any prism shape!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A rectangular container has volume 200 cm³ and base area 25 cm². Find its height.",
+      "answer": "8",
+      "worked": [
+        "Volume = base area × height",
+        "200 = 25 × h",
+        "h = 200 ÷ 25 = 8 cm"
+      ],
+      "conceptTags": ["volume:height", "volume:rectangular_prism"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A triangular prism has volume 450 cm³. Its triangular base has area 30 cm². What is the height of the prism?",
+      "answer": "15",
+      "worked": [
+        "Volume = base area × height",
+        "450 = 30 × h",
+        "h = 450 ÷ 30 = 15 cm"
+      ],
+      "conceptTags": ["volume:height", "volume:triangular_prism"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A prism has volume 320 cm³ and base area 40 cm². Its height is:",
+      "choices": ["8 cm", "6 cm", "10 cm", "12 cm"],
+      "answer": "A",
+      "rationale": "h = V ÷ base area = 320 ÷ 40 = 8 cm"
+    }
+  ]
+}

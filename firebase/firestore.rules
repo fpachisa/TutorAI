@@ -1,0 +1,144 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Health check collection - allow server-side access only
+    match /health/{document} {
+      allow read, write: if false; // Only admin SDK can access
+    }
+    
+    // Demo notes collection - authenticated users can CRUD their own notes
+    match /notes_demo/{noteId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid != null
+        && request.auth.uid == resource.data.ownerUid;
+      allow create: if request.auth != null 
+        && request.auth.uid != null
+        && request.auth.uid == request.resource.data.ownerUid
+        && request.resource.data.keys().hasAll(['text', 'ownerUid', 'createdAt'])
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 1000
+        && request.resource.data.ownerUid is string
+        && request.resource.data.createdAt is timestamp;
+    }
+    
+    // Student profiles - students can only access their own profile
+    match /students/{studentId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid == studentId;
+      allow create: if request.auth != null 
+        && request.auth.uid == studentId
+        && request.resource.data.keys().hasAll(['uid', 'email', 'createdAt'])
+        && request.resource.data.uid == studentId;
+    }
+    
+    // Parent profiles - parents can only access their own profile
+    match /parents/{parentId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid == parentId;
+      allow create: if request.auth != null 
+        && request.auth.uid == parentId
+        && request.resource.data.keys().hasAll(['uid', 'email', 'createdAt'])
+        && request.resource.data.uid == parentId;
+    }
+    
+    // Learning sessions - users can only access their own sessions
+    match /sessions/{sessionId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid != null
+        && (
+          request.auth.uid == resource.data.studentUid ||
+          request.auth.uid == resource.data.parentUid
+        );
+      allow create: if request.auth != null 
+        && request.auth.uid != null
+        && request.auth.uid == request.resource.data.studentUid
+        && request.resource.data.keys().hasAll(['studentUid', 'startTime'])
+        && request.resource.data.startTime is timestamp;
+    }
+    
+    // Conversation messages within sessions
+    match /sessions/{sessionId}/messages/{messageId} {
+      allow read, write: if request.auth != null 
+        && request.auth.uid != null
+        && exists(/databases/$(database)/documents/sessions/$(sessionId))
+        && (
+          request.auth.uid == get(/databases/$(database)/documents/sessions/$(sessionId)).data.studentUid ||
+          request.auth.uid == get(/databases/$(database)/documents/sessions/$(sessionId)).data.parentUid
+        );
+    }
+    
+    // Progress tracking - read-only for students, read-write for system
+    match /progress/{studentId} {
+      allow read: if request.auth != null 
+        && request.auth.uid == studentId;
+      allow write: if false; // Only admin SDK can write progress
+    }
+    
+    // Curriculum structure - read-only for authenticated users
+    // Main curriculum hierarchy: grades/{grade}/subjects/{subject}/topics/{topic}
+    match /curriculum/grades/{grade}/subjects/{subject}/topics/{topic} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only admin SDK can modify curriculum
+      
+      // Subtopics within topics
+      match /subtopics/{subtopic} {
+        allow read: if request.auth != null;
+        allow write: if false; // Only admin SDK can modify curriculum
+        
+        // Content, flows, items, assessments within subtopics
+        match /{contentType}/{contentId} {
+          allow read: if request.auth != null 
+            && contentType in ['content', 'flows', 'items', 'assessments'];
+          allow write: if false; // Only admin SDK can modify curriculum
+        }
+      }
+    }
+    
+    // Curriculum metadata and summaries
+    match /curriculum/grades/{grade}/subjects/{subject}/metadata {
+      allow read: if request.auth != null;
+      allow write: if false; // Only admin SDK can modify curriculum
+    }
+    
+    // Progression tracking per grade/subject
+    match /curriculum/grades/{grade}/subjects/{subject}/progression {
+      allow read: if request.auth != null;
+      allow write: if false; // Only admin SDK can modify curriculum
+    }
+    
+    // Reports - parents can read their children's reports
+    match /reports/{reportId} {
+      allow read: if request.auth != null 
+        && request.auth.uid != null
+        && request.auth.uid == resource.data.parentUid;
+      allow write: if false; // Only admin SDK can create reports
+    }
+    
+    // System settings and configuration - read-only for authenticated users
+    match /system/{document} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only admin SDK
+    }
+    
+    // Default deny rule
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+// Helper functions for validation
+function isValidEmail(email) {
+  return email.matches('.*@.*\\..*');
+}
+
+function isAuthenticated() {
+  return request.auth != null && request.auth.uid != null;
+}
+
+function isOwner(uid) {
+  return request.auth != null && request.auth.uid == uid;
+}

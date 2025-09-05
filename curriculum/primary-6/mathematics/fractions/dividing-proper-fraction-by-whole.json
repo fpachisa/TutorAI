@@ -1,0 +1,186 @@
+{
+  "id": "dividing-proper-fraction-by-whole",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "fractions",
+    "subtopic": "dividing-proper-fraction-by-whole"
+  },
+  "metadata": {
+    "name": "Dividing a Proper Fraction by a Whole Number",
+    "description": "Learn to divide proper fractions by whole numbers using sharing and scaling methods.",
+    "difficulty": "M",
+    "estimatedTime": 20,
+    "order": 1,
+    "icon": "🍰",
+    "conceptTags": ["fractions", "division", "sharing", "scaling"],
+    "moeSyllabusRef": "P6.1.1"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Interpret division of a fraction by a whole number as equal sharing or scaling down.",
+      "moeSyllabusRef": "P6.1.1a"
+    },
+    {
+      "id": "obj2", 
+      "description": "Apply (a/b) ÷ n = (a/b) × (1/n) = a/(b·n), then simplify the result.",
+      "moeSyllabusRef": "P6.1.1b"
+    }
+  ],
+  "prerequisites": [
+    "Multiply a fraction by a unit fraction",
+    "Simplify fractions to lowest terms",
+    "Understand fraction notation and meaning"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Interpret the problem as sharing equally among n parts",
+      "examples": ["If 3/4 of a cake is shared among 3 people, what does each person get?"]
+    },
+    {
+      "step": 2,
+      "description": "Convert division by n into multiplication by 1/n",
+      "examples": ["3/4 ÷ 3 becomes 3/4 × 1/3"]
+    },
+    {
+      "step": 3,
+      "description": "Multiply numerators and denominators, then simplify",
+      "examples": ["3/4 × 1/3 = (3×1)/(4×3) = 3/12 = 1/4"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Only denominator changes when dividing by whole number",
+      "probe": "What happens to the numerator when you multiply by 1/3?",
+      "hint": "When we multiply 3/4 × 1/3, both numerator and denominator are affected: (3×1)/(4×3).",
+      "quickCheck": "Calculate 2/5 ÷ 2 step by step"
+    },
+    {
+      "id": "misc2",
+      "description": "Thinking the result gets bigger when dividing",
+      "probe": "If you share 3/4 of a pizza among 3 friends, does each person get more or less than 3/4?",
+      "hint": "When we divide or share something, each part becomes smaller than the original.",
+      "quickCheck": "Is 1/4 bigger or smaller than 3/4?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "If 3/4 of a cake is shared equally among 3 friends, what fraction does each friend get?"
+    },
+    {
+      "level": "L1", 
+      "type": "hint",
+      "prompt": "Try converting 3/4 ÷ 3 into 3/4 × 1/3. What do you get before simplifying?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold", 
+      "prompt": "Remember: (a/b) × (1/3) = (a×1)/(b×3). With a=3 and b=4, compute the result and simplify."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {
+        "id": "start",
+        "intent": "start"
+      },
+      {
+        "id": "probe1",
+        "intent": "ask_probe",
+        "prompt": "Let's start with a real situation. If you have 3/4 of a pizza and want to share it equally among 3 friends, what fraction will each friend get? How would you figure this out?"
+      },
+      {
+        "id": "hint1",
+        "intent": "give_hint", 
+        "prompt": "Think about what division means - it's sharing equally. When we divide 3/4 by 3, we can rewrite it as 3/4 × 1/3. Try calculating that."
+      },
+      {
+        "id": "checkpoint",
+        "intent": "checkpoint",
+        "checkpointRef": "checkpoint_1"
+      },
+      {
+        "id": "reflect",
+        "intent": "reflect",
+        "prompt": "Excellent work! You've learned that dividing a fraction by a whole number makes the result smaller, and we can solve it by multiplying by the reciprocal. How does this connect to real-world sharing situations?"
+      },
+      {
+        "id": "summary",
+        "intent": "summarize",
+        "prompt": "Today you mastered dividing proper fractions by whole numbers using the rule (a/b) ÷ n = (a/b) × (1/n). Remember to always simplify your final answer!"
+      }
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "Sarah has 2/3 of a chocolate bar. She wants to share it equally among 2 friends. What fraction of the original chocolate bar will each friend get?",
+      "answer": "1/3",
+      "worked": [
+        "Convert division to multiplication: 2/3 ÷ 2 = 2/3 × 1/2",
+        "Multiply: (2×1)/(3×2) = 2/6",
+        "Simplify: 2/6 = 1/3"
+      ],
+      "conceptTags": ["fractions:divide_by_whole", "fractions:simplify"],
+      "miscTarget": "multiplies denominator only"
+    },
+    {
+      "id": "item2",
+      "type": "numeric",
+      "difficulty": "M", 
+      "stem": "Calculate: 5/6 ÷ 5",
+      "answer": "1/6",
+      "worked": [
+        "Rewrite as multiplication: 5/6 × 1/5",
+        "Multiply: (5×1)/(6×5) = 5/30", 
+        "Simplify: 5/30 = 1/6"
+      ],
+      "conceptTags": ["fractions:divide_by_whole", "fractions:simplify"]
+    },
+    {
+      "id": "item3",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "A recipe calls for 3/4 cup of milk to make 6 equal portions. How much milk is needed for each portion?",
+      "answer": "1/8",
+      "worked": [
+        "Each portion needs: 3/4 ÷ 6",
+        "Convert: 3/4 × 1/6 = (3×1)/(4×6) = 3/24",
+        "Simplify: 3/24 = 1/8 cup"
+      ],
+      "conceptTags": ["fractions:divide_by_whole", "fractions:word_problems"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "Calculate 5/6 ÷ 2:",
+      "choices": ["5/12", "5/3", "10/6", "2/5"],
+      "answer": "A",
+      "rationale": "5/6 ÷ 2 = 5/6 × 1/2 = (5×1)/(6×2) = 5/12"
+    },
+    {
+      "id": "checkpoint_2", 
+      "stem": "When we divide 3/4 by 3, the result is:",
+      "choices": ["1/4", "3/1", "9/4", "3/12"],
+      "answer": "A",
+      "rationale": "3/4 ÷ 3 = 3/4 × 1/3 = 3/12 = 1/4 (simplified)"
+    }
+  ]
+}

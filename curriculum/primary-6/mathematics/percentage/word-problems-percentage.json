@@ -1,0 +1,149 @@
+{
+  "id": "word-problems-percentage",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "percentage",
+    "subtopic": "word-problems-percentage"
+  },
+  "metadata": {
+    "name": "Solving Word Problems Involving Percentage",
+    "description": "Apply percentage concepts to solve complex real-world problems involving discounts, taxes, tips, and more.",
+    "difficulty": "C",
+    "estimatedTime": 35,
+    "order": 3,
+    "icon": "🧮",
+    "conceptTags": ["percentage", "word-problems", "real-world-applications"],
+    "moeSyllabusRef": "P6.2.3"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Solve multi-step word problems involving percentage calculations",
+      "moeSyllabusRef": "P6.2.3a"
+    },
+    {
+      "id": "obj2",
+      "description": "Apply percentage concepts to real-world scenarios like discounts, taxes, and interest",
+      "moeSyllabusRef": "P6.2.3b"
+    }
+  ],
+  "prerequisites": [
+    "Calculate percentages of given amounts",
+    "Find percentage increase and decrease",
+    "Find the whole given a part and percentage",
+    "Multi-step problem solving skills"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Read carefully and identify all given information and what needs to be found",
+      "examples": ["Price: $80, Discount: 25%, Tax: 7% on discounted price"]
+    },
+    {
+      "step": 2,
+      "description": "Identify the sequence of percentage operations needed",
+      "examples": ["First apply discount, then calculate tax on the new amount"]
+    },
+    {
+      "step": 3,
+      "description": "Perform calculations step by step in the correct order",
+      "examples": ["Discounted price: $80 × 0.75 = $60, Tax: $60 × 0.07 = $4.20"]
+    },
+    {
+      "step": 4,
+      "description": "Combine results and check reasonableness",
+      "examples": ["Final price: $60 + $4.20 = $64.20"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Applying multiple percentages to the original amount instead of sequentially",
+      "probe": "If an item costs $100, gets 20% discount, then 5% tax is added, do we calculate tax on $100 or on $80?",
+      "hint": "Apply percentages in sequence. After 20% discount: $100 × 0.8 = $80. Then 5% tax on $80: $80 × 0.05 = $4.",
+      "quickCheck": "A $50 item gets 10% discount, then 8% tax. What's the price after discount but before tax?"
+    },
+    {
+      "id": "misc2",
+      "description": "Confusing 'percentage of' vs 'percentage more/less than'",
+      "probe": "What's the difference between 'Price is 120% of cost' and 'Price is 20% more than cost'?",
+      "hint": "Both mean the same thing! If cost is $100, then 120% of $100 = $120, and 20% more than $100 is also $120.",
+      "quickCheck": "If something costs 150% of the original price, how much more is that in percentage?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A restaurant bill is $60. You want to leave a 15% tip, but there's also 8% tax on the original bill. What's the total amount you pay?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Calculate each part: Tax = $60 × 0.08 = $4.80, Tip = $60 × 0.15 = $9. What's the total?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Total = Original bill + Tax + Tip = $60 + $4.80 + $9 = $73.80"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's solve this step by step: Maria bought a laptop for $800. She got a 15% discount, but then had to pay 6% sales tax on the discounted price. What did she pay in total?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Let's work through this: First, calculate the discounted price: $800 × (1 - 0.15) = $800 × 0.85. What do you get?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Great! Now try this: A store increases all prices by 20%, then offers a 20% discount. If an item originally cost $50, what's the final price?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent problem-solving! You've learned that order matters in percentage calculations, and that multiple percentage changes don't always cancel out."},
+      {"id": "summary", "intent": "summarize", "prompt": "Key strategies: Read carefully, identify the sequence of operations, apply percentages step by step, and always check if your answer makes sense!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A jacket costs $120. During a sale, it's marked down 30%, but then 8% sales tax is added to the sale price. What's the final cost?",
+      "answer": "90.72",
+      "worked": [
+        "Sale price: $120 × (1 - 0.30) = $120 × 0.70 = $84",
+        "Sales tax: $84 × 0.08 = $6.72",
+        "Final cost: $84 + $6.72 = $90.72"
+      ],
+      "conceptTags": ["percentage:sequential", "percentage:word_problems", "percentage:discount_tax"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "A company's revenue was $200,000. It increased by 15% in the first year, then decreased by 10% in the second year. What's the revenue after two years?",
+      "answer": "207000",
+      "worked": [
+        "After first year: $200,000 × 1.15 = $230,000",
+        "After second year: $230,000 × 0.90 = $207,000"
+      ],
+      "conceptTags": ["percentage:sequential", "percentage:increase_decrease", "percentage:compound"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A $200 item gets 25% discount, then 10% tax on the discounted price. Final cost?",
+      "choices": ["$165", "$175", "$180", "$185"],
+      "answer": "A",
+      "rationale": "Discounted: $200 × 0.75 = $150, Tax: $150 × 0.10 = $15, Total: $150 + $15 = $165"
+    }
+  ]
+}

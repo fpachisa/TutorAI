@@ -1,0 +1,151 @@
+{
+  "id": "speed-word-problems",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "distance-time-speed",
+    "subtopic": "speed-word-problems"
+  },
+  "metadata": {
+    "name": "Solving Up to 3-Step Word Problems Involving Speed and Average Speed",
+    "description": "Apply speed concepts to solve complex multi-step problems involving journeys, average speeds, and time calculations.",
+    "difficulty": "C",
+    "estimatedTime": 40,
+    "order": 4,
+    "icon": "🧩",
+    "conceptTags": ["speed", "word-problems", "multi-step", "average-speed"],
+    "moeSyllabusRef": "P6.4.4"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Solve complex word problems involving combinations of distance, time, and speed",
+      "moeSyllabusRef": "P6.4.4a"
+    },
+    {
+      "id": "obj2",
+      "description": "Calculate average speeds for journeys with varying speeds",
+      "moeSyllabusRef": "P6.4.4b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding speed = distance ÷ time relationship",
+    "Calculating average speed concepts",
+    "Multi-step problem solving strategies"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Read carefully and identify all given information",
+      "examples": ["Journey 1: 60 km at 30 km/h, Journey 2: 40 km at 20 km/h"]
+    },
+    {
+      "step": 2,
+      "description": "Break down into smaller steps and identify what to find",
+      "examples": ["Find time for each journey, then total time, then average speed"]
+    },
+    {
+      "step": 3,
+      "description": "Apply appropriate formulas for each step",
+      "examples": ["Time = Distance ÷ Speed for each journey"]
+    },
+    {
+      "step": 4,
+      "description": "Combine results and check reasonableness",
+      "examples": ["Average speed = Total distance ÷ Total time"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Taking arithmetic mean of speeds instead of calculating average speed properly",
+      "probe": "If you travel at 40 km/h for 1 hour then 60 km/h for 1 hour, is your average speed 50 km/h?",
+      "hint": "Yes, because times are equal! Average speed = total distance ÷ total time = (40+60) ÷ 2 hours = 50 km/h.",
+      "quickCheck": "What if you travel 40 km/h for 2 hours, then 60 km/h for 1 hour?"
+    },
+    {
+      "id": "misc2",
+      "description": "Mixing up what to find in multi-step problems",
+      "probe": "In a 3-step problem, how do you keep track of what you're calculating at each step?",
+      "hint": "Write down what you're finding at each step. Step 1: Find time, Step 2: Find total distance, Step 3: Find average speed.",
+      "quickCheck": "What's the difference between 'speed for each part' and 'average speed for whole journey'?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "Maria drives 120 km at 60 km/h, then 80 km at 40 km/h. What's her average speed for the entire journey?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "First find the time for each part: 120÷60 = 2h, 80÷40 = 2h. Total distance = 200km, total time = 4h."
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Average speed = total distance ÷ total time = 200 km ÷ 4 h = 50 km/h."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's solve a multi-step problem! A cyclist rides 30 km in 2 hours, then 45 km in 3 hours. What's their average speed for the whole trip?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Break it down: Total distance = 30 + 45 = 75 km. Total time = 2 + 3 = 5 hours. Now find average speed."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Here's a trickier one: A car travels 100 km at 50 km/h, stops for 30 minutes, then travels 60 km at 40 km/h. What's the average speed including the stop?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent problem-solving! You've mastered multi-step speed problems by breaking them into manageable parts and applying the right formulas."},
+      {"id": "summary", "intent": "summarize", "prompt": "Strategy: 1) Identify given info, 2) Break into steps, 3) Apply formulas systematically, 4) Always use total distance ÷ total time for average speed!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A bus travels 80 km in 2 hours, then 120 km in 3 hours. What is the average speed for the entire journey?",
+      "answer": "40",
+      "worked": [
+        "Total distance = 80 + 120 = 200 km",
+        "Total time = 2 + 3 = 5 hours",
+        "Average speed = 200 ÷ 5 = 40 km/h"
+      ],
+      "conceptTags": ["speed:average", "speed:multi_step", "speed:word_problems"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "C",
+      "stem": "John walks 4 km at 5 km/h, rests for 15 minutes, then runs 6 km at 12 km/h. What's his average speed for the entire activity?",
+      "answer": "8",
+      "worked": [
+        "Walking time: 4 ÷ 5 = 0.8 hours = 48 minutes",
+        "Running time: 6 ÷ 12 = 0.5 hours = 30 minutes",
+        "Total time: 48 + 15 + 30 = 93 minutes = 1.55 hours",
+        "Total distance: 4 + 6 = 10 km",
+        "Average speed: 10 ÷ 1.55 ≈ 6.45 km/h"
+      ],
+      "conceptTags": ["speed:average", "speed:complex", "speed:rest_time"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A train travels 150 km in 2 hours, then 100 km in 1 hour. Average speed?",
+      "choices": ["75 km/h", "83.3 km/h", "125 km/h", "100 km/h"],
+      "answer": "B",
+      "rationale": "Total: 250 km in 3 hours. Average = 250 ÷ 3 = 83.3 km/h"
+    }
+  ]
+}

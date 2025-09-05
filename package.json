@@ -1,0 +1,30 @@
+{
+  "name": "tutorai-workspace",
+  "version": "1.0.0",
+  "description": "AI Socratic Math Tutor - Production Infrastructure",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "dev:emulators": "firebase emulators:start --project demo-project",
+    "build": "pnpm --filter web build",
+    "start": "pnpm --filter web start",
+    "lint": "pnpm --filter web lint",
+    "lint:fix": "pnpm --filter web lint --fix",
+    "type-check": "pnpm --filter web type-check",
+    "test": "pnpm --filter web test",
+    "clean": "pnpm --filter web clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.12.0"
+}

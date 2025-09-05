@@ -1,0 +1,145 @@
+{
+  "id": "speed-different-units",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "distance-time-speed",
+    "subtopic": "speed-different-units"
+  },
+  "metadata": {
+    "name": "Writing Speed in Different Units",
+    "description": "Learn to express speed in various units such as km/h, m/min, m/s, and cm/s without unit conversion.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 3,
+    "icon": "📏",
+    "conceptTags": ["speed", "units", "measurement", "notation"],
+    "moeSyllabusRef": "P6.4.3"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Recognize and write speed in different unit combinations",
+      "moeSyllabusRef": "P6.4.3a"
+    },
+    {
+      "id": "obj2",
+      "description": "Choose appropriate units based on the context of the problem",
+      "moeSyllabusRef": "P6.4.3b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding of speed = distance ÷ time",
+    "Basic knowledge of distance units (km, m, cm)",
+    "Basic knowledge of time units (h, min, s)"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Identify the distance unit and time unit given",
+      "examples": ["Distance: 300 meters, Time: 5 minutes → units will be m/min"]
+    },
+    {
+      "step": 2,
+      "description": "Apply speed formula with given units",
+      "examples": ["Speed = 300 m ÷ 5 min = 60 m/min"]
+    },
+    {
+      "step": 3,
+      "description": "Write the final answer with correct units",
+      "examples": ["The speed is 60 m/min (meters per minute)"]
+    },
+    {
+      "step": 4,
+      "description": "Check if units make sense for the context",
+      "examples": ["m/min is reasonable for walking speed"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Mixing up units incorrectly in calculations",
+      "probe": "If distance is in meters and time is in seconds, what are the units for speed?",
+      "hint": "Speed units = distance units ÷ time units = m ÷ s = m/s (meters per second).",
+      "quickCheck": "What units would you get for speed if distance is in cm and time is in minutes?"
+    },
+    {
+      "id": "misc2",
+      "description": "Using inappropriate units for the context",
+      "probe": "Would you measure a snail's speed in km/h or cm/s?",
+      "hint": "cm/s is more appropriate for very slow speeds like a snail. km/h is better for cars and fast objects.",
+      "quickCheck": "Which unit is better for measuring a person's running speed: m/s or cm/s?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A car travels 240 km in 4 hours. Express its speed in km/h."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Use the formula: Speed = Distance ÷ Time = 240 km ÷ 4 h. What do you get?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Speed = 240 ÷ 4 = 60 km/h. The units come from km ÷ h = km/h."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's explore different speed units! If a runner covers 400 meters in 80 seconds, what's their speed? What units will you use?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Speed = distance ÷ time = 400 m ÷ 80 s = 5 m/s. Notice how the units (m/s) come from dividing meters by seconds."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great! You understand that speed units depend on the distance and time units used. Different contexts need different units."},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember: Speed units = distance units ÷ time units. Choose units that make sense for what you're measuring!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A bicycle travels 180 meters in 3 minutes. What is its speed in m/min?",
+      "answer": "60",
+      "worked": [
+        "Speed = distance ÷ time",
+        "Speed = 180 m ÷ 3 min = 60 m/min"
+      ],
+      "conceptTags": ["speed:units", "speed:calculation", "speed:m_per_min"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A snail crawls 15 cm in 5 seconds. Express its speed in cm/s.",
+      "answer": "3",
+      "worked": [
+        "Speed = distance ÷ time",
+        "Speed = 15 cm ÷ 5 s = 3 cm/s"
+      ],
+      "conceptTags": ["speed:units", "speed:calculation", "speed:cm_per_s"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A train travels 450 km in 5 hours. What is its speed in km/h?",
+      "choices": ["90 km/h", "455 km/h", "2250 km/h", "85 km/h"],
+      "answer": "A",
+      "rationale": "Speed = 450 km ÷ 5 h = 90 km/h"
+    }
+  ]
+}

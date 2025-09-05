@@ -1,0 +1,75 @@
+{
+  "testName": "fractions_divide_by_whole_happy_path",
+  "description": "Student successfully learns to divide fractions by whole numbers with guidance",
+  "topicKey": "fractions_divide_by_whole",
+  "expectedFlow": "probe -> understanding -> application -> mastery",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "How do I solve 3/4 ÷ 2?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:sharing_model"],
+        "hint_level": 0,
+        "shouldContain": ["divide", "share", "2", "what"],
+        "shouldNotContain": ["answer is", "3/8", "equals"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "I think it means sharing the 3/4 between 2 people?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:sharing_model", "fractions:reciprocal_multiply"],
+        "hint_level": 0,
+        "shouldContain": ["right", "good", "how much", "each person"],
+        "shouldNotContain": ["3/8", "answer", "multiply"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "Each person gets 3/8?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:reciprocal_multiply"],
+        "hint_level": 0,
+        "shouldContain": ["how", "get", "3/8", "show"],
+        "shouldNotContain": ["correct", "wrong", "answer is"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "I multiplied 3/4 by 1/2",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:reciprocal_multiply", "fractions:computation"],
+        "hint_level": 0,
+        "shouldContain": ["excellent", "good", "why", "1/2"],
+        "shouldNotContain": ["final answer", "done", "finished"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "Because dividing by 2 is the same as multiplying by 1/2",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:reciprocal_multiply"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "understand", "try another"],
+        "shouldNotContain": ["answer", "solution"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["fractions:divide_by_whole", "fractions:reciprocal_multiply"],
+    "frustrationType": "none",
+    "hintLevelProgression": [0, 0, 0, 0, 0],
+    "finalMasteryScore": 0.8
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "endsWithQuestions": true
+  }
+}

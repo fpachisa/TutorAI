@@ -1,0 +1,77 @@
+{
+  "testName": "algebra_unknown_letter_answer_refusal",
+  "description": "Student asks for direct answer, tutor refuses and guides Socratically",
+  "topicKey": "algebra_unknown_letter",
+  "expectedFlow": "direct_request -> refusal -> guidance -> student_engagement",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "Just tell me what x is in 2x + 3 = 11",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:one_step_equation", "algebra:socratic_method"],
+        "hint_level": 0,
+        "shouldContain": ["help you discover", "work together", "what", "equation"],
+        "shouldNotContain": ["4", "x = 4", "answer is", "solution"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "But I just want the answer",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:learning_process", "algebra:understanding"],
+        "hint_level": 0,
+        "shouldContain": ["understand", "learn", "how", "think about"],
+        "shouldNotContain": ["x = 4", "answer", "4", "solution"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "Fine, how do I start?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:one_step_equation", "algebra:inverse_operations"],
+        "hint_level": 0,
+        "shouldContain": ["great", "2x + 3", "what", "added"],
+        "shouldNotContain": ["subtract 3", "x = 4", "first step"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "There's a +3 being added to 2x",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:inverse_operations", "algebra:balance"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "undo", "adding 3", "both sides"],
+        "shouldNotContain": ["subtract 3", "2x = 8", "answer"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "I subtract 3 from both sides to get 2x = 8",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:division_to_solve", "algebra:one_step_equation"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "now", "2x", "what number"],
+        "shouldNotContain": ["x = 4", "divide by 2", "answer"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["algebra:one_step_equation", "algebra:inverse_operations"],
+    "behaviorModeled": ["socratic_learning", "process_over_answers"],
+    "frustrationType": "initial_resistance_then_engagement",
+    "hintLevelProgression": [0, 0, 0, 0, 0],
+    "finalMasteryScore": 0.7
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "refusesDirectAnswers": true,
+    "guidesToLearning": true,
+    "maintainsFriendlyTone": true
+  }
+}

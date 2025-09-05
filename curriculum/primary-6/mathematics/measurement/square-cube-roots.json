@@ -1,0 +1,162 @@
+{
+  "id": "square-cube-roots",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "square-cube-roots"
+  },
+  "metadata": {
+    "name": "Square Roots and Cube Roots (Perfect Squares and Cubes)",
+    "description": "Find square roots of perfect squares and cube roots of perfect cubes up to reasonable limits.",
+    "difficulty": "M",
+    "estimatedTime": 30,
+    "order": 8,
+    "icon": "√",
+    "conceptTags": ["square-root", "cube-root", "perfect-squares", "perfect-cubes", "roots"],
+    "moeSyllabusRef": "P6.7.5"
+  },
+  "objectives": [
+    {
+      "id": "obj1", 
+      "description": "Find square roots of perfect squares up to 144",
+      "moeSyllabusRef": "P6.7.5a"
+    },
+    {
+      "id": "obj2",
+      "description": "Find cube roots of perfect cubes up to 1000",
+      "moeSyllabusRef": "P6.7.5b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding squares: 1², 2², 3², ..., 12²",
+    "Understanding cubes: 1³, 2³, 3³, ..., 10³",
+    "Concept of inverse operations"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Recognize if the number is a perfect square or perfect cube",
+      "examples": ["49 is 7², 64 is 4³"]
+    },
+    {
+      "step": 2,
+      "description": "For square roots, think: what number times itself gives this?",
+      "examples": ["√81 = 9 because 9 × 9 = 81"]
+    },
+    {
+      "step": 3,
+      "description": "For cube roots, think: what number cubed gives this?",
+      "examples": ["∛125 = 5 because 5³ = 5 × 5 × 5 = 125"]
+    },
+    {
+      "step": 4,
+      "description": "Check by squaring or cubing your answer",
+      "examples": ["Check ∛27 = 3: 3³ = 27 ✓"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing square root and cube root symbols",
+      "probe": "What's the difference between √64 and ∛64?",
+      "hint": "√64 = 8 (square root: 8² = 64). ∛64 = 4 (cube root: 4³ = 64). Different symbols, different answers!",
+      "quickCheck": "What are √36 and ∛27?"
+    },
+    {
+      "id": "misc2",
+      "description": "Not memorizing common perfect squares and cubes",
+      "probe": "Which perfect squares should you know from 1 to 144?",
+      "hint": "Memorize: 1²=1, 2²=4, 3²=9, 4²=16, 5²=25, 6²=36, 7²=49, 8²=64, 9²=81, 10²=100, 11²=121, 12²=144.",
+      "quickCheck": "What's 8² and 2³?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "Find √100 and ∛216."
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "For √100: what number times itself equals 100? For ∛216: what number cubed equals 216?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold", 
+      "prompt": "√100 = 10 (because 10² = 100). ∛216 = 6 (because 6³ = 216)."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's work with roots! What are √49 and ∛8? How do you find these?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "√49: what number squared is 49? Try 7: 7² = 49 ✓. ∛8: what number cubed is 8? Try 2: 2³ = 8 ✓."},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "probe2", "intent": "ask_probe", "prompt": "Here's a challenge: √121 and ∛343. Can you find these?"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Excellent! You understand that square roots and cube roots are inverse operations of squaring and cubing. Practice helps you recognize perfect squares and cubes quickly!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Key patterns: Perfect squares (1,4,9,16,25,36,49,64,81,100,121,144) and perfect cubes (1,8,27,64,125,216,343,512,729,1000)!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "computation",
+      "difficulty": "E",
+      "stem": "Find √36.",
+      "answer": "6",
+      "worked": [
+        "√36 means 'what number squared equals 36?'",
+        "6² = 6 × 6 = 36",
+        "Therefore √36 = 6"
+      ],
+      "conceptTags": ["square_root", "perfect_squares"]
+    },
+    {
+      "id": "item2",
+      "type": "computation",
+      "difficulty": "E",
+      "stem": "Find ∛27.",
+      "answer": "3",
+      "worked": [
+        "∛27 means 'what number cubed equals 27?'",
+        "3³ = 3 × 3 × 3 = 27",
+        "Therefore ∛27 = 3"
+      ],
+      "conceptTags": ["cube_root", "perfect_cubes"]
+    },
+    {
+      "id": "item3",
+      "type": "computation",
+      "difficulty": "M",
+      "stem": "Find √144 + ∛64.",
+      "answer": "16",
+      "worked": [
+        "√144 = 12 (since 12² = 144)",
+        "∛64 = 4 (since 4³ = 64)",
+        "√144 + ∛64 = 12 + 4 = 16"
+      ],
+      "conceptTags": ["square_root", "cube_root", "addition"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "What is √81?",
+      "choices": ["7", "8", "9", "10"],
+      "answer": "C",
+      "rationale": "√81 = 9 because 9² = 9 × 9 = 81"
+    }
+  ]
+}

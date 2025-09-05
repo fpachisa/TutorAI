@@ -1,0 +1,88 @@
+{
+  "testName": "fractions_divide_by_whole_wrong_operation",
+  "description": "Student initially uses wrong operation but gets guided to correct approach",
+  "topicKey": "fractions_divide_by_whole",
+  "expectedFlow": "misconception -> correction -> understanding -> application",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "For 2/3 ÷ 4, I think I multiply 2/3 by 4 to get 8/3",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:misconception"],
+        "hint_level": 0,
+        "shouldContain": ["dividing", "multiplying", "different", "think about"],
+        "shouldNotContain": ["wrong", "incorrect", "8/3", "2/12"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "They're the same thing?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:divide_vs_multiply", "fractions:sharing_model"],
+        "hint_level": 0,
+        "shouldContain": ["different", "sharing", "4 people", "smaller"],
+        "shouldNotContain": ["no", "not the same", "bigger"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "Oh, if I share 2/3 among 4 people, each person gets less than 2/3",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:sharing_model", "fractions:reciprocal_multiply"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "good", "how much less", "calculate"],
+        "shouldNotContain": ["2/12", "answer", "final"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "I'm not sure how to calculate it",
+      "expectedTutorResponse": {
+        "intent": "give_hint",
+        "concept_tags": ["fractions:reciprocal_multiply", "fractions:divide_by_whole"],
+        "hint_level": 1,
+        "shouldContain": ["multiply", "1/4", "try", "instead of"],
+        "shouldNotContain": ["2/12", "1/6", "answer is"]
+      }
+    },
+    {
+      "turn": 5,
+      "student": "So 2/3 × 1/4 = 2/12?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["fractions:simplify", "fractions:computation"],
+        "hint_level": 0,
+        "shouldContain": ["correct", "simplify", "2/12", "smaller"],
+        "shouldNotContain": ["done", "finished", "final answer"]
+      }
+    },
+    {
+      "turn": 6,
+      "student": "2/12 = 1/6",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["fractions:divide_by_whole", "fractions:simplify"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "understand", "difference", "division"],
+        "shouldNotContain": ["answer", "solution", "complete"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["fractions:divide_by_whole", "fractions:reciprocal_multiply", "fractions:simplify"],
+    "misconceptionsCorrected": ["division_makes_bigger", "division_equals_multiplication"],
+    "frustrationType": "mild_confusion",
+    "hintLevelProgression": [0, 0, 0, 1, 0, 0],
+    "finalMasteryScore": 0.7
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "endsWithQuestions": true,
+    "addressesMisconceptions": true
+  }
+}

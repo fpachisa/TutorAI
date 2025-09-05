@@ -1,0 +1,221 @@
+{
+  "id": "word-problems-four-operations",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "fractions", 
+    "subtopic": "word-problems-four-operations"
+  },
+  "metadata": {
+    "name": "Solving Word Problems Involving the 4 Operations",
+    "description": "Apply all four operations with fractions to solve real-world problems involving addition, subtraction, multiplication, and division.",
+    "difficulty": "C",
+    "estimatedTime": 30,
+    "order": 3,
+    "icon": "🧩",
+    "conceptTags": ["fractions", "word-problems", "four-operations", "problem-solving"],
+    "moeSyllabusRef": "P6.1.3"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Identify which operation to use based on the context and keywords in word problems.",
+      "moeSyllabusRef": "P6.1.3a"
+    },
+    {
+      "id": "obj2",
+      "description": "Solve multi-step word problems involving combinations of addition, subtraction, multiplication, and division of fractions.",
+      "moeSyllabusRef": "P6.1.3b"
+    },
+    {
+      "id": "obj3",
+      "description": "Express answers in appropriate forms and check reasonableness of solutions.",
+      "moeSyllabusRef": "P6.1.3c"
+    }
+  ],
+  "prerequisites": [
+    "Add and subtract fractions with different denominators",
+    "Multiply fractions by whole numbers and other fractions", 
+    "Divide fractions by whole numbers and other fractions",
+    "Convert between mixed numbers and improper fractions"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Read the problem carefully and identify what information is given and what is being asked",
+      "examples": ["Given: 3/4 cup flour used, 1/2 cup remaining. Find: How much flour was there originally?"]
+    },
+    {
+      "step": 2,
+      "description": "Look for operation keywords and understand the relationship between quantities",
+      "examples": ["'total', 'altogether' → addition; 'difference', 'left over' → subtraction; 'each', 'per' → division"]
+    },
+    {
+      "step": 3,
+      "description": "Set up the equation or sequence of operations needed",
+      "examples": ["Original amount = Used amount + Remaining amount = 3/4 + 1/2"]
+    },
+    {
+      "step": 4,
+      "description": "Solve step by step, showing all work and simplifying fractions",
+      "examples": ["3/4 + 1/2 = 3/4 + 2/4 = 5/4 = 1 1/4 cups"]
+    },
+    {
+      "step": 5,
+      "description": "Check if the answer makes sense in the context of the problem",
+      "examples": ["1 1/4 cups total makes sense since it's more than both 3/4 and 1/2"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Always using addition or the first operation mentioned without analyzing the problem",
+      "probe": "If Maria ate 2/3 of a pizza and there are 3 slices left, what operation tells us the total number of slices originally?",
+      "hint": "Think about the relationship: eaten + remaining = total. We need to add the fractions representing eaten and remaining portions.",
+      "quickCheck": "What does 'How many groups of 1/4 are in 2' tell us to do?"
+    },
+    {
+      "id": "misc2",
+      "description": "Not converting to common denominators or mixed numbers appropriately",
+      "probe": "When adding 2/3 + 3/4, why do we need a common denominator?",
+      "hint": "We can only add fractions when they have the same denominator, just like we can only add similar units (apples + apples, not apples + oranges).",
+      "quickCheck": "Add 1/3 + 1/6 by finding a common denominator"
+    },
+    {
+      "id": "misc3",
+      "description": "Forgetting to check if the answer is reasonable",
+      "probe": "If you calculated that someone ate 5/2 of a pizza, does this make sense?",
+      "hint": "5/2 = 2 1/2 pizzas. Could one person eat more than 2 whole pizzas? Always check if your answer makes sense in real life.",
+      "quickCheck": "Is 3/8 of an hour more or less than 30 minutes?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe", 
+      "prompt": "Sarah bought 2 3/4 kg of apples. She used 1 1/2 kg for a pie and gave 3/4 kg to her neighbor. How much does she have left? What operations do you need?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Start with what Sarah had, then subtract what she used and what she gave away: 2 3/4 - 1 1/2 - 3/4. Convert everything to the same denominator first."
+    },
+    {
+      "level": "L2", 
+      "type": "scaffold",
+      "prompt": "Convert to improper fractions: 11/4 - 6/4 - 3/4 = (11-6-3)/4 = 2/4 = 1/2 kg left. Does this seem reasonable?"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {
+        "id": "start",
+        "intent": "start"
+      },
+      {
+        "id": "probe1",
+        "intent": "ask_probe",
+        "prompt": "Let's solve this step by step: A recipe needs 1 2/3 cups of flour. Maya has already added 3/4 cup. How much more flour does she need to add? What's your first step?"
+      },
+      {
+        "id": "hint1", 
+        "intent": "give_hint",
+        "prompt": "This is asking for the difference between what's needed (1 2/3) and what's already added (3/4). We need to subtract: 1 2/3 - 3/4."
+      },
+      {
+        "id": "checkpoint",
+        "intent": "checkpoint",
+        "checkpointRef": "checkpoint_1"
+      },
+      {
+        "id": "probe2",
+        "intent": "ask_probe", 
+        "prompt": "Great! Now let's try a multi-step problem: Tom runs 3/4 of a mile each morning and 1/2 mile each evening for 5 days. What's the total distance he runs in 5 days?"
+      },
+      {
+        "id": "hint2",
+        "intent": "give_hint",
+        "prompt": "Break this down: First find his daily total (3/4 + 1/2), then multiply by 5 days. What's 3/4 + 1/2?"
+      },
+      {
+        "id": "reflect",
+        "intent": "reflect",
+        "prompt": "Excellent problem-solving! You've learned to identify operations, work step-by-step, and check your answers. How do you decide which operation to use in word problems?"
+      },
+      {
+        "id": "summary",
+        "intent": "summarize",
+        "prompt": "You've mastered solving complex fraction word problems! Remember: read carefully, identify the operation, solve step-by-step, and always check if your answer makes sense."
+      }
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "probe2"}, 
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "probe2", "on": "stuck", "to": "hint2"},
+      {"from": "probe2", "on": "good_answer", "to": "reflect"},
+      {"from": "hint2", "on": "answered", "to": "reflect"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "Lisa bought 2 1/4 pounds of strawberries. She used 3/4 pound to make jam. How many pounds of strawberries does she have left?",
+      "answer": "1 1/2",
+      "worked": [
+        "This is asking for the difference: 2 1/4 - 3/4",
+        "Convert to improper fractions: 9/4 - 3/4",
+        "Subtract: (9-3)/4 = 6/4 = 1 1/2 pounds"
+      ],
+      "conceptTags": ["fractions:subtraction", "fractions:word_problems", "mixed_numbers"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem", 
+      "difficulty": "C",
+      "stem": "A rectangular garden is 4 2/3 meters long and 2 1/4 meters wide. What is the area of the garden?",
+      "answer": "10 1/2",
+      "worked": [
+        "Area = length × width = 4 2/3 × 2 1/4",
+        "Convert to improper fractions: 14/3 × 9/4",
+        "Multiply: (14×9)/(3×4) = 126/12 = 10 1/2 square meters"
+      ],
+      "conceptTags": ["fractions:multiplication", "fractions:word_problems", "area", "mixed_numbers"]
+    },
+    {
+      "id": "item3",
+      "type": "word_problem",
+      "difficulty": "C", 
+      "stem": "David has 6 cups of milk. He wants to make smoothies that each require 3/4 cup of milk. How many complete smoothies can he make, and how much milk will be left over?",
+      "answer": "8 smoothies, 0 cups left",
+      "worked": [
+        "Number of smoothies: 6 ÷ 3/4 = 6 × 4/3 = 24/3 = 8",
+        "Milk used: 8 × 3/4 = 24/4 = 6 cups",
+        "Milk left: 6 - 6 = 0 cups"
+      ],
+      "conceptTags": ["fractions:division", "fractions:multiplication", "fractions:word_problems"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "Recipe calls for 2 1/3 cups flour. You have 3/4 cup. How much more do you need?",
+      "choices": ["1 7/12 cups", "2 cups", "1 1/2 cups", "1 3/4 cups"],
+      "answer": "A",
+      "rationale": "2 1/3 - 3/4 = 7/3 - 3/4 = 28/12 - 9/12 = 19/12 = 1 7/12 cups"
+    },
+    {
+      "id": "checkpoint_2",
+      "stem": "Sam runs 2/3 mile daily for 6 days. Total distance run:",
+      "choices": ["4 miles", "12 miles", "3 miles", "8 miles"],
+      "answer": "A",
+      "rationale": "Daily distance × number of days = 2/3 × 6 = 12/3 = 4 miles"
+    }
+  ]
+}

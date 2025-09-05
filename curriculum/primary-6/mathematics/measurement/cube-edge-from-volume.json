@@ -1,0 +1,147 @@
+{
+  "id": "cube-edge-from-volume",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "measurement",
+    "subtopic": "cube-edge-from-volume"
+  },
+  "metadata": {
+    "name": "Finding Edge Length of Cube from Volume",
+    "description": "Learn to find the edge length of a cube when given its volume using cube roots.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 5,
+    "icon": "📦",
+    "conceptTags": ["volume", "cube", "edge-length", "cube-root", "inverse-operations"],
+    "moeSyllabusRef": "P6.7.2"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Use Volume = edge³ to find missing edge length of cube",
+      "moeSyllabusRef": "P6.7.2a"
+    },
+    {
+      "id": "obj2",
+      "description": "Apply cube root concept to solve for unknown edge",
+      "moeSyllabusRef": "P6.7.2b"
+    }
+  ],
+  "prerequisites": [
+    "Understanding volume of cube = edge × edge × edge",
+    "Knowledge of perfect cubes (1³, 2³, 3³, etc.)",
+    "Understanding cube roots as inverse of cubing"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Write the volume formula for a cube: V = e³",
+      "examples": ["Volume = edge × edge × edge = edge³"]
+    },
+    {
+      "step": 2,
+      "description": "Substitute the given volume",
+      "examples": ["If volume = 64 cm³: 64 = e³"]
+    },
+    {
+      "step": 3,
+      "description": "Find the cube root to solve for edge",
+      "examples": ["e = ∛64 = 4 cm (because 4³ = 64)"]
+    },
+    {
+      "step": 4,
+      "description": "Check answer by cubing the edge length",
+      "examples": ["Check: 4³ = 4 × 4 × 4 = 64 ✓"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Confusing cube root with square root",
+      "probe": "To find edge from volume 27 cm³, do we find ∛27 or √27?",
+      "hint": "Use cube root! Volume = edge³, so edge = ∛volume = ∛27 = 3 cm.",
+      "quickCheck": "What's the cube root of 8?"
+    },
+    {
+      "id": "misc2",
+      "description": "Not recognizing perfect cubes",
+      "probe": "Is 125 a perfect cube? What edge length would give volume 125?",
+      "hint": "Yes! 125 = 5³, so edge = 5. Perfect cubes: 1, 8, 27, 64, 125, 216, etc.",
+      "quickCheck": "What's 6³?"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A cube has volume 216 cm³. What is its edge length?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Use V = e³, so 216 = e³. Find the cube root: e = ∛216. Think: what number cubed gives 216?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Try 6: 6³ = 6 × 6 × 6 = 216. So edge = 6 cm. Check: 6³ = 216 ✓"
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's work backwards from volume! A cube-shaped box has volume 343 cubic centimeters. What's the length of each edge?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Since Volume = edge³, we have 343 = e³. So edge = ∛343. What number when cubed equals 343?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Great work! You can now find cube dimensions from volume by using cube roots - the opposite operation of cubing."},
+      {"id": "summary", "intent": "summarize", "prompt": "Key relationship: If V = e³, then e = ∛V. Perfect cubes help: 1³=1, 2³=8, 3³=27, 4³=64, 5³=125, 6³=216!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A cube has volume 64 cm³. Find the length of its edge.",
+      "answer": "4",
+      "worked": [
+        "Volume of cube = edge³",
+        "64 = e³",
+        "e = ∛64 = 4 cm"
+      ],
+      "conceptTags": ["volume:cube", "cube_root:basic", "perfect_cubes"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A wooden cube has volume 1000 cm³. What is the edge length in cm?",
+      "answer": "10",
+      "worked": [
+        "Volume of cube = edge³",
+        "1000 = e³",
+        "e = ∛1000 = 10 cm (since 10³ = 1000)"
+      ],
+      "conceptTags": ["volume:cube", "cube_root:1000", "perfect_cubes"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "A cube has volume 125 cm³. Its edge length is:",
+      "choices": ["5 cm", "25 cm", "15 cm", "10 cm"],
+      "answer": "A",
+      "rationale": "e = ∛125 = 5 cm (because 5³ = 5 × 5 × 5 = 125)"
+    }
+  ]
+}

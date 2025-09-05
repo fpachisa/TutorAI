@@ -1,0 +1,145 @@
+{
+  "id": "distance-time-speed-relationship",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "distance-time-speed",
+    "subtopic": "distance-time-speed-relationship"
+  },
+  "metadata": {
+    "name": "Relationship Between Distance, Time and Speed",
+    "description": "Learn the fundamental relationship D = S × T and how to find any one quantity when the other two are known.",
+    "difficulty": "M",
+    "estimatedTime": 25,
+    "order": 2,
+    "icon": "📐",
+    "conceptTags": ["distance", "time", "speed", "relationship", "formula"],
+    "moeSyllabusRef": "P6.4.2"
+  },
+  "objectives": [
+    {
+      "id": "obj1",
+      "description": "Apply the formula Distance = Speed × Time to solve problems",
+      "moeSyllabusRef": "P6.4.2a"
+    },
+    {
+      "id": "obj2",
+      "description": "Rearrange the formula to find Speed = Distance ÷ Time and Time = Distance ÷ Speed",
+      "moeSyllabusRef": "P6.4.2b"
+    }
+  ],
+  "prerequisites": [
+    "Basic understanding of speed concepts",
+    "Multiplication and division of decimals",
+    "Rearranging simple equations"
+  ],
+  "canonicalPath": [
+    {
+      "step": 1,
+      "description": "Learn the triangle relationship: D = S × T",
+      "examples": ["Distance = Speed × Time, like 60 km/h × 2 h = 120 km"]
+    },
+    {
+      "step": 2,
+      "description": "Rearrange to find Speed: S = D ÷ T",
+      "examples": ["If D = 120 km, T = 2 h, then S = 120 ÷ 2 = 60 km/h"]
+    },
+    {
+      "step": 3,
+      "description": "Rearrange to find Time: T = D ÷ S",
+      "examples": ["If D = 120 km, S = 60 km/h, then T = 120 ÷ 60 = 2 h"]
+    },
+    {
+      "step": 4,
+      "description": "Check units match and answer makes sense",
+      "examples": ["Speed in km/h, distance in km, time in hours"]
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "misc1",
+      "description": "Using the wrong formula arrangement",
+      "probe": "To find time when distance is 100 km and speed is 50 km/h, do we calculate 100 × 50 or 100 ÷ 50?",
+      "hint": "Use T = D ÷ S. Time = 100 ÷ 50 = 2 hours. Think: at 50 km per hour, how long to travel 100 km?",
+      "quickCheck": "What formula finds distance when speed is 30 km/h and time is 4 hours?"
+    },
+    {
+      "id": "misc2",
+      "description": "Mixing up units in calculations",
+      "probe": "If speed is 72 km/h and time is 30 minutes, can we directly calculate distance as 72 × 30?",
+      "hint": "No! Convert to same time units first: 30 minutes = 0.5 hours. Then distance = 72 × 0.5 = 36 km.",
+      "quickCheck": "Convert 2 hours 15 minutes to decimal hours"
+    }
+  ],
+  "socraticLadder": [
+    {
+      "level": "L0",
+      "type": "probe",
+      "prompt": "A car travels at 80 km/h. How far does it go in 2.5 hours?"
+    },
+    {
+      "level": "L1",
+      "type": "hint",
+      "prompt": "Use Distance = Speed × Time. Distance = 80 km/h × 2.5 h = ?"
+    },
+    {
+      "level": "L2",
+      "type": "scaffold",
+      "prompt": "Distance = 80 × 2.5 = 200 km. The units work out: km/h × h = km."
+    }
+  ],
+  "conversationFlow": {
+    "states": [
+      {"id": "start", "intent": "start"},
+      {"id": "probe1", "intent": "ask_probe", "prompt": "Let's use the speed-distance-time relationship! A cyclist travels at 15 km/h for 3 hours. How far do they travel?"},
+      {"id": "hint1", "intent": "give_hint", "prompt": "Use the formula Distance = Speed × Time. So Distance = 15 km/h × 3 h. What do you get?"},
+      {"id": "checkpoint", "intent": "checkpoint", "checkpointRef": "checkpoint_1"},
+      {"id": "reflect", "intent": "reflect", "prompt": "Perfect! You've learned the key relationship between distance, speed, and time. This formula is used everywhere in real life!"},
+      {"id": "summary", "intent": "summarize", "prompt": "Remember the triangle: D = S × T, S = D ÷ T, T = D ÷ S. Always check your units match!"}
+    ],
+    "transitions": [
+      {"from": "start", "on": "answered", "to": "probe1"},
+      {"from": "probe1", "on": "stuck", "to": "hint1"},
+      {"from": "probe1", "on": "good_answer", "to": "checkpoint"},
+      {"from": "hint1", "on": "answered", "to": "checkpoint"},
+      {"from": "checkpoint", "on": "correct", "to": "reflect"},
+      {"from": "checkpoint", "on": "wrong", "to": "hint1"},
+      {"from": "reflect", "on": "next", "to": "summary"}
+    ]
+  },
+  "itemBank": [
+    {
+      "id": "item1",
+      "type": "word_problem",
+      "difficulty": "E",
+      "stem": "A bus travels at 60 km/h for 4 hours. How far does it travel?",
+      "answer": "240",
+      "worked": [
+        "Distance = Speed × Time",
+        "Distance = 60 km/h × 4 h = 240 km"
+      ],
+      "conceptTags": ["speed:distance_calculation", "speed:formula"]
+    },
+    {
+      "id": "item2",
+      "type": "word_problem",
+      "difficulty": "M",
+      "stem": "A plane flies 800 km in 2 hours. What is its speed?",
+      "answer": "400",
+      "worked": [
+        "Speed = Distance ÷ Time",
+        "Speed = 800 km ÷ 2 h = 400 km/h"
+      ],
+      "conceptTags": ["speed:speed_calculation", "speed:formula"]
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "checkpoint_1",
+      "stem": "How long does it take to travel 150 km at 50 km/h?",
+      "choices": ["3 hours", "7500 hours", "100 hours", "200 hours"],
+      "answer": "A",
+      "rationale": "Time = Distance ÷ Speed = 150 ÷ 50 = 3 hours"
+    }
+  ]
+}

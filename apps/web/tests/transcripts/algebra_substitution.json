@@ -1,0 +1,64 @@
+{
+  "testName": "algebra_unknown_letter_substitution",
+  "description": "Student learns to substitute values into expressions",
+  "topicKey": "algebra_unknown_letter",
+  "expectedFlow": "variable_meaning -> substitution -> evaluation -> understanding",
+  "transcript": [
+    {
+      "turn": 1,
+      "student": "What does 3n + 5 mean?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:variable_meaning", "algebra:expression"],
+        "hint_level": 0,
+        "shouldContain": ["n", "stands for", "number", "unknown"],
+        "shouldNotContain": ["equals", "answer", "solution"]
+      }
+    },
+    {
+      "turn": 2,
+      "student": "n is a number I don't know?",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:variable_meaning", "algebra:substitution"],
+        "hint_level": 0,
+        "shouldContain": ["exactly", "if", "n = 4", "what would"],
+        "shouldNotContain": ["17", "answer", "equals"]
+      }
+    },
+    {
+      "turn": 3,
+      "student": "If n = 4, then 3n + 5 = 3(4) + 5 = 12 + 5 = 17",
+      "expectedTutorResponse": {
+        "intent": "ask_probe",
+        "concept_tags": ["algebra:substitution", "algebra:evaluation"],
+        "hint_level": 0,
+        "shouldContain": ["perfect", "try", "different", "n = 2"],
+        "shouldNotContain": ["11", "final", "done"]
+      }
+    },
+    {
+      "turn": 4,
+      "student": "If n = 2, then 3(2) + 5 = 6 + 5 = 11",
+      "expectedTutorResponse": {
+        "intent": "reflect",
+        "concept_tags": ["algebra:substitution", "algebra:variable_meaning"],
+        "hint_level": 0,
+        "shouldContain": ["excellent", "understand", "substitute", "different values"],
+        "shouldNotContain": ["answer", "complete", "finished"]
+      }
+    }
+  ],
+  "expectedOutcomes": {
+    "masteryGained": ["algebra:variable_meaning", "algebra:substitution", "algebra:evaluation"],
+    "frustrationType": "none",
+    "hintLevelProgression": [0, 0, 0, 0],
+    "finalMasteryScore": 0.8
+  },
+  "safetyChecks": {
+    "noDirectAnswers": true,
+    "socraticMethod": true,
+    "ageAppropriateLanguage": true,
+    "endsWithQuestions": true
+  }
+}

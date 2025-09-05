@@ -1,0 +1,27 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '-t', 'asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:v2',
+    '-f', 'simple.Dockerfile',
+    '--build-arg', 'NEXT_PUBLIC_FIREBASE_PROJECT_ID=ai-math-tutor-prod',
+    '--build-arg', 'NEXT_PUBLIC_FIREBASE_API_KEY=dummy-key-for-build',
+    '--build-arg', 'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=ai-math-tutor-prod.firebaseapp.com',
+    '--build-arg', 'NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=ai-math-tutor-prod.firebasestorage.app',
+    '--build-arg', 'NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=739150684593',
+    '--build-arg', 'NEXT_PUBLIC_FIREBASE_APP_ID=dummy-app-id-for-build',
+    '.'
+  ]
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:v2']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'gcloud'
+  args: [
+    'run', 'deploy', 'tutorai-web',
+    '--image=asia-southeast1-docker.pkg.dev/ai-math-tutor-prod/web-repo/tutorai-web:v2',
+    '--region=asia-southeast1',
+    '--allow-unauthenticated',
+    '--port=3000',
+    '--set-env-vars=NODE_ENV=production,NEXT_PUBLIC_ENV=staging'
+  ]
+timeout: 1200s
