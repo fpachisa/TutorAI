@@ -2,7 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, RotateCcw, Settings, Zap, ChevronLeft } from 'lucide-react';
+import { Sparkles, RotateCcw, Settings, Zap, ChevronLeft, PanelRightOpen, PanelRightClose } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { AppShell } from '@/components/AppShell';
@@ -12,6 +12,7 @@ import { ChatWindow, EmptyChat } from '@/components/ChatWindow';
 import { Composer } from '@/components/Composer';
 import { CheckpointCard } from '@/components/CheckpointCard';
 import { SessionSummary } from '@/components/SessionSummary';
+import { ScratchPad } from '@/components/ScratchPad';
 import { Toast, ToastContainer, useToast } from '@/components/Toast';
 import { 
   TutorAPI, 
@@ -69,6 +70,7 @@ function TutorPageContent() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [checkpointState, setCheckpointState] = useState<CheckpointState | null>(null);
+  const [scratchPadVisible, setScratchPadVisible] = useState(true);
   const [sessionData, setSessionData] = useState<{
     totalTurns: number;
     masteryScore: number;
@@ -330,6 +332,11 @@ function TutorPageContent() {
       success('Ready to Continue', 'Choose another topic to keep learning!');
     }
   }, [router, topic, success]);
+
+  // Toggle scratch pad visibility
+  const handleScratchPadToggle = useCallback(() => {
+    setScratchPadVisible(prev => !prev);
+  }, []);
   
   // Restart current session
   const handleRestartSession = useCallback(() => {
@@ -404,35 +411,55 @@ function TutorPageContent() {
               </div>
             </div>
 
-            {/* Floating Progress Indicator - Always visible to prevent layout shift */}
-            <div className="hidden sm:flex items-center space-x-3">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12">
-                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="transparent"
-                    className="text-border"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    stroke="currentColor"
-                    strokeWidth="8"
-                    fill="transparent"
-                    strokeLinecap="round"
-                    className="text-accent transition-all duration-500 ease-out"
-                    strokeDasharray={`${sessionData.masteryScore * 251.2} 251.2`}
-                  />
-                </svg>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-xs font-bold transition-all duration-500">
-                    {Math.round(sessionData.masteryScore * 100)}%
-                  </span>
+            {/* Controls and Progress Indicator */}
+            <div className="flex items-center space-x-3">
+              {/* Scratch Pad Toggle */}
+              <button
+                onClick={handleScratchPadToggle}
+                className={`p-2 rounded-lg transition-colors ${
+                  scratchPadVisible 
+                    ? 'text-accent bg-accent/10' 
+                    : 'text-muted hover:text-tutor hover:bg-surfaceAlt'
+                }`}
+                title={`${scratchPadVisible ? 'Hide' : 'Show'} Scratch Pad`}
+              >
+                {scratchPadVisible ? (
+                  <PanelRightClose className="w-5 h-5" />
+                ) : (
+                  <PanelRightOpen className="w-5 h-5" />
+                )}
+              </button>
+
+              {/* Floating Progress Indicator - Always visible to prevent layout shift */}
+              <div className="hidden sm:flex items-center">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="transparent"
+                      className="text-border"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="currentColor"
+                      strokeWidth="8"
+                      fill="transparent"
+                      strokeLinecap="round"
+                      className="text-accent transition-all duration-500 ease-out"
+                      strokeDasharray={`${sessionData.masteryScore * 251.2} 251.2`}
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xs font-bold transition-all duration-500">
+                      {Math.round(sessionData.masteryScore * 100)}%
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -440,75 +467,118 @@ function TutorPageContent() {
         </div>
       </div>
 
-      {/* Main content area - uses remaining viewport height */}
-      <div className="flex-1 flex flex-col min-h-0 relative">
-        {/* Chat messages area */}
-        <div className="flex-1 min-h-0 overflow-hidden">
-          {messages.length === 0 ? (
-            <div className="flex-1 flex items-center justify-center">
-              <div className="text-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent mx-auto mb-4"></div>
-                <p className="text-muted">Starting your learning session...</p>
+      {/* Main content area - split layout with chat and scratch pad */}
+      <div className="flex-1 flex min-h-0 relative">
+        {/* Chat Area */}
+        <div className={`flex flex-col min-h-0 transition-all duration-300 ${
+          scratchPadVisible ? 'w-full lg:w-3/5' : 'w-full'
+        }`}>
+          {/* Chat messages area */}
+          <div className="flex-1 min-h-0 overflow-hidden">
+            {messages.length === 0 ? (
+              <div className="flex-1 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-accent mx-auto mb-4"></div>
+                  <p className="text-muted">Starting your learning session...</p>
+                </div>
               </div>
+            ) : (
+              <ChatWindow messages={messages} isTyping={isTyping} />
+            )}
+          </div>
+          
+          {/* Composer - Always visible when session is active */}
+          {(tutorState === 'chatting' || messages.length > 0) && (
+            <div className="flex-shrink-0 bg-surface/30 px-4 sm:px-6 py-3 border-t border-border/20">
+              <Composer
+                onSend={handleSendMessage}
+                disabled={isTyping}
+                placeholder="Type your answer or question..."
+              />
             </div>
-          ) : (
-            <ChatWindow messages={messages} isTyping={isTyping} />
           )}
         </div>
 
-        {/* Checkpoint overlay */}
-        <AnimatePresence>
-          {checkpointState && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute inset-0 bg-bg/80 backdrop-blur-sm flex items-center justify-center p-6 z-40"
-            >
-              <CheckpointCard
-                items={checkpointState.items}
-                selectedChoice={checkpointState.selectedChoice}
-                showResult={checkpointState.showResult}
-                isCorrect={checkpointState.isCorrect}
-                onSelect={handleCheckpointAnswer}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Session complete overlay */}
-        <AnimatePresence>
-          {tutorState === 'complete' && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute inset-0 bg-bg/80 backdrop-blur-sm flex items-center justify-center p-6 z-40"
-            >
-              <SessionSummary
-                masteryScore={sessionData.masteryScore}
-                totalTurns={sessionData.totalTurns}
-                timeSpent={sessionData.timeSpent}
-                conceptsLearned={sessionData.conceptsLearned}
-                topicName={subtopicContent.metadata.name}
-                onRestart={handleRestartSession}
-                onContinue={handleContinueLearning}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Composer - Always visible when session is active */}
-        {(tutorState === 'chatting' || messages.length > 0) && (
-          <div className="flex-shrink-0 bg-surface/30 px-4 sm:px-6 py-3 border-t border-border/20">
-            <Composer
-              onSend={handleSendMessage}
-              disabled={isTyping}
-              placeholder="Type your answer or question..."
+        {/* Scratch Pad Area */}
+        {scratchPadVisible && (
+          <div className="hidden lg:block lg:w-2/5">
+            <ScratchPad 
+              isVisible={scratchPadVisible}
+              onToggle={handleScratchPadToggle}
             />
           </div>
         )}
+        
+        {/* Mobile Scratch Pad Overlay */}
+        <AnimatePresence>
+          {scratchPadVisible && (
+            <motion.div 
+              className="lg:hidden absolute inset-0 z-30 bg-black/20 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={handleScratchPadToggle}
+            >
+              <motion.div 
+                className="absolute right-0 top-0 h-full w-full max-w-sm"
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'tween', duration: 0.3 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ScratchPad 
+                  isVisible={scratchPadVisible}
+                  onToggle={handleScratchPadToggle}
+                  className="h-full shadow-xl"
+                />
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
+
+      {/* Checkpoint overlay */}
+      <AnimatePresence>
+        {checkpointState && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute inset-0 bg-bg/80 backdrop-blur-sm flex items-center justify-center p-6 z-40"
+          >
+            <CheckpointCard
+              items={checkpointState.items}
+              selectedChoice={checkpointState.selectedChoice}
+              showResult={checkpointState.showResult}
+              isCorrect={checkpointState.isCorrect}
+              onSelect={handleCheckpointAnswer}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Session complete overlay */}
+      <AnimatePresence>
+        {tutorState === 'complete' && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute inset-0 bg-bg/80 backdrop-blur-sm flex items-center justify-center p-6 z-40"
+          >
+            <SessionSummary
+              masteryScore={sessionData.masteryScore}
+              totalTurns={sessionData.totalTurns}
+              timeSpent={sessionData.timeSpent}
+              conceptsLearned={sessionData.conceptsLearned}
+              topicName={subtopicContent.metadata.name}
+              onRestart={handleRestartSession}
+              onContinue={handleContinueLearning}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <ToastContainer toasts={toasts} onRemove={removeToast} />
     </div>

@@ -5,12 +5,13 @@ export class PromptBuilder {
   /**
    * Build a complete LearnLM system prompt using PARTS template
    */
-  static buildPrompt(context: PromptContext): string {
+  static buildPrompt(context: PromptContext, userMessage: string = ''): string {
     const systemInstructions = this.getLearnLMSystemInstructions();
     const partsPrompt = this.buildPARTSPrompt(context);
     const curriculumContext = this.buildCurriculumContext(context.curriculumData);
     const sessionHistory = this.buildSessionHistory(context.sessionContext);
     const adaptiveInstructions = this.buildAdaptiveInstructions(context);
+    const currentMessage = userMessage ? `\n\nCurrent student message: ${userMessage}` : '';
     
     return `${systemInstructions}
 
@@ -20,7 +21,7 @@ ${curriculumContext}
 
 ${sessionHistory}
 
-${adaptiveInstructions}`;
+${adaptiveInstructions}${currentMessage}`;
   }
   
   /**
@@ -52,9 +53,19 @@ ${adaptiveInstructions}`;
 
 
 ## Tool/Format Hints
-- Use **math formatting** when useful: \`\\frac{a}{b}\`, \`\\times\`, \`\\div\`, superscripts for units.
-- Keep each message **≤ 6 short lines**, unless the student asks for a full solution.
-- Ask **exactly one** guiding question per turn.`;
+- Ask **exactly one** guiding question per turn.
+
+## Mathematical Expression Formatting
+- Math variables and algebraic expressions MUST use double dollars: $$n + 5$$, $$\\frac{1}{2}$$, $$x^2$$
+- Variable expressions: $$4p$$, $$3x$$, $$n + 7$$ (never write as plain text like 4p)
+- Operations: Use $$\\times$$ for multiplication, $$\\div$$ for division
+- Examples: "The expression $$4p$$ means 4 times $$p$$" NOT "4p means 4 times p"
+
+## Currency vs Math Distinction
+- Currency amounts: Use normal text like "$2", "$0.50", "$10" (NOT $$2$$)
+- Math variables: Use double dollars like $$a$$, $$x$$, $$p$$ 
+- Correct: "If each apple costs $$a$$ dollars and a drink costs $2..."
+- Incorrect: "If each apple costs $$a$$ dollars and a drink costs $$2$$..."`;
   }
   
   /**
@@ -62,7 +73,6 @@ ${adaptiveInstructions}`;
    */
   private static buildPARTSPrompt(context: PromptContext): string {
     const isFirstTurn = context.turnCount === 1;
-    const frustrationLevel = context.detectedFrustration ? 'frustrated' : 'engaged';
     
     // Get data from simplified curriculum
     const topicName = context.curriculumData?.metadata.name || context.topicConfig.name;
@@ -73,19 +83,15 @@ ${adaptiveInstructions}`;
     return `## PARTS Template Context
 **Persona**: Supportive Primary 6 Maths coach (Singapore)
 **Act**: Coach with one guiding question per turn  
-**Recipient**: Primary 6 learner (11–12 years old, currently ${frustrationLevel})
+**Recipient**: Primary 6 learner (11–12 years old)
 **Theme**: ${topicName}
 **Structure**: Socratic loop: diagnose → micro‑step → check → adapt → summarize
 
 ## Current Session Context
 - Turn number: ${context.turnCount}
 - Hint level: ${context.hintLevel}
-- Student frustration detected: ${context.detectedFrustration ? 'Yes (provide micro-example)' : 'No'}
 - Learning objective: ${objective}
 
-## Constraints for This Turn
-- Maximum 6 lines per response
-- ${context.detectedFrustration ? 'PRIORITY: Give one worked micro-example due to frustration' : 'Continue Socratic questioning'}
 
 ${isFirstTurn ? `
 ## First Turn - Natural Introduction
@@ -93,7 +99,6 @@ ${isFirstTurn ? `
 - Reference context: The topic is about ${intro}
 - Example question: ${firstProbe}
 - Create your own natural introduction and diagnostic question
-- Use Socratic method - understand what they know before teaching
 ` : ''}`;
   }
   
@@ -144,9 +149,6 @@ ${historyText}
 
 ## Session Progress
 - Total turns: ${session.turns.length}
-- Overall mastery score: ${Math.round((session.masteryScore || 0) * 100)}%
-- Current mastery step: ${session.currentMasteryStep || 1}
-- Frustrated turns: ${session.frustratedTurns}
 - Current hint level: ${session.currentHintLevel}
 
 ${session.masteryStepProgress && session.masteryStepProgress.length > 0 ? 
@@ -162,18 +164,6 @@ ${session.masteryStepProgress.map(step =>
   private static buildAdaptiveInstructions(context: PromptContext): string {
     let instructions = '\n## Adaptive Instructions for This Turn\n';
     
-    if (context.detectedFrustration) {
-      instructions += '- CRITICAL: Student is frustrated. Provide a simple worked micro-example first\n';
-      instructions += '- Use encouraging language: "Good attempt! Let\'s try a simpler version first"\n';
-      instructions += '- Break into the smallest possible step\n';
-    } else if (context.hintLevel >= 2) {
-      instructions += '- Student may need more scaffolding\n';
-      instructions += '- Consider providing a concrete example or bar model\n';
-    }
-    
-    if (context.turnCount === 1) {
-      instructions += '- This is the first turn - start with: "What is the question asking you to find?"\n';
-    }
     
     // Add step progression constraints
     if (context.sessionContext?.masteryStepProgress && context.curriculumData?.mastery_progression) {
@@ -203,9 +193,9 @@ ${availableConcepts.map(concept => `- "${concept}"`).join('\n')}
     instructions += `\n## Response Requirements
 - **CRITICAL**: Always respond in valid JSON format - never plain text
 - **MANDATORY**: if the intent is "ask_question", then your response MUST include a question that requires student input/answer
+- If the user response indicates frustration, provide a brief worked micro-example before conituning with the current question
 - Acknowledge correct answers briefly, then ask the next question
-- Use math formatting: \\frac{a}{b}, \\times, \\div
-- Keep response under 6 lines
+- Use detailed mathematical expression formatting as specified above
 - Age-appropriate language for 11-12 year olds
 
 ${conceptTagsGuidance}
@@ -213,63 +203,19 @@ ${conceptTagsGuidance}
 ## JSON FORMAT IS MANDATORY
 You MUST respond in this exact JSON structure:
 {
-  "tutor_message": "Your response here",
+  "tutor_message": "Your response here, if the intent is ask_question, it MUST include a question",
   "intent": "ask_question|give_hint|concept_closing",
-  "concept_tags": ["${availableConcepts[0] || 'relevant_concept'}"]
+  "concept_tags": ["${availableConcepts[0] || 'relevant_concept'}"],
+  "student_correct": true|false,
+  "hint_level": 0|1|2
 }
 
 ## Intent Usage Guidelines:
-- **ask_question**: When posing a new question that requires student input/answer (counts toward required questions)
-- **give_hint**: When providing guidance, scaffolding, or clarification without asking a question (doesn't count)
-- **concept_closing**: When wrapping up or summarizing a completed concept (doesn't count)`;
+- **ask_question**: When posing a completely new question and not a socratic question which you ask to guide the student on current problem
+- **give_hint**: When providing guidance, scaffolding, or clarification or asking a socratic question to guide the student on current problem
+- **concept_closing**: When wrapping up or summarizing a completed concept`;
     
     return instructions;
   }
   
-  /**
-   * Quick prompt for specific scenarios
-   */
-  static buildQuickPrompt(scenario: 'first_turn' | 'frustrated' | 'checkpoint' | 'summary', context: any): string {
-    const baseInstructions = this.getLearnLMSystemInstructions();
-    
-    switch (scenario) {
-      case 'first_turn':
-        return `${baseInstructions}
-
-You are starting a new tutoring session. Ask one diagnostic question to understand what the student is trying to solve and what they've attempted so far.
-
-Student's message: "${context.studentMessage}"
-Topic: ${context.topicName}
-
-Ask: "What is the question asking you to find?" or similar diagnostic probe.`;
-        
-      case 'frustrated':
-        return `${baseInstructions}
-
-The student is showing frustration (2+ incorrect attempts). Provide a simple worked micro-example first, then ask one follow-up question.
-
-Current problem context: ${context.problemContext}
-Student's recent attempts: ${context.recentAttempts}
-
-Give a tiny worked example, then ask one confirming question.`;
-        
-      case 'checkpoint':
-        return `${baseInstructions}
-
-Time for a mastery checkpoint. Ask one assessment question to check understanding of: ${context.conceptToCheck}
-
-Make it concrete and age-appropriate.`;
-        
-      case 'summary':
-        return `${baseInstructions}
-
-Student has solved the problem successfully. Provide a 2-line recap and suggest one practice variant.
-
-Problem solved: ${context.solvedProblem}
-Key concept: ${context.keyConcept}`;
-        
-      default:
-        return baseInstructions;
-    }
-  }
 }

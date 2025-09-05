@@ -1,0 +1,48 @@
+{
+  "id": "algebra_word_problems",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "algebra",
+    "subtopic": "algebra_word_problems"
+  },
+  "metadata": {
+    "name": "Solving Algebraic Word Problems",
+    "description": "Apply algebraic concepts to solve multi-step word problems commonly found in PSLE.",
+    "difficulty": "H",
+    "estimatedTime": 40,
+    "order": 4,
+    "icon": "🧩",
+    "conceptTags": ["algebra", "word-problems", "PSLE", "problem-solving", "equations"],
+    "moeSyllabusRef": "P6.5.4"
+  },
+  "learning_objective": "Formulate and solve simple algebraic equations in the context of multi-step word problems.",
+  "intro_context": "Get ready to plan a school carnival! 🎡 You'll need your best algebra skills to solve real-world challenges, from calculating ticket sales to managing game prizes. Let's put your problem-solving abilities to the test!",
+  "mastery_progression": [
+    {
+      "step": 1,
+      "concept": "forming_and_simplifying_total_expressions",
+      "sample_question": "At the carnival entrance, an adult ticket costs $k. A child's ticket costs $5 less than an adult's ticket. If one adult and one child buy a ticket each, write a simplified expression for the total amount they paid in terms of k.",
+      "question_count": 2,
+      "mastery_criteria": "Student can form multiple expressions from a scenario and combine them into a single, simplified expression (e.g., k + (k-5) simplifies to 2k-5)."
+    },
+    {
+      "step": 2,
+      "concept": "forming_expressions_and_evaluating_difference",
+      "sample_question": "The drink stall sells 'n' cups of lemonade. The food stall sells four times as many hotdogs. The games stall sells 20 fewer game coupons than the drink stall sells lemonade. If the drink stall sold 60 cups of lemonade (n = 60), how many more hotdogs were sold than game coupons? 🌭",
+      "question_count": 2,
+      "mastery_criteria": "Student can form expressions, find their difference, and substitute a value to find a final numerical answer."
+    },
+    {
+      "step": 3,
+      "concept": "forming_equation_and_solving_for_quantity",
+      "sample_question": "A red coupon for the bouncy castle is worth 'p' points. A blue coupon for the ferris wheel is worth twice as many points. A student buys 5 red coupons and some blue coupons. The total value of all the coupons is 250 points. If each red coupon is worth 10 points (p = 10), how many blue coupons did the student buy? 🎟️",
+      "question_count": 2,
+      "mastery_criteria": "Student can use a given total and a substituted value to form an equation and solve for an unknown quantity."
+    }
+  ],
+  "completion_policy": {
+    "requires_all_steps": true,
+    "total_questions": 6
+  }
+}

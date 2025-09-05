@@ -44,8 +44,7 @@ describe('VertexAIClient', () => {
       mockModel.generateContent.mockResolvedValue(mockResponse);
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "How do I solve 3/4 ÷ 2?"
+        "You are a tutor\n\nCurrent student message: How do I solve 3/4 ÷ 2?"
       );
 
       expect(result.success).toBe(true);
@@ -75,8 +74,7 @@ describe('VertexAIClient', () => {
       mockModel.generateContent.mockResolvedValue(mockResponse);
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "How do I solve 3/4 ÷ 2?"
+        "You are a tutor\n\nCurrent student message: How do I solve 3/4 ÷ 2?"
       );
 
       expect(result.success).toBe(true);
@@ -104,9 +102,7 @@ describe('VertexAIClient', () => {
         });
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "Help me understand",
-        { maxRetries: 2 }
+        "You are a tutor\n\nCurrent student message: Help me understand"
       );
 
       expect(result.success).toBe(true);
@@ -117,9 +113,7 @@ describe('VertexAIClient', () => {
       mockModel.generateContent.mockRejectedValue(new Error('Network error'));
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "Help me",
-        { maxRetries: 1 }
+        "You are a tutor\n\nCurrent student message: Help me"
       );
 
       expect(result.success).toBe(false);
@@ -146,8 +140,7 @@ describe('VertexAIClient', () => {
       mockModel.generateContent.mockResolvedValue(incompleteResponse);
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "Help me"
+        "You are a tutor\n\nCurrent student message: Help me"
       );
 
       expect(result.success).toBe(false);
@@ -164,8 +157,7 @@ describe('VertexAIClient', () => {
       mockModel.generateContent.mockResolvedValue(emptyResponse);
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "Help me"
+        "You are a tutor\n\nCurrent student message: Help me"
       );
 
       expect(result.success).toBe(false);
@@ -180,9 +172,7 @@ describe('VertexAIClient', () => {
       );
 
       const result = await client.generateResponse(
-        "You are a tutor",
-        "Help me",
-        { timeout: 100 }
+        "You are a tutor\n\nCurrent student message: Help me"
       );
 
       const endTime = Date.now();
@@ -215,9 +205,7 @@ describe('VertexAIClient', () => {
       mockModel.generateContent.mockResolvedValue(mockResponse);
 
       await client.generateResponse(
-        "You are a tutor",
-        "Help me",
-        { requestId: "test-123" }
+        "You are a tutor\n\nCurrent student message: Help me"
       );
 
       expect(consoleSpy).toHaveBeenCalledWith(

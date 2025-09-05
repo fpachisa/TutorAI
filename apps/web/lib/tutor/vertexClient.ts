@@ -83,57 +83,9 @@ export class VertexAIClient {
   /**
    * Generate a tutor response using Gemini 2.5 Flash
    */
-  async generateResponse(systemPrompt: string, userMessage: string): Promise<AIResponse> {
+  async generateResponse(systemPrompt: string): Promise<AIResponse> {
     try {
-      // Construct the full prompt with system instructions
-      const fullPrompt = `${systemPrompt}
-
-Current student message: ${userMessage}
-
-Please respond with valid JSON in this exact format:
-{
-  "tutor_message": "Your Socratic question or response in markdown format",
-  "intent": "ask_probe|give_hint|checkpoint|reflect|summarize",
-  "concept_tags": ["concept1", "concept2"],
-  "hint_level": 0,
-  "student_correct": true
-}
-
-TUTOR RESPONSE STYLE:
-- BE CONVERSATIONAL AND NATURAL - avoid repetitive phrases or templates
-- VARY YOUR LANGUAGE - don't use the same expressions repeatedly
-- Use standard Markdown formatting (**bold**, *italic*, \`code\`)
-- Use LaTeX math expressions: $$x + 5$$ for inline, $$\\frac{1}{2}$$ for block
-- Examples of varied encouragement: "Great work!", "Nice thinking!", "That's exactly right!", "Well done!", "Perfect!", "Excellent reasoning!"
-
-MATHEMATICAL EXPRESSIONS:
-- Math variables and algebraic expressions MUST use double dollars: $$n + 5$$, $$\\frac{1}{2}$$, $$x^2$$
-- Variable expressions: $$4p$$, $$3x$$, $$n + 7$$ (never write as plain text like 4p)
-- Operations: Use $$\\times$$ for multiplication, $$\\div$$ for division
-- Examples: "The expression $$4p$$ means 4 times $$p$$" NOT "4p means 4 times p"
-
-CURRENCY vs MATH DISTINCTION:
-- Currency amounts: Use normal text like "$2", "$0.50", "$10" (NOT $$2$$)
-- Math variables: Use double dollars like $$a$$, $$x$$, $$p$$ 
-- Correct: "If each apple costs $$a$$ dollars and a drink costs $2..."
-- Incorrect: "If each apple costs $$a$$ dollars and a drink costs $$2$$..."
-
-
-CORRECTNESS ASSESSMENT:
-- Set student_correct: true if their answer is mathematically correct
-- Set student_correct: false if their answer is wrong or incomplete
-- Example: "k + 7" for "a number $$k$$ increased by 7" = student_correct: true
-
-TUTORING GUIDELINES:
-- ONE concise guiding question per turn
-- Use warm, patient, age-appropriate language
-- Stay within Primary 6 Singapore MOE syllabus
-- Never give full solutions immediately
-- AVOID FORMULAIC RESPONSES - each response should feel unique and natural
-- Mix different teaching approaches: encouraging, questioning, explaining, connecting
-- Vary your sentence structures and vocabulary to keep the conversation engaging`;
-
-      const response = await this.model.generateContent(fullPrompt);
+      const response = await this.model.generateContent(systemPrompt);
       
       console.log('🔍 VERTEX DEBUG - Full system prompt:');
       console.log(systemPrompt);
@@ -209,10 +161,10 @@ TUTORING GUIDELINES:
       
       // Try to parse JSON response
       let parsedResponse;
+      let cleanedText = textContent;
       try {
         // JSON extraction debugging at each step
         console.log('\n🔧 VERTEX DEBUG - JSON Extraction Process:');
-        let cleanedText = textContent;
         
         // Step 1: Check for JSON code block
         const jsonBlockMatch = textContent.match(/```json\s*(\{[\s\S]*?\})\s*```/);
@@ -250,7 +202,7 @@ TUTORING GUIDELINES:
           // Fix unescaped newlines in strings - replace literal newlines with \n
           .replace(/("tutor_message":\s*"[^"]*?)\n([^"]*?")/g, '$1\\n$2')
           // Handle multiple newlines
-          .replace(/("tutor_message":\s*"[^"]*?)(\n+)([^"]*?")/g, (match, p1, p2, p3) => {
+          .replace(/("tutor_message":\s*"[^"]*?)(\n+)([^"]*?")/g, (_match: string, p1: string, p2: string, p3: string) => {
             return p1 + p2.replace(/\n/g, '\\n') + p3;
           })
         
@@ -268,10 +220,13 @@ TUTORING GUIDELINES:
         parsedResponse = JSON.parse(cleanedText);
         console.log('✅ VERTEX DEBUG - JSON parsing successful!');
         console.log('🔍 VERTEX DEBUG - Parsed JSON:', parsedResponse);
-      } catch (parseError) {
+      } catch (parseError: unknown) {
+        const errorMessage = parseError instanceof Error ? parseError.message : 'Unknown error';
+        const errorType = parseError instanceof Error ? parseError.constructor.name : 'Unknown';
+        
         console.log('❌ VERTEX DEBUG - JSON parse failed:', parseError);
-        console.log('❌ VERTEX DEBUG - Parse error type:', parseError.constructor.name);
-        console.log('❌ VERTEX DEBUG - Parse error message:', parseError.message);
+        console.log('❌ VERTEX DEBUG - Parse error type:', errorType);
+        console.log('❌ VERTEX DEBUG - Parse error message:', errorMessage);
         console.log('❌ VERTEX DEBUG - Failed text length:', cleanedText?.length || 0);
         console.log('❌ VERTEX DEBUG - Failed text preview:', cleanedText?.substring(0, 200) || 'N/A');
         
@@ -279,7 +234,7 @@ TUTORING GUIDELINES:
         // Instead, fail and let the system retry with better prompting
         return {
           success: false,
-          errors: [`AI returned invalid JSON format. Parse error: ${parseError.message}. Response preview: ${cleanedText?.substring(0, 200) || 'N/A'}...`]
+          errors: [`AI returned invalid JSON format. Parse error: ${errorMessage}. Response preview: ${cleanedText?.substring(0, 200) || 'N/A'}...`]
         };
       }
       
@@ -339,10 +294,19 @@ TUTORING GUIDELINES:
    */
   async testConnection(): Promise<boolean> {
     try {
-      const testResponse = await this.generateResponse(
-        'You are a test assistant.',
-        'Say "connection successful" in JSON format with fields: tutor_message, intent, concept_tags, hint_level.'
-      );
+      const testPrompt = `You are a test assistant.
+
+Current student message: Say "connection successful" in JSON format with fields: tutor_message, intent, concept_tags, hint_level.
+
+Please respond with valid JSON in this exact format:
+{
+  "tutor_message": "Connection successful",
+  "intent": "test",
+  "concept_tags": ["test"],
+  "hint_level": 0
+}`;
+
+      const testResponse = await this.generateResponse(testPrompt);
       
       return testResponse.success === true;
     } catch {

@@ -44,6 +44,6 @@
   ],
   "completion_policy": {
     "requires_all_steps": true,
-    "total_questions": 8
+    "total_questions": 7
   }
 }

@@ -71,6 +71,7 @@ export interface TutorTurn {
   timestamp: Date;
   masteryGained: string[];
   studentFrustrated?: boolean;
+  studentCorrect?: boolean;
 }
 
 export interface TopicConfig {

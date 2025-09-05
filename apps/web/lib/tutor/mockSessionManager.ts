@@ -71,7 +71,8 @@ export class MockSessionManager {
     conceptsLearned: string[],
     masteryProgression?: any[],
     intent?: string,
-    isStudentCompletion: boolean = false
+    isStudentCompletion: boolean = false,
+    studentCorrect: boolean = false
   ): Promise<SessionResult<{ progressScore: number; currentStep: number; stepProgress: MasteryStepProgress[] }>> {
     if (!sessions[sessionId]) {
       return {
@@ -125,10 +126,10 @@ export class MockSessionManager {
         if (stepIndex !== -1) {
           const step = session.masteryStepProgress![stepIndex];
           
-          if (isStudentCompletion) {
-            // Student completed a question - increment completion counter
+          if (isStudentCompletion && studentCorrect) {
+            // Student completed a question correctly - increment completion counter
             step.questionsCompleted += 1;
-            console.log(`🎓 STUDENT COMPLETED - ${concept}: ${step.questionsCompleted} questions completed`);
+            console.log(`🎓 STUDENT COMPLETED CORRECTLY - ${concept}: ${step.questionsCompleted} questions completed`);
             
             // Check if step is completed based on completed questions
             const requiredQuestions = masteryProgression?.[stepIndex]?.question_count || 1;

@@ -167,7 +167,8 @@ export class SessionManager {
     conceptsLearned: string[],
     masteryProgression?: any[],
     intent?: string,
-    isStudentCompletion: boolean = false
+    isStudentCompletion: boolean = false,
+    studentCorrect: boolean = false
   ): Promise<SessionResult<{ progressScore: number; currentStep: number; stepProgress: MasteryStepProgress[] }>> {
     try {
       const sessionRef = db.collection('tutorSessions').doc(sessionId);
@@ -211,8 +212,8 @@ export class SessionManager {
           if (stepIndex >= 0) {
             const step = stepProgress[stepIndex];
             
-            if (isStudentCompletion) {
-              // Student completed a question - increment completion counter
+            if (isStudentCompletion && studentCorrect) {
+              // Student completed a question correctly - increment completion counter
               step.questionsCompleted += 1;
               
               // Check if step is completed based on completed questions

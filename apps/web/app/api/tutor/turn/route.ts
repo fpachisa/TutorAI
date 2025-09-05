@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     }
     
     // For start intent, we can have empty studentMessage
-    if (!turnRequest.studentMessage && turnRequest.intent !== 'start') {
+    if (!turnRequest.studentMessage && turnRequest.intent && turnRequest.intent !== 'start' as any) {
       return withCors(NextResponse.json({
         success: false,
         error: 'Invalid request format. Missing studentMessage'
@@ -101,24 +101,15 @@ export async function POST(request: NextRequest) {
     // Load simplified curriculum data - fail if not available
     const curriculumData = await CurriculumAPI.getSimpleCurriculumContent(curriculumPath);
     
-    // Handle student completion FIRST (if this is not the first turn)
-    let studentCompletionResult;
+    // Store current step info for later student completion processing
+    let currentStepInfo;
     if (session.turns.length > 0 && session.masteryStepProgress && session.masteryStepProgress.length > 0) {
-      // Student just answered - find which concept they were working on
       const currentStepIndex = (session.currentMasteryStep || 1) - 1;
       if (currentStepIndex >= 0 && currentStepIndex < session.masteryStepProgress.length) {
-        const currentStep = session.masteryStepProgress[currentStepIndex];
-        
-        // Mark student completion for the current step's concept
-        console.log('🎓 API DEBUG - Student completed question for concept:', currentStep.concept);
-        studentCompletionResult = await SessionManager.updateProgress(
-          turnRequest.sessionId,
-          [currentStep.concept],
-          curriculumData.mastery_progression,
-          'student_response',
-          true // isStudentCompletion = true
-        );
-        console.log('🎓 API DEBUG - Student completion result:', studentCompletionResult);
+        currentStepInfo = {
+          concept: session.masteryStepProgress[currentStepIndex].concept,
+          stepIndex: currentStepIndex
+        };
       }
     }
     
@@ -135,9 +126,9 @@ export async function POST(request: NextRequest) {
     
     // Generate AI response
     const vertexClient = new VertexAIClient();
-    const systemPrompt = PromptBuilder.buildPrompt(promptContext);
+    const systemPrompt = PromptBuilder.buildPrompt(promptContext, sanitizedMessage);
     
-    const aiResponse = await vertexClient.generateResponse(systemPrompt, sanitizedMessage);
+    const aiResponse = await vertexClient.generateResponse(systemPrompt);
     
     // Pure AI-driven: if AI fails, everything fails
     if (!aiResponse.success || !aiResponse.data) {
@@ -157,7 +148,8 @@ export async function POST(request: NextRequest) {
       conceptTags: aiResponse.data.concept_tags,
       hintLevel: finalHintLevel,
       masteryGained: [], // Would be populated based on learning assessment
-      studentFrustrated: detectedFrustration
+      studentFrustrated: detectedFrustration,
+      studentCorrect: aiResponse.data.student_correct
     };
     
     // Add turn to session
@@ -168,6 +160,21 @@ export async function POST(request: NextRequest) {
       // Continue with response even if session update failed
     }
     
+    // Handle student completion AFTER AI response (to use correctness)
+    let studentCompletionResult;
+    if (currentStepInfo) {
+      console.log('🎓 API DEBUG - Student completed question for concept:', currentStepInfo.concept, 'with correctness:', aiResponse.data.student_correct);
+      studentCompletionResult = await SessionManager.updateProgress(
+        turnRequest.sessionId,
+        [currentStepInfo.concept],
+        curriculumData.mastery_progression,
+        'student_response',
+        true, // isStudentCompletion = true
+        aiResponse.data.student_correct // studentCorrect from AI
+      );
+      console.log('🎓 API DEBUG - Student completion result:', studentCompletionResult);
+    }
+
     // Update progress for tutor asking questions
     let tutorQuestionResult;
     if (aiResponse.data.concept_tags && aiResponse.data.concept_tags.length > 0) {
@@ -177,7 +184,8 @@ export async function POST(request: NextRequest) {
         aiResponse.data.concept_tags,
         curriculumData.mastery_progression,
         aiResponse.data.intent,
-        false // isStudentCompletion = false (tutor asking)
+        false, // isStudentCompletion = false (tutor asking)
+        false // studentCorrect = false (not applicable for tutor questions)
       );
       console.log('❓ API DEBUG - Tutor question result:', tutorQuestionResult);
     } else {
