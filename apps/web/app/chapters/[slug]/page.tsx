@@ -262,109 +262,72 @@ export default function ChapterPage() {
         </motion.div>
 
         {/* Subtopics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {subtopics.map((subtopic, index) => (
             <motion.div
               key={subtopic.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              onHoverStart={() => setHoveredSubtopic(subtopic.id)}
-              onHoverEnd={() => setHoveredSubtopic(null)}
             >
-              <Link href={`/tutor?grade=primary-6&subject=mathematics&topic=${slug}&subtopic=${subtopic.id}`}>
-                <motion.div
-                  className="group relative bg-surface border border-border rounded-2xl shadow-surface overflow-hidden cursor-pointer h-full"
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  {/* Background Gradient */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${chapter.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-                  
-                  {/* Content */}
-                  <div className="relative p-6">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-surfaceAlt text-muted flex items-center justify-center text-sm font-bold">
-                          {index + 1}
-                        </div>
-                        <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getDifficultyColor(subtopic.difficulty)}`}>
-                          {getDifficultyText(subtopic.difficulty)}
-                        </span>
-                      </div>
-                      
-                      <ArrowRight className={`w-4 h-4 ${chapter.color} opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300`} />
+              <motion.div
+                className="group relative bg-surface border border-border rounded-2xl shadow-surface overflow-hidden h-full cursor-pointer"
+                whileHover={{ scale: 1.02, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+              >
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${chapter.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                
+                {/* Content */}
+                <div className="relative p-8">
+                  {/* Header */}
+                  <div className="flex items-start justify-start mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-surfaceAlt text-muted flex items-center justify-center text-base font-bold group-hover:scale-110 transition-transform duration-300">
+                      {index + 1}
                     </div>
-
-                    {/* Title & Description */}
-                    <h3 className="text-lg font-heading font-semibold text-tutor mb-3 group-hover:text-accent transition-colors duration-300">
-                      {subtopic.name}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-2">
-                      {subtopic.description}
-                    </p>
-
-                    {/* Icon Display */}
-                    <div className="mb-4 flex items-center justify-center">
-                      <span className="text-4xl">{subtopic.icon}</span>
-                    </div>
-
-                    {/* Stats */}
-                    <div className="flex items-center justify-between text-xs text-muted">
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3" />
-                        <span>{subtopic.estimatedTime} min</span>
-                      </div>
-                      
-                      {subtopic.isCompleted && (
-                        <div className="flex items-center gap-1 text-success">
-                          <Star className="w-3 h-3 fill-current" />
-                          <span>{subtopic.masteryScore}% mastery</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Progress Bar */}
-                    <div className="mt-4 pt-4 border-t border-border">
-                      <div className="flex items-center justify-between text-xs text-muted mb-2">
-                        <span>Progress</span>
-                        <span>{subtopic.isCompleted ? '100%' : '0%'}</span>
-                      </div>
-                      <div className="h-2 bg-surfaceAlt rounded-full overflow-hidden">
-                        <motion.div
-                          className={`h-full bg-gradient-to-r ${chapter.gradient} rounded-full`}
-                          initial={{ width: 0 }}
-                          animate={{ 
-                            width: subtopic.isCompleted 
-                              ? '100%' 
-                              : hoveredSubtopic === subtopic.id ? '20%' : '0%' 
-                          }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Completion Badge */}
-                    {subtopic.isCompleted && (
-                      <div className="absolute top-4 right-4">
-                        <div className="w-6 h-6 bg-success rounded-full flex items-center justify-center">
-                          <div className="w-3 h-3 bg-white rounded-full" />
-                        </div>
-                      </div>
-                    )}
                   </div>
 
-                  {/* Hover Effect Border */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl border-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                    style={{
-                      borderImage: `linear-gradient(135deg, ${chapter.gradient.replace('from-', '').replace(' to-', ', ')}) 1`
-                    }}
-                  />
-                </motion.div>
-              </Link>
+                  {/* Title */}
+                  <h3 className="text-xl font-heading font-semibold text-tutor mb-8 leading-relaxed min-h-[4rem] flex items-center group-hover:text-accent transition-colors duration-300">
+                    {subtopic.name}
+                  </h3>
+
+                  {/* Learn/Practice Buttons */}
+                  <div className="space-y-12">
+                    <Link href={`/tutor?grade=primary-6&subject=mathematics&topic=${slug}&subtopic=${subtopic.id}`}>
+                      <motion.button
+                        className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-semibold text-base transition-all shadow-md hover:shadow-lg"
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="text-xl">🎓</span>
+                        <span>Learn</span>
+                      </motion.button>
+                    </Link>
+                    
+                    <Link href={`/practice/${slug}?subtopic=${subtopic.id}`}>
+                      <motion.button
+                        className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-semibold text-base transition-all shadow-md hover:shadow-lg"
+                        whileHover={{ scale: 1.02, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span className="text-xl">🎯</span>
+                        <span>Practice</span>
+                      </motion.button>
+                    </Link>
+                  </div>
+
+                  {/* Completion Badge */}
+                  {subtopic.isCompleted && (
+                    <div className="absolute top-6 right-6">
+                      <div className="w-7 h-7 bg-success rounded-full flex items-center justify-center shadow-sm">
+                        <div className="w-3 h-3 bg-white rounded-full" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

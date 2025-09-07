@@ -1,0 +1,482 @@
+{
+  "topic": "algebra",
+  "path": {
+    "grade": "primary-6",
+    "subject": "mathematics",
+    "topic": "algebra"
+  },
+  "metadata": {
+    "total_units": 3,
+    "estimated_time": "45-60 minutes",
+    "description": "Master algebra fundamentals through engaging story adventures covering variables, expressions, evaluation, and word problems.",
+    "difficulty_levels": ["easy", "medium", "hard"],
+    "total_questions": 30,
+    "subtopics_covered": ["unknown-letter", "simplifying-expressions", "evaluating-expressions", "algebra-word-problems"]
+  },
+  "units": [
+    {
+      "unit_id": 1,
+      "story_theme": {
+        "title": "Secret Agent Training Academy",
+        "emoji": "🕵️",
+        "intro": "Welcome to the elite spy academy! Complete your training by mastering secret agent mathematics. Each mission will test your algebra skills.",
+        "context": "Agent, you've been recruited to join the most prestigious spy academy. To graduate, you must prove your mathematical prowess through a series of covert operations."
+      },
+      "total_questions": 10,
+      "difficulty_distribution": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 2
+      },
+      "questions": [
+        {
+          "id": 1,
+          "subtopic": "unknown-letter",
+          "difficulty": "easy",
+          "story_context": "Agent Briefing: Decoding Enemy Messages",
+          "question": "Agent, we intercepted an enemy transmission: 'Meet at location n + 7'. If n represents the secret building number, what does 'n' mean in spy terms?",
+          "type": "multiple_choice",
+          "choices": [
+            "A specific building number we know",
+            "An unknown building number we need to find", 
+            "Always means building 7",
+            "A random letter with no meaning"
+          ],
+          "correct_answer": "An unknown building number we need to find",
+          "explanation": "In spy codes, letters like 'n' represent unknown values that agents need to discover through investigation!",
+          "points": 10
+        },
+        {
+          "id": 2,
+          "subtopic": "unknown-letter", 
+          "difficulty": "medium",
+          "story_context": "Mission: Create Your Agent Code",
+          "question": "Your spy equipment costs x dollars, and your gadgets cost 25 dollars more than the equipment. Write an expression for the total cost of your gadgets.",
+          "type": "short_answer",
+          "correct_answer": "x + 25",
+          "alternative_answers": ["25 + x"],
+          "explanation": "Since gadgets cost 25 MORE than equipment (x), the expression is x + 25. Great work, agent!",
+          "points": 15
+        },
+        {
+          "id": 3,
+          "subtopic": "unknown-letter",
+          "difficulty": "easy",
+          "story_context": "Training Exercise: Field Equipment",
+          "question": "An agent has k surveillance cameras. The headquarters gives them 12 more cameras for a mission. Which expression shows their total cameras?",
+          "type": "multiple_choice",
+          "choices": ["k - 12", "k + 12", "12k", "k ÷ 12"],
+          "correct_answer": "k + 12",
+          "explanation": "Adding 12 more cameras to the original k cameras gives us k + 12 total cameras. Well done, agent!",
+          "points": 10
+        },
+        {
+          "id": 4,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "medium",
+          "story_context": "Mission: Inventory Management",
+          "question": "In your spy gear, you have 5w (weapons) + 3w (more weapons) + 2s (surveillance tools) + s (another surveillance tool). Simplify your total inventory.",
+          "type": "short_answer",
+          "correct_answer": "8w + 3s",
+          "alternative_answers": ["3s + 8w"],
+          "explanation": "Combine like terms: 5w + 3w = 8w, and 2s + s = 3s. Your simplified inventory is 8w + 3s.",
+          "points": 15
+        },
+        {
+          "id": 5,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "hard",
+          "story_context": "Advanced Training: Resource Allocation",
+          "question": "Your spy team's resources are: 7p + 4 + 2p - 1 + 3p, where p represents personnel units. Simplify this expression.",
+          "type": "short_answer", 
+          "correct_answer": "12p + 3",
+          "alternative_answers": ["3 + 12p"],
+          "explanation": "Combine like terms: 7p + 2p + 3p = 12p, and 4 - 1 = 3. Final answer: 12p + 3.",
+          "points": 20
+        },
+        {
+          "id": 6,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "easy",
+          "story_context": "Basic Training: Equipment Count",
+          "question": "Agent, you have 4d (devices) and receive 3d (more devices). What's your simplified total?",
+          "type": "multiple_choice",
+          "choices": ["7d", "12d", "4d + 3d", "d7"],
+          "correct_answer": "7d",
+          "explanation": "When combining like terms: 4d + 3d = 7d. Excellent work, recruit!",
+          "points": 10
+        },
+        {
+          "id": 7,
+          "subtopic": "evaluating-expressions", 
+          "difficulty": "medium",
+          "story_context": "Mission Parameters: Calculate Launch Time",
+          "question": "The rocket launch sequence is t + 15 seconds, where t is the countdown timer. If the timer shows 45 seconds (t = 45), when will the rocket launch?",
+          "type": "short_answer",
+          "correct_answer": "60",
+          "alternative_answers": ["60 seconds"],
+          "explanation": "Substitute t = 45 into the expression: 45 + 15 = 60 seconds. Mission timing confirmed!",
+          "points": 15
+        },
+        {
+          "id": 8,
+          "subtopic": "evaluating-expressions",
+          "difficulty": "hard",
+          "story_context": "Critical Mission: Fuel Calculation", 
+          "question": "Your spy plane needs 3f + 8 liters of fuel, where f is the flight distance factor. For a 12-unit distance mission (f = 12), how much fuel is required?",
+          "type": "short_answer",
+          "correct_answer": "44",
+          "alternative_answers": ["44 liters"],
+          "explanation": "Substitute f = 12: 3(12) + 8 = 36 + 8 = 44 liters. Mission fuel calculated perfectly!",
+          "points": 20
+        },
+        {
+          "id": 9,
+          "subtopic": "algebra-word-problems",
+          "difficulty": "medium",
+          "story_context": "Field Operation: Age Verification",
+          "question": "Agent Smith is 5 years older than Agent Jones. If Agent Jones is j years old, and their combined age is 35, write an equation to find j.",
+          "type": "short_answer",
+          "correct_answer": "j + (j + 5) = 35",
+          "alternative_answers": ["j + j + 5 = 35", "2j + 5 = 35", "(j + 5) + j = 35"],
+          "explanation": "Agent Jones: j years, Agent Smith: j + 5 years. Combined: j + (j + 5) = 35. Great detective work!",
+          "points": 15
+        },
+        {
+          "id": 10,
+          "subtopic": "algebra-word-problems",
+          "difficulty": "hard",
+          "story_context": "Final Mission: Secret Treasure Location",
+          "question": "The treasure map shows: 'Take 4 times the secret number, then subtract 7 to get 29'. What is the secret number?",
+          "type": "short_answer", 
+          "correct_answer": "9",
+          "explanation": "Set up equation: 4n - 7 = 29. Solving: 4n = 36, so n = 9. The secret number is 9. Mission accomplished, Agent!",
+          "points": 25
+        }
+      ],
+      "completion_criteria": {
+        "minimum_score": 70,
+        "questions_required": 10,
+        "time_limit": null
+      },
+      "rewards": {
+        "completion_xp": 100,
+        "perfect_score_bonus": 50,
+        "achievement_unlocked": "Secret Agent Graduate"
+      }
+    },
+    {
+      "unit_id": 2,
+      "story_theme": {
+        "title": "Medieval Castle Builder",
+        "emoji": "🏰",
+        "intro": "You are the royal castle architect! Design and build the most magnificent castle in the kingdom using your mathematical blueprints.",
+        "context": "The king has appointed you as the chief castle builder. You must use algebra to plan, design, and construct the perfect medieval fortress."
+      },
+      "total_questions": 10,
+      "difficulty_distribution": {
+        "easy": 4,
+        "medium": 4, 
+        "hard": 2
+      },
+      "questions": [
+        {
+          "id": 1,
+          "subtopic": "unknown-letter",
+          "difficulty": "easy",
+          "story_context": "Blueprint Planning: Tower Design",
+          "question": "The royal architect's blueprint shows 'Tower height = h + 20 feet'. What does the letter 'h' represent in castle terms?",
+          "type": "multiple_choice", 
+          "choices": [
+            "A known height measurement",
+            "An unknown height we need to determine",
+            "Always 20 feet",
+            "The width of the tower"
+          ],
+          "correct_answer": "An unknown height we need to determine",
+          "explanation": "In architectural blueprints, 'h' represents an unknown height that must be calculated based on the castle's requirements!",
+          "points": 10
+        },
+        {
+          "id": 2,
+          "subtopic": "unknown-letter",
+          "difficulty": "medium",
+          "story_context": "Royal Commission: Wall Construction",
+          "question": "The castle wall costs w gold coins per section. Adding the moat costs 150 gold coins more than the wall. Write an expression for the total moat cost.",
+          "type": "short_answer",
+          "correct_answer": "w + 150",
+          "alternative_answers": ["150 + w"],
+          "explanation": "Since the moat costs 150 MORE than the wall (w), the expression is w + 150. Excellent planning, master builder!",
+          "points": 15
+        },
+        {
+          "id": 3,
+          "subtopic": "unknown-letter",
+          "difficulty": "easy", 
+          "story_context": "Materials Management: Stone Blocks",
+          "question": "A mason has s stone blocks. The quarry delivers 75 more blocks for the castle. Which expression shows the total blocks?",
+          "type": "multiple_choice",
+          "choices": ["s - 75", "s + 75", "75s", "s ÷ 75"],
+          "correct_answer": "s + 75",
+          "explanation": "Adding 75 more blocks to the original s blocks gives us s + 75 total blocks. Perfect calculation, architect!",
+          "points": 10
+        },
+        {
+          "id": 4,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "medium",
+          "story_context": "Castle Inventory: Defensive Resources", 
+          "question": "Your castle has 6c (catapults) + 2c (more catapults) + 4a (archers) + 3a (more archers). Simplify your total defense inventory.",
+          "type": "short_answer",
+          "correct_answer": "8c + 7a",
+          "alternative_answers": ["7a + 8c"],
+          "explanation": "Combine like terms: 6c + 2c = 8c, and 4a + 3a = 7a. Your defense inventory is 8c + 7a.",
+          "points": 15
+        },
+        {
+          "id": 5,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "hard",
+          "story_context": "Grand Construction: Resource Management",
+          "question": "The castle construction requires: 9m + 12 - 3m + 8 - m, where m represents material units. Simplify this expression.",
+          "type": "short_answer",
+          "correct_answer": "5m + 20", 
+          "alternative_answers": ["20 + 5m"],
+          "explanation": "Combine like terms: 9m - 3m - m = 5m, and 12 + 8 = 20. Final result: 5m + 20.",
+          "points": 20
+        },
+        {
+          "id": 6,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "easy",
+          "story_context": "Basic Construction: Room Count",
+          "question": "The castle has 5r (royal rooms) and receives 4r (more royal rooms). What's the simplified total?",
+          "type": "multiple_choice",
+          "choices": ["9r", "20r", "5r + 4r", "r9"],
+          "correct_answer": "9r",
+          "explanation": "When combining like terms: 5r + 4r = 9r. Outstanding work, royal architect!",
+          "points": 10
+        },
+        {
+          "id": 7,
+          "subtopic": "evaluating-expressions",
+          "difficulty": "medium",
+          "story_context": "Construction Timeline: Foundation Laying",
+          "question": "The foundation takes d + 30 days to complete, where d is the preparation time. If preparation takes 25 days (d = 25), how long for the foundation?",
+          "type": "short_answer", 
+          "correct_answer": "55",
+          "alternative_answers": ["55 days"],
+          "explanation": "Substitute d = 25 into the expression: 25 + 30 = 55 days. Construction timeline confirmed!",
+          "points": 15
+        },
+        {
+          "id": 8,
+          "subtopic": "evaluating-expressions",
+          "difficulty": "hard",
+          "story_context": "Royal Budget: Construction Costs",
+          "question": "The castle costs 2b + 500 gold coins, where b is the base construction factor. For a grand castle (b = 200), what's the total cost?",
+          "type": "short_answer",
+          "correct_answer": "900",
+          "alternative_answers": ["900 gold coins"],
+          "explanation": "Substitute b = 200: 2(200) + 500 = 400 + 500 = 900 gold coins. Royal budget calculated perfectly!",
+          "points": 20
+        },
+        {
+          "id": 9,
+          "subtopic": "algebra-word-problems", 
+          "difficulty": "medium",
+          "story_context": "Knight Training: Age Requirements",
+          "question": "Sir Arthur is 8 years older than Sir Lancelot. If Sir Lancelot is l years old, and their combined age is 42, write an equation to find l.",
+          "type": "short_answer",
+          "correct_answer": "l + (l + 8) = 42",
+          "alternative_answers": ["l + l + 8 = 42", "2l + 8 = 42", "(l + 8) + l = 42"],
+          "explanation": "Sir Lancelot: l years, Sir Arthur: l + 8 years. Combined: l + (l + 8) = 42. Excellent knightly mathematics!",
+          "points": 15
+        },
+        {
+          "id": 10,
+          "subtopic": "algebra-word-problems",
+          "difficulty": "hard", 
+          "story_context": "Royal Quest: Dragon's Riddle",
+          "question": "The dragon guards treasure and says: 'Triple my favorite number, then add 12 to get 45'. What is the dragon's favorite number?",
+          "type": "short_answer",
+          "correct_answer": "11", 
+          "explanation": "Set up equation: 3n + 12 = 45. Solving: 3n = 33, so n = 11. The dragon's favorite number is 11. Castle quest completed!",
+          "points": 25
+        }
+      ],
+      "completion_criteria": {
+        "minimum_score": 70,
+        "questions_required": 10,
+        "time_limit": null
+      },
+      "rewards": {
+        "completion_xp": 100,
+        "perfect_score_bonus": 50,
+        "achievement_unlocked": "Master Castle Architect"
+      }
+    },
+    {
+      "unit_id": 3,
+      "story_theme": {
+        "title": "Space Mission Control",
+        "emoji": "🚀",
+        "intro": "Houston, we need your help! As the mission commander, use algebra to navigate spacecraft, calculate fuel, and solve cosmic challenges.",
+        "context": "You're the lead mission commander at NASA's space center. The success of our Mars expedition depends on your mathematical precision and problem-solving skills."
+      },
+      "total_questions": 10,
+      "difficulty_distribution": {
+        "easy": 4,
+        "medium": 4,
+        "hard": 2
+      },
+      "questions": [
+        {
+          "id": 1,
+          "subtopic": "unknown-letter",
+          "difficulty": "easy",
+          "story_context": "Mission Briefing: Rocket Coordinates",
+          "question": "Mission Control receives coordinates: 'Launch position = p + 500 meters'. What does the variable 'p' represent in space terms?",
+          "type": "multiple_choice",
+          "choices": [
+            "A fixed position we already know",
+            "An unknown position we need to calculate",
+            "Always means 500 meters", 
+            "The rocket's speed"
+          ],
+          "correct_answer": "An unknown position we need to calculate",
+          "explanation": "In space navigation, 'p' represents an unknown position value that mission control needs to determine for precise launch!",
+          "points": 10
+        },
+        {
+          "id": 2,
+          "subtopic": "unknown-letter",
+          "difficulty": "medium", 
+          "story_context": "Fuel Calculation: Rocket Systems",
+          "question": "The main engines use f liters of fuel. The backup thrusters use 300 liters more fuel than the main engines. Write an expression for the backup thruster fuel consumption.",
+          "type": "short_answer",
+          "correct_answer": "f + 300",
+          "alternative_answers": ["300 + f"],
+          "explanation": "Since backup thrusters use 300 MORE liters than main engines (f), the expression is f + 300. Excellent space engineering!",
+          "points": 15
+        },
+        {
+          "id": 3,
+          "subtopic": "unknown-letter",
+          "difficulty": "easy",
+          "story_context": "Cargo Management: Supply Modules",
+          "question": "A spacecraft has m supply modules. Earth sends 18 additional modules for the mission. Which expression shows the total modules?",
+          "type": "multiple_choice", 
+          "choices": ["m - 18", "m + 18", "18m", "m ÷ 18"],
+          "correct_answer": "m + 18",
+          "explanation": "Adding 18 more modules to the original m modules gives us m + 18 total modules. Perfect space logistics!",
+          "points": 10
+        },
+        {
+          "id": 4,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "medium",
+          "story_context": "Fleet Management: Spacecraft Inventory",
+          "question": "Your space fleet has 4s (shuttles) + 3s (more shuttles) + 5r (rovers) + 2r (additional rovers). Simplify your total fleet inventory.",
+          "type": "short_answer",
+          "correct_answer": "7s + 7r",
+          "alternative_answers": ["7r + 7s"],
+          "explanation": "Combine like terms: 4s + 3s = 7s, and 5r + 2r = 7r. Your space fleet is 7s + 7r.",
+          "points": 15
+        },
+        {
+          "id": 5,
+          "subtopic": "simplifying-expressions",
+          "difficulty": "hard",
+          "story_context": "Mission Resources: Equipment Allocation",
+          "question": "The mission needs: 8t + 25 - 5t + 15 + 2t, where t represents technology units. Simplify this expression.",
+          "type": "short_answer",
+          "correct_answer": "5t + 40",
+          "alternative_answers": ["40 + 5t"],
+          "explanation": "Combine like terms: 8t - 5t + 2t = 5t, and 25 + 15 = 40. Mission resources: 5t + 40.",
+          "points": 20
+        },
+        {
+          "id": 6,
+          "subtopic": "simplifying-expressions", 
+          "difficulty": "easy",
+          "story_context": "Communication Systems: Satellite Count",
+          "question": "Mission Control has 6c (communication satellites) and launches 3c (more satellites). What's the simplified total?",
+          "type": "multiple_choice",
+          "choices": ["9c", "18c", "6c + 3c", "c9"],
+          "correct_answer": "9c",
+          "explanation": "When combining like terms: 6c + 3c = 9c. Outstanding work, Mission Commander!",
+          "points": 10
+        },
+        {
+          "id": 7,
+          "subtopic": "evaluating-expressions",
+          "difficulty": "medium",
+          "story_context": "Launch Sequence: Countdown Timer", 
+          "question": "The rocket launches in t + 180 seconds, where t is the systems check time. If systems check takes 120 seconds (t = 120), when does launch occur?",
+          "type": "short_answer",
+          "correct_answer": "300",
+          "alternative_answers": ["300 seconds"],
+          "explanation": "Substitute t = 120 into the expression: 120 + 180 = 300 seconds. Launch sequence confirmed!",
+          "points": 15
+        },
+        {
+          "id": 8,
+          "subtopic": "evaluating-expressions",
+          "difficulty": "hard",
+          "story_context": "Deep Space Mission: Fuel Requirements",
+          "question": "The Mars mission requires 4v + 1200 liters of fuel, where v is the velocity factor. For maximum speed (v = 150), how much total fuel is needed?",
+          "type": "short_answer",
+          "correct_answer": "1800", 
+          "alternative_answers": ["1800 liters"],
+          "explanation": "Substitute v = 150: 4(150) + 1200 = 600 + 1200 = 1800 liters. Mars mission fuel calculated perfectly!",
+          "points": 20
+        },
+        {
+          "id": 9,
+          "subtopic": "algebra-word-problems",
+          "difficulty": "medium",
+          "story_context": "Astronaut Training: Mission Duration",
+          "question": "Commander Nova's mission is 6 months longer than Captain Stellar's mission. If Captain Stellar's mission is s months, and their combined mission time is 18 months, write an equation to find s.",
+          "type": "short_answer",
+          "correct_answer": "s + (s + 6) = 18", 
+          "alternative_answers": ["s + s + 6 = 18", "2s + 6 = 18", "(s + 6) + s = 18"],
+          "explanation": "Captain Stellar: s months, Commander Nova: s + 6 months. Combined: s + (s + 6) = 18. Excellent mission mathematics!",
+          "points": 15
+        },
+        {
+          "id": 10,
+          "subtopic": "algebra-word-problems",
+          "difficulty": "hard",
+          "story_context": "Alien Encounter: Cosmic Puzzle",
+          "question": "The friendly aliens present a math puzzle: 'Take 5 times our planet's magic number, then subtract 8 to get 37'. What is their planet's magic number?",
+          "type": "short_answer",
+          "correct_answer": "9",
+          "explanation": "Set up equation: 5n - 8 = 37. Solving: 5n = 45, so n = 9. The alien planet's magic number is 9. Cosmic mission accomplished!",
+          "points": 25
+        }
+      ],
+      "completion_criteria": {
+        "minimum_score": 70,
+        "questions_required": 10,
+        "time_limit": null
+      },
+      "rewards": {
+        "completion_xp": 100,
+        "perfect_score_bonus": 50,
+        "achievement_unlocked": "Space Mission Commander"
+      }
+    }
+  ],
+  "progression_rules": {
+    "unlock_next_unit": "complete_previous",
+    "retry_allowed": true,
+    "skip_unit": false
+  },
+  "firestore_ready": {
+    "collection_name": "practice_content",
+    "document_id": "primary-6_mathematics_algebra",
+    "subcollections": ["units", "user_progress", "achievements"],
+    "indexes_needed": ["unit_id", "difficulty", "subtopic"]
+  }
+}
